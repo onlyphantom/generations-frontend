@@ -8,13 +8,9 @@ const BookmarkCard = ({ url, key }) => {
 
   return (
     <div>
-      <h4>Bookmark Card</h4>
       <p>
-        {url}
         <OpengraphReactComponent
-          site={
-            url || "https://docs.djangoproject.com/en/4.0/intro/tutorial01/"
-          }
+          site={url}
           appId={process.env.REACT_APP_OPENGRAPH_API_KEY}
           loader={<div>Loading...</div>}
           size={"large"}

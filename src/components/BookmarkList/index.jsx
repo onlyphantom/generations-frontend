@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import BookmarkCard from "../BookmarkCard";
+import Mentor from "../Mentor";
 
 export default function BookmarkList(params) {
   const [bookmarks, setBookmarks] = useState([]);
@@ -26,14 +27,17 @@ export default function BookmarkList(params) {
     <div>
       {!loading
         ? bookmarks
-            .sort((a, b) => b.created_at.localeCompare(a.created_at))
+            .sort((a, b) =>
+              b.attributes.createdAt.localeCompare(a.attributes.createdAt)
+            )
             .map((bookmark, i) => (
               <div key={i}>
-                <p>{JSON.stringify(bookmark.attributes)}</p>
                 <BookmarkCard url={bookmark.attributes.url} key={i} />
               </div>
             ))
         : "Loading..."}
+
+      <Mentor />
     </div>
   );
 }
