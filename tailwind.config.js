@@ -8,7 +8,8 @@ module.exports = {
     // Learn more on https://tailwindcss.com/docs/controlling-file-size/#removing-unused-css
     enabled: process.env.NODE_ENV === 'production',
     content: [
-      'public/index.html',
+      './src/components/**/*.{js,jsx,ts,tsx}',
+      './public/index.html',
     ]
   },
   theme: {

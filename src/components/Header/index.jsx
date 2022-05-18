@@ -114,7 +114,8 @@ export default function Header() {
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
                 Temporibus, expedita iusto veniam atque, magni tempora mollitia
                 dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-                ab ipsum nisi dolorem modi. Quos?
+                ab ipsum nisi dolorem modi. Quos? Generations is a paid,
+                peer-to-peer learning community for
               </p>
             </div>
             <div className="mb-12 lg:mb-0 relative">
