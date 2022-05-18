@@ -2,9 +2,9 @@ import React from "react";
 
 const Mentor = () => {
   return (
-    <section className="mb-32 text-center lg:text-left">
+    <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Meet the <u className="text-orange-200">facilitators.</u>
+        Meet the <u className="text-orange-200">experts.</u>
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
@@ -13,16 +13,18 @@ const Mentor = () => {
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
-                  src="https://mdbootstrap.com/img/new/avatars/2.jpg"
-                  alt="Trendy Pants and Shoes"
-                  className="w-full rounded-md mb-6 lg:mb-0"
+                  src="https://supertype.ai/wp-content/uploads/2021/08/vcc-150x150.jpeg"
+                  alt="vincentius calvin"
+                  className="w-full rounded-md mb-6 lg:mb-0 filter grayscale sepia-25"
                 />
               </div>
               <div className="grow-0 shrink-0 basis-auto w-full lg:w-7/12">
-                <h5 className="text-lg font-bold mb-2 text-gray-400">
-                  Darren Randolph
+                <h5 className="text-lg font-bold mb-2 text-gray-600">
+                  V.C. Calvin
                 </h5>
-                <p className="text-gray-500 mb-4 text-m">Marketing expert</p>
+                <p className="text-gray-500 mb-4 text-sm">
+                  Full-stack data science
+                </p>
                 <ul className="list-inside flex mx-auto justify-center lg:justify-start">
                   <a href="#!" className="px-2 lg:pl-0 lg:pr-2">
                     <svg
@@ -71,16 +73,18 @@ const Mentor = () => {
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
-                  src="https://mdbootstrap.com/img/new/avatars/4.jpg"
-                  alt="Trendy Pants and Shoes"
-                  className="w-full rounded-md mb-6 lg:mb-0"
+                  src="https://supertype.ai/wp-content/uploads/2021/08/T01MZ45DDEC-U01LVEC2423-e4e8be8fbe6f-192-150x150.jpeg"
+                  alt="aurellia christie"
+                  className="w-full rounded-md mb-6 lg:mb-0 filter grayscale sepia-25"
                 />
               </div>
               <div className="grow-0 shrink-0 basis-auto w-full lg:w-7/12">
-                <h5 className="text-lg font-bold mb-2 text-gray-400">
-                  Maliha Welch
+                <h5 className="text-lg font-bold mb-2 text-gray-600">
+                  Aurellia Christie
                 </h5>
-                <p className="text-gray-500 mb-4 text-m">Web designer</p>
+                <p className="text-gray-500 mb-4 text-sm">
+                  Full-stack data science
+                </p>
                 <ul className="list-inside flex mx-auto justify-center lg:justify-start">
                   <a href="#!" className="px-2 lg:pl-0 lg:pr-2">
                     <svg
@@ -129,16 +133,18 @@ const Mentor = () => {
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
-                  src="https://mdbootstrap.com/img/new/avatars/12.jpg"
-                  alt="Trendy Pants and Shoes"
-                  className="w-full rounded-md mb-6 lg:mb-0"
+                  src="https://supertype.ai/wp-content/uploads/2020/12/IMG_8266-150x150.jpg"
+                  alt="samuel chan"
+                  className="w-full rounded-md mb-6 lg:mb-0 filter grayscale sepia-25"
                 />
               </div>
               <div className="grow-0 shrink-0 basis-auto w-full lg:w-7/12">
-                <h5 className="text-lg font-bold mb-2 text-gray-400">
-                  Avaya Hills
+                <h5 className="text-lg font-bold mb-2 text-gray-600">
+                  Samuel Chan
                 </h5>
-                <p className="text-gray-500 mb-4 text-m">Copywriter</p>
+                <p className="text-gray-500 mb-4 text-sm">
+                  Machine Learning Engineer
+                </p>
                 <ul className="list-inside flex mx-auto justify-center lg:justify-start">
                   <a href="#!" className="px-2 lg:pl-0 lg:pr-2">
                     <svg

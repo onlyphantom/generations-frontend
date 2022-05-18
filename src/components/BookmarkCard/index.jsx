@@ -8,7 +8,7 @@ const BookmarkCard = ({ url, key }) => {
 
   return (
     <div>
-      <p>
+      <p className="block rounded-lg shadow-lg bg-glass p-6 m-4 text-gray-800 bookmark-card">
         <OpengraphReactComponent
           site={url}
           appId={process.env.REACT_APP_OPENGRAPH_API_KEY}

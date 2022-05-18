@@ -8,6 +8,11 @@ module.exports = {
     extend: {
       colors: {
         orange: colors.orange
+      },
+      sepia: {
+        0: '0',
+        25: '.25',
+        75: '.75',
       }
     },
   },

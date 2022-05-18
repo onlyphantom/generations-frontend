@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import BookmarkCard from "../BookmarkCard";
-import Mentor from "../Mentor";
 
 export default function BookmarkList(params) {
   const [bookmarks, setBookmarks] = useState([]);
@@ -24,7 +23,7 @@ export default function BookmarkList(params) {
   }, []);
 
   return (
-    <div>
+    <div className="grid lg:grid-cols-3 gap-4 flex items-center">
       {!loading
         ? bookmarks
             .sort((a, b) =>
@@ -36,8 +35,6 @@ export default function BookmarkList(params) {
               </div>
             ))
         : "Loading..."}
-
-      <Mentor />
     </div>
   );
 }
