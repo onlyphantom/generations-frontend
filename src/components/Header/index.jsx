@@ -98,7 +98,7 @@ export default function Header() {
       </nav>
 
       <div className="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
-        <div className="container mx-auto xl:px-32 text-gray-200">
+        <div className="container mx-auto xl:px-28 text-gray-200">
           <div className="grid lg:grid-cols-2 gap-12 flex items-center">
             <div className="mt-12 lg:mt-0" style={{ zIndex: 10 }}>
               <h1
@@ -111,11 +111,22 @@ export default function Header() {
                 </span>
               </h1>
               <p className="opacity-70" style={{ color: "hsl(218, 81%, 85%)" }}>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Temporibus, expedita iusto veniam atque, magni tempora mollitia
-                dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-                ab ipsum nisi dolorem modi. Quos? Generations is a paid,
-                peer-to-peer learning community for
+                Generations is a paid, peer-to-peer community for data science
+                practitioners and software engineers who want to develop product
+                development skills by immersing themselves with other
+                industry-minded developers. <br />
+                <br />
+                We're currently invite-only, and admissions are subjected to a
+                quick screening process by the awesome team at{" "}
+                <a
+                  href="https://supertype.ai"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline text-orange-100 hover:text-orange-300"
+                >
+                  Supertype.ai
+                </a>
+                , a full-cycle data science consultancy.
               </p>
             </div>
             <div className="mb-12 lg:mb-0 relative">
@@ -125,7 +136,7 @@ export default function Header() {
               ></div>
               <div id="radius-shape-2" className="absolute shadow-lg"></div>
               <div className="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-12">
-                <form>
+                <form name="enquiry" netlify>
                   <div className="grid md:grid-cols-2 md:gap-6">
                     <div className="mb-6">
                       <input
