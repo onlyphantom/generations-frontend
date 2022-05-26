@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CollectionCard from "../CollectionCard";
 
 export default function BookmarkList(params) {
   const [collection, setCollection] = useState([]);
@@ -29,7 +30,7 @@ export default function BookmarkList(params) {
             )
             .map((collection, i) => (
               <div key={i}>
-                <p>Collection {collection.attributes.title}</p>
+                <CollectionCard attributes={collection.attributes} />
                 {/* <BookmarkCard url={bookmark.attributes.url} key={i} /> */}
               </div>
             ))

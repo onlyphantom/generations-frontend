@@ -1,11 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import OpengraphReactComponent from "opengraph-react";
 
-const BookmarkCard = ({ url, key }) => {
-  useEffect(() => {
-    console.log(url);
-  }, [url]);
-
+const BookmarkCard = ({ url }) => {
   return (
     <div>
       <p className="block rounded-lg shadow-lg bg-glass p-6 m-4 text-gray-800 bookmark-card">
