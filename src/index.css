@@ -58,12 +58,12 @@ code {
   backdrop-filter: saturate(200%) blur(25px);
 }
 
-.markdown-para > h2, .markdown-para > h3, .markdown-para > h4 {
+.markdown-para h2, .markdown-para h3, .markdown-para h4 {
   margin: 0.5rem 0;
   font-weight: 600;
   line-height: 1.2;
 }
 
-.markdown-para > h4 {
+.markdown-para h4 {
   font-size: 1.2rem;
 }

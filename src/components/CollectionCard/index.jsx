@@ -10,7 +10,17 @@ const CollectionCard = ({ attributes }) => {
       <p className="text-gray-500 mb-4 text-sm markdown-para">
         <small>{attributes.publishedAt}</small>
         <hr />
-        <ReactMarkdown>{attributes.details}</ReactMarkdown>
+        {attributes.details && (
+          <div
+            tabindex="0"
+            class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
+          >
+            <div class="collapse-title text-xl font-medium">See Details</div>
+            <div class="collapse-content">
+              <ReactMarkdown>{attributes.details}</ReactMarkdown>
+            </div>
+          </div>
+        )}
       </p>
     </div>
   );
