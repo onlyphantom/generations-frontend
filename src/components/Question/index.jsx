@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import IntentRow from "./IntentRow";
 import RespondFromIntent from "./RespondFromIntent";
 
 const Question = () => {
@@ -24,7 +25,11 @@ const Question = () => {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
-          setCurrentIntent(res.intents[0].name);
+          if (res.intents.length === 0) {
+            setCurrentIntent("unknown");
+          } else {
+            setCurrentIntent(res.intents[0].name);
+          }
         });
     }
   }, [prompt]);
@@ -32,7 +37,7 @@ const Question = () => {
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Find more <u className="text-orange-200">information</u>
+        Ask <u className="text-orange-200">FellowshipBot</u>
       </h2>
       <div class="form-control w-full">
         <label class="label">
@@ -49,6 +54,7 @@ const Question = () => {
           onKeyDown={handleKeyDown}
         />
       </div>
+      <IntentRow intent={currentIntent} />
       {currentIntent && (
         <div className="mt-12">
           <RespondFromIntent intent={currentIntent} />

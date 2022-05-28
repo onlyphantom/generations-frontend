@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-flexbugs-fixes": "^5.0.2",

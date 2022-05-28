@@ -17,7 +17,9 @@ const CollectionCard = ({ attributes }) => {
           >
             <div class="collapse-title text-xl font-medium">See Details</div>
             <div class="collapse-content">
-              <ReactMarkdown>{attributes.details}</ReactMarkdown>
+              <article class="prose">
+                <ReactMarkdown>{attributes.details}</ReactMarkdown>
+              </article>
             </div>
           </div>
         )}

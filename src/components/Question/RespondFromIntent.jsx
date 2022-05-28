@@ -28,7 +28,7 @@ const RespondFromIntent = ({ intent, entities }) => {
   if (intent === "about_us") {
     return (
       <p className="prose">
-        You can read all about Supertype at our{" "}
+        🤖: You can read all about Supertype at our{" "}
         <a
           href="https://supertype.ai/about-us"
           target="_blank"
@@ -41,7 +41,24 @@ const RespondFromIntent = ({ intent, entities }) => {
       </p>
     );
   } else {
-    return "I am sorry, I am not sure what you mean.";
+    return (
+      <p class="prose">
+        🤖: I am sorry, I am not sure what you mean. You can ask me a question
+        relating to the organizers, the Supertype Fellowship program, or
+        anything I have specific knowledge of. I am not human, after all 😔.
+        <br />
+        <br />
+        Beyond the scope of these topics, you'd be better served by sending{" "}
+        <a
+          href="https://twitter.com/_onlyphantom"
+          target="_blank"
+          rel="noreferrer"
+          className="underline text-orange-100 hover:text-orange-300"
+        >
+          my creator a DM: _onlyphantom (Samuel Chan)
+        </a>
+      </p>
+    );
   }
 };
 
