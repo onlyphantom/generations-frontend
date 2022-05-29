@@ -17,7 +17,7 @@ const Question = () => {
 
   useEffect(() => {
     const q = encodeURIComponent(prompt);
-    const uri = "https://api.wit.ai/message?v=20220503&q=" + q;
+    const uri = process.env.REACT_APP_WIT_URI + q;
     const auth = "Bearer " + process.env.REACT_APP_WIT_CLIENT_TOKEN;
 
     if (prompt) {
@@ -39,9 +39,9 @@ const Question = () => {
       <h2 className="text-3xl font-bold mb-12 text-center">
         Ask <u className="text-orange-200">FellowshipBot</u>
       </h2>
-      <div class="form-control w-full">
-        <label class="label">
-          <span class="label-text prose">
+      <div className="form-control w-full">
+        <label className="label">
+          <span className="label-text prose">
             Ask a question and we'll point you to more resources. Hit{" "}
             <code>ENTER</code> to submit.
           </span>
@@ -50,7 +50,7 @@ const Question = () => {
           ref={promptRef}
           type="text"
           placeholder="Tell me about Supertype?"
-          class="input input-bordered input-secondary w-full"
+          className="input input-bordered input-secondary w-full"
           onKeyDown={handleKeyDown}
         />
       </div>

@@ -107,9 +107,9 @@ export default function Header() {
                 </span>
               </h1>
               <article className="prose">
-                Generations is a paid, peer-to-peer community for data science
-                practitioners and software engineers who want to develop product
-                development skills by immersing themselves with other
+                Supertype Fellowship is a paid, peer-to-peer community for data
+                science practitioners and software engineers who want to develop
+                product development skills by immersing themselves with other
                 industry-minded developers. <br />
                 <br />
                 We're currently invite-only, and admissions are subjected to a

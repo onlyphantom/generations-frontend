@@ -4,17 +4,17 @@ const IntentRow = ({ intent }) => {
   return (
     <div
       key={intent}
-      class="border-base-300 bg-base-200 rounded-b-box flex min-h-[6rem] min-w-[18rem] max-w flex-wrap items-center justify-center gap-2 overflow-x-hidden border bg-cover bg-top p-4"
+      className="border-base-300 bg-base-200 rounded-b-box flex min-h-[6rem] min-w-[18rem] max-w flex-wrap items-center justify-center gap-2 overflow-x-hidden border bg-cover bg-top p-4"
     >
       <div
-        class={
-          "badge " + (intent === "general" ? "badge-success" : "badge-outline")
+        className={
+          "badge " + (intent === "humor" ? "badge-success" : "badge-outline")
         }
       >
-        general
+        humor
       </div>{" "}
       <div
-        class={
+        className={
           "badge " +
           (intent === "about_us"
             ? "badge-success"
@@ -24,7 +24,7 @@ const IntentRow = ({ intent }) => {
         about Supertype
       </div>{" "}
       <div
-        class={
+        className={
           "badge " +
           (intent === "about_fellowship"
             ? "badge-success"
@@ -34,7 +34,7 @@ const IntentRow = ({ intent }) => {
         about the fellowship
       </div>{" "}
       <div
-        class={
+        className={
           "badge " +
           (intent === "schedule_meeting"
             ? "badge-success"
@@ -44,17 +44,17 @@ const IntentRow = ({ intent }) => {
         talk to us
       </div>
       <div
-        class={
+        className={
           "badge " +
-          (intent === "connect_us"
+          (intent === "provide_info"
             ? "badge-success"
             : "badge-outline badge-info")
         }
       >
-        keep in touch
+        subscribe to newsletter
       </div>
       <div
-        class={
+        className={
           "badge " +
           (intent === "unknown" ? "badge-success" : "badge-outline badge-error")
         }
