@@ -25,7 +25,7 @@ const Question = () => {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
-          if (res.intents.length === 0) {
+          if (res.intents?.length === 0) {
             setCurrentIntent("unknown");
           } else {
             setCurrentIntent(res.intents[0].name);
@@ -41,7 +41,7 @@ const Question = () => {
       </h2>
       <div class="form-control w-full">
         <label class="label">
-          <span class="label-text">
+          <span class="label-text prose">
             Ask a question and we'll point you to more resources. Hit{" "}
             <code>ENTER</code> to submit.
           </span>
@@ -56,7 +56,7 @@ const Question = () => {
       </div>
       <IntentRow intent={currentIntent} />
       {currentIntent && (
-        <div className="mt-12">
+        <div className="mt-12 prose">
           <RespondFromIntent intent={currentIntent} />
         </div>
       )}

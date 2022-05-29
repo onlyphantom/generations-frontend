@@ -22,13 +22,11 @@ const RespondFromIntent = ({ intent, entities }) => {
   if (intent === "joke") {
     return "Why did the chicken cross the road?";
   }
-  if (intent === "news") {
-    return "The news is good.";
-  }
   if (intent === "about_us") {
     return (
       <p className="prose">
-        🤖: You can read all about Supertype at our{" "}
+        🤖: Supertype is a full-cycle data science consultancy.
+        <br /> You can read all about our story at the{" "}
         <a
           href="https://supertype.ai/about-us"
           target="_blank"

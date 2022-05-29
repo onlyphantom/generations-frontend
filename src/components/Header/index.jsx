@@ -106,7 +106,7 @@ export default function Header() {
                   purposefully curated.
                 </span>
               </h1>
-              <p className="opacity-70" style={{ color: "hsl(218, 81%, 85%)" }}>
+              <article className="prose">
                 Generations is a paid, peer-to-peer community for data science
                 practitioners and software engineers who want to develop product
                 development skills by immersing themselves with other
@@ -123,7 +123,7 @@ export default function Header() {
                   Supertype.ai
                 </a>
                 , a full-cycle data science consultancy.
-              </p>
+              </article>
             </div>
             <div className="mb-12 lg:mb-0 relative">
               <div

@@ -17,7 +17,7 @@ const CollectionCard = ({ attributes }) => {
           >
             <div class="collapse-title text-xl font-medium">See Details</div>
             <div class="collapse-content">
-              <article class="prose">
+              <article class="prose prose-sm dark:prose-invert">
                 <ReactMarkdown>{attributes.details}</ReactMarkdown>
               </article>
             </div>
