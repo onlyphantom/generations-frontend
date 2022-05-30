@@ -102,7 +102,7 @@ export default function Header() {
                 style={{ color: "hsl(218, 81 %, 95 %)" }}
               >
                 Learning Paths <br />
-                <span className="underline text-orange-200">
+                <span className="underline text-rose-300">
                   purposefully curated.
                 </span>
               </h1>

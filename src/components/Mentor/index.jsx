@@ -4,14 +4,14 @@ const Mentor = () => {
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Meet the <u className="text-orange-200">experts.</u>
+        Meet the <u className="text-rose-300">experts.</u>
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
         <div className="mb-6 lg:mb-0">
-          <div className="relative block rounded-lg shadow-lg bg-white p-6">
+          <div className="relative block rounded-lg shadow-lg bg-glass p-6">
             <div className="lg:flex flex-row items-center">
-              <div className="grow-0 shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
+              <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
                   src="https://supertype.ai/wp-content/uploads/2021/08/vcc-150x150.jpeg"
                   alt="vincentius calvin"
@@ -68,10 +68,10 @@ const Mentor = () => {
           </div>
         </div>
 
-        <div className="mb-6 lg:mb-0">
-          <div className="relative block rounded-lg shadow-lg bg-white p-6">
+        <div className="mb-6 lg:mb-0 rounded-box">
+          <div className="relative block rounded-lg shadow-lg p-6 bg-base-200 border-solid border-2 border-rose-500">
             <div className="lg:flex flex-row items-center">
-              <div className="grow-0 shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
+              <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
                   src="https://supertype.ai/wp-content/uploads/2021/08/T01MZ45DDEC-U01LVEC2423-e4e8be8fbe6f-192-150x150.jpeg"
                   alt="aurellia christie"
@@ -128,10 +128,10 @@ const Mentor = () => {
           </div>
         </div>
 
-        <div className="mb-6 lg:mb-0">
-          <div className="relative block rounded-lg shadow-lg bg-white p-6">
+        <div className="mb-6 lg:mb-0 rounded-box">
+          <div className="relative block rounded-lg shadow-lg p-6 bg-base-200 border-solid border-2 border-sky-500">
             <div className="lg:flex flex-row items-center">
-              <div className="grow-0 shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
+              <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
                   src="https://supertype.ai/wp-content/uploads/2020/12/IMG_8266-150x150.jpg"
                   alt="samuel chan"

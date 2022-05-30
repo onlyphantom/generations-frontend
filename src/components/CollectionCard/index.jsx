@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 const CollectionCard = ({ attributes }) => {
   return (
-    <div className="block rounded-lg shadow-lg bg-glass p-6 m-4 text-gray-800 bookmark-card">
+    <div className="block rounded-lg shadow-lg bg-glass p-6 text-gray-800 bookmark-card">
       <h5 className="text-xl font-bold mb-2 text-gray-600">
         {attributes.title}
       </h5>
