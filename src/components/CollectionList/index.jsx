@@ -22,19 +22,22 @@ export default function BookmarkList(params) {
   }, []);
 
   return (
-    <div className="grid lg:grid-cols-3 gap-4 flex items-center">
-      {!loading
-        ? collection
-            .sort((a, b) =>
-              b.attributes.createdAt.localeCompare(a.attributes.createdAt)
-            )
-            .map((collection, i) => (
-              <div key={i}>
-                <CollectionCard attributes={collection.attributes} />
-                {/* <BookmarkCard url={bookmark.attributes.url} key={i} /> */}
-              </div>
-            ))
-        : "Loading..."}
+    // <div className="grid lg:grid-cols-3 gap-4 flex items-center">
+    <div className="relative flex min-h-screen flex-col justify-center py-6 sm:py-12">
+      <div className="columns-2 2xl:columns-3 gap-10 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit">
+        {!loading
+          ? collection
+              .sort((a, b) =>
+                b.attributes.createdAt.localeCompare(a.attributes.createdAt)
+              )
+              .map((collection, i) => (
+                <div key={i} className="break-inside-avoid rounded-lg">
+                  <CollectionCard attributes={collection.attributes} />
+                  {/* <BookmarkCard url={bookmark.attributes.url} key={i} /> */}
+                </div>
+              ))
+          : "Loading..."}
+      </div>
     </div>
   );
 }
