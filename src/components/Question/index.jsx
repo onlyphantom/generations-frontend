@@ -37,20 +37,20 @@ const Question = () => {
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Ask <u className="text-rose-300">FellowshipBot</u>
+        Ask <u className="text-secondary">FellowshipBot</u>
       </h2>
       <div className="form-control w-full">
         <label className="label">
           <span className="label-text prose">
             Ask a question and we'll point you to more resources. Hit{" "}
-            <code>ENTER</code> to submit.
+            <kbd class="kbd kbd-md">ENTER</kbd> to submit.
           </span>
         </label>
         <input
           ref={promptRef}
           type="text"
           placeholder="Tell me about Supertype?"
-          className="input input-bordered input-secondary w-full"
+          className="input input-bordered input-accent w-full"
           onKeyDown={handleKeyDown}
         />
       </div>

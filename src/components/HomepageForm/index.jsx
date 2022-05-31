@@ -10,7 +10,7 @@ const HomepageForm = () => {
             <input
               type="text"
               name="first-name"
-              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              className="input w-full max-w-xs input-bordered"
               placeholder="First name"
             />
           </div>
@@ -18,7 +18,7 @@ const HomepageForm = () => {
             <input
               type="text"
               name="last-name"
-              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              className="input w-full max-w-xs input-bordered"
               placeholder="Last name"
             />
           </div>
@@ -26,12 +26,12 @@ const HomepageForm = () => {
         <input
           type="email"
           name="email"
-          className="form-control block w-full px-3 py-1.5 mb-6 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+          className="input w-full max-w input-bordered mb-6"
           placeholder="Email address"
         />
         <div className="form-check flex justify-center mb-6">
           <label
-            className="form-check-label inline-block text-gray-800"
+            className="form-check-label inline-block"
             htmlFor="newsletterChecked"
           >
             <input
@@ -49,7 +49,7 @@ const HomepageForm = () => {
           type="submit"
           // data-mdb-ripple="true"
           // data-mdb-ripple-color="light"
-          className="inline-block px-6 py-2.5 mb-6 w-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+          className="mb-6 w-full btn btn-secondary"
         >
           Enquire about upcoming cohort
         </button>
@@ -61,7 +61,7 @@ const HomepageForm = () => {
         <a
           href="#!"
           role="button"
-          className="text-blue-600 hover:text-blue-700 focus:text-blue-700 action:text-blue-800 transition duration-200 ease-in-out"
+          className="link-accent action:text-blue-800 transition duration-200 ease-in-out"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ const HomepageForm = () => {
         <a
           href="#!"
           role="button"
-          className="text-blue-600 hover:text-blue-700 focus:text-blue-700 action:text-blue-800 transition duration-200 ease-in-out"
+          className="link-accent action:text-blue-800 transition duration-200 ease-in-out"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +93,7 @@ const HomepageForm = () => {
         <a
           href="#!"
           role="button"
-          className="text-blue-600 hover:text-blue-700 focus:text-blue-700 action:text-blue-800 transition duration-200 ease-in-out"
+          className="link-accent action:text-blue-800 transition duration-200 ease-in-out"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +109,7 @@ const HomepageForm = () => {
         <a
           href="#!"
           role="button"
-          className="text-blue-600 hover:text-blue-700 focus:text-blue-700 action:text-blue-800 transition duration-200 ease-in-out"
+          className="link-accent action:text-blue-800 transition duration-200 ease-in-out"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
