@@ -8,6 +8,8 @@ const Question = () => {
   const [currentIntent, setCurrentIntent] = useState(null);
 
   const handleKeyDown = (event) => {
+    // handle enter key for mobile devices and keyboard
+
     if (event.key === "Enter") {
       event.preventDefault();
       setPrompt(event.target.value);
@@ -37,13 +39,14 @@ const Question = () => {
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Ask <u className="text-secondary">FellowshipBot</u>
+        Ask <span className="text-secondary">FellowshipBot</span>
       </h2>
       <div className="form-control w-full">
         <label className="label">
-          <span className="label-text prose">
+          <span className="label-text prose prose-lg lg:prose-xl text-center">
             Ask a question and we'll point you to more resources. Hit{" "}
-            <kbd class="kbd kbd-md">ENTER</kbd> to submit.
+            <kbd class="kbd kbd-md">ENTER</kbd> to submit <br />(
+            <kbd class="kbd kbd-sm">Return</kbd> on mobile devices).
           </span>
         </label>
         <input

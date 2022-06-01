@@ -4,7 +4,7 @@ const Mentor = () => {
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Meet the <u className="text-secondary">experts.</u>
+        Meet the <span className="text-secondary">experts.</span>
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
@@ -30,7 +30,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 320 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -42,7 +42,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -54,7 +54,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -150,7 +150,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -162,7 +162,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -174,7 +174,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -210,7 +210,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 512 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -222,7 +222,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
@@ -234,7 +234,7 @@ const Mentor = () => {
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 448 512"
-                      className="w-4 h-4 text-accent"
+                      className="w-4 h-4"
                     >
                       <path
                         fill="currentColor"
