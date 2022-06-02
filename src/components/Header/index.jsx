@@ -51,7 +51,7 @@ export default function Header() {
                 className="absolute rounded-full shadow-lg"
               ></div>
               <div id="radius-shape-2" className="absolute shadow-lg"></div>
-              <div className="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-8">
+              <div className="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-8 border-solid border-2 border-sky-500">
                 <HomepageForm />
               </div>
             </div>

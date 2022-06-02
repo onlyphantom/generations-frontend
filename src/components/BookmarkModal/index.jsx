@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import BookmarkCardCached from "../BookmarkCardCached";
 
 const BookmarkModal = ({ collectionId }) => {
   const [loading, setLoading] = useState(false);
@@ -30,20 +31,28 @@ const BookmarkModal = ({ collectionId }) => {
     return (
       <>
         <input type="checkbox" id={collectionId} class="modal-toggle" />
-        <div class="modal modal-bottom sm:modal-middle">
-          <div class="modal-box">
+        <div class="modal modal-bottom m:modal-middle">
+          <div class="modal-box w-11/12 max-w-4xl">
             <label
               for={collectionId}
               class="btn btn-sm btn-circle absolute right-2 top-2"
             >
               ✕
             </label>
-            <h3 class="font-bold text-lg">
-              Congratulations random Internet user!
-            </h3>
-
             {bookmarks.length > 0 ? (
-              JSON.stringify(bookmarks)
+              bookmarks
+                .sort((a, b) =>
+                  b.attributes.createdAt.localeCompare(a.attributes.createdAt)
+                )
+                .map((bookmark, i) => (
+                  <li
+                    key={i}
+                    className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-2 
+                    border-secondary odd:text-sky-300 even:text-accent"
+                  >
+                    <BookmarkCardCached data={bookmark} key={i} />
+                  </li>
+                ))
             ) : (
               <p>No bookmarks in this collection</p>
             )}
