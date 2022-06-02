@@ -21,12 +21,10 @@ const Question = () => {
     const q = encodeURIComponent(prompt);
     const uri = process.env.REACT_APP_WIT_URI + q;
     const auth = "Bearer " + process.env.REACT_APP_WIT_CLIENT_TOKEN;
-    console.log(uri);
     if (prompt) {
       fetch(uri, { headers: { Authorization: auth } })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
           if (res.intents?.length === 0) {
             setCurrentIntent("unknown");
           } else {
@@ -45,15 +43,15 @@ const Question = () => {
         <label className="label">
           <span className="label-text prose prose-lg lg:prose-xl text-center">
             Ask a question and we'll point you to more resources. Hit{" "}
-            <kbd class="kbd kbd-md">ENTER</kbd> to submit <br />(
-            <kbd class="kbd kbd-sm">Return</kbd> on mobile devices).
+            <kbd className="kbd kbd-md">ENTER</kbd> to submit <br />(
+            <kbd className="kbd kbd-sm">Return</kbd> on mobile devices).
           </span>
         </label>
         <input
           ref={promptRef}
           type="text"
           placeholder="Tell me about Supertype?"
-          className="input input-bordered input-accent w-full"
+          className="input input-bordered input-accent"
           onKeyDown={handleKeyDown}
         />
       </div>

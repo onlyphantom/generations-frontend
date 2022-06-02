@@ -3,7 +3,7 @@ import React from "react";
 const HomepageForm = () => {
   return (
     <>
-      <form name="enquiry" method="post" netlify>
+      <form name="enquiry" method="post" data-netlify="true">
         <input type="hidden" name="form-name" value="enquiry" />
         <div className="grid md:grid-cols-2 md:gap-6">
           <div className="mb-6">

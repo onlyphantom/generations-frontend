@@ -26,16 +26,16 @@ const BookmarkModal = ({ collectionId }) => {
   }, [collectionId]);
 
   if (loading) {
-    return <progress class="progress w-56"></progress>;
+    return <progress className="progress w-56"></progress>;
   } else {
     return (
       <>
-        <input type="checkbox" id={collectionId} class="modal-toggle" />
-        <div class="modal modal-bottom m:modal-middle">
-          <div class="modal-box w-11/12 max-w-4xl">
+        <input type="checkbox" id={collectionId} className="modal-toggle" />
+        <div className="modal modal-bottom m:modal-middle">
+          <div className="modal-box w-11/12 max-w-4xl">
             <label
-              for={collectionId}
-              class="btn btn-sm btn-circle absolute right-2 top-2"
+              htmlFor={collectionId}
+              className="btn btn-sm btn-circle absolute right-2 top-2"
             >
               ✕
             </label>
@@ -45,19 +45,19 @@ const BookmarkModal = ({ collectionId }) => {
                   b.attributes.createdAt.localeCompare(a.attributes.createdAt)
                 )
                 .map((bookmark, i) => (
-                  <li
+                  <div
                     key={i}
                     className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-2 
                     border-secondary odd:text-sky-300 even:text-accent"
                   >
                     <BookmarkCardCached data={bookmark} key={i} />
-                  </li>
+                  </div>
                 ))
             ) : (
               <p>No bookmarks in this collection</p>
             )}
-            <div class="modal-action">
-              <label for={collectionId} class="btn">
+            <div className="modal-action">
+              <label htmlFor={collectionId} className="btn">
                 Got it!
               </label>
             </div>

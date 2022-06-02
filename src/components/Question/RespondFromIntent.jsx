@@ -9,7 +9,6 @@ const RespondFromIntent = ({ intent, entities }) => {
       fetch("https://sv443.net/jokeapi/v2/joke/Programming?type=single")
         .then((res) => res.json())
         .then((data) => {
-          console.log(data.joke);
           setJoke(data.joke);
         })
         .catch((err) =>
@@ -95,7 +94,7 @@ const RespondFromIntent = ({ intent, entities }) => {
     // return name and email to confirm they are correct
   } else {
     return (
-      <p class="prose">
+      <p className="prose">
         🤖: I am sorry, I am not sure what you mean. You can ask me a question
         relating to the organizers, the Supertype Fellowship program, or
         anything I have specific knowledge of. I am not human, after all 😔.

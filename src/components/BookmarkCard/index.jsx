@@ -10,7 +10,7 @@ const BookmarkCard = ({ url }) => {
           appId={process.env.REACT_APP_OPENGRAPH_API_KEY}
           loader={
             <div>
-              <progress class="progress w-56"></progress>
+              <progress className="progress w-56"></progress>
             </div>
           }
           size={"large"}

@@ -22,18 +22,23 @@ const OGSnippet = ({
         </figure>
       </div>
       <div className="card-body text-sm text-white text-left p-6">
-        <div class="uppercase tracking-wide text-sm text-secondary font-semibold">
+        <div className="uppercase tracking-wide text-sm text-secondary font-semibold">
           {medium}
         </div>
         <h2 className="card-title">
-          <a href={url}>{title}</a>
+          <a href={url} target="_blank" rel="noreferrer" className="link">
+            {title}
+          </a>
         </h2>
         <p className="text-xs">{subtitle}</p>
         <p>{description}</p>
         <div className="flex">
-          {Array(effort).fill(
-            <span class="badge badge-secondary badge-xs mx-1"></span>
-          )}
+          {Array.from({ length: effort }, (_, i) => (
+            <span
+              key={i}
+              className="badge badge-secondary badge-xs mx-1"
+            ></span>
+          ))}
         </div>
         <div className="card-actions justify-end">
           <button className="btn btn-secondary">Add</button>
