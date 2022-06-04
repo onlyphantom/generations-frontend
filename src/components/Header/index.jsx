@@ -1,11 +1,3 @@
-// export default function Header() {
-//     return (
-//         <section classNameName="p-4 text-2xl font-bold bg-black text-white mb-4">
-//             <div>Generations</div>
-//         </section>
-//     );
-// }
-
 import HomepageForm from "../HomepageForm";
 import Navbar from "../Navbar";
 
