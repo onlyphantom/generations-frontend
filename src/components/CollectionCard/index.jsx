@@ -1,6 +1,7 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
-import BookmarkModal from "../BookmarkModal";
+import CollectionModal from "../CollectionModal";
+import CollectionDetails from "./CollectionDetails";
+import CollectionMentors from "./CollectionMentors";
 
 const CollectionCard = ({ attributes, id }) => {
   return (
@@ -17,20 +18,13 @@ const CollectionCard = ({ attributes, id }) => {
         <small>{attributes.publishedAt}</small>
         {/* <small>{JSON.stringify(attributes)}</small> */}
         {attributes.details && (
-          <div
-            tabIndex="0"
-            className="collapse collapse-plus border border-base-300 bg-base-100 rounded-box"
-          >
-            <div className="collapse-title text-xl font-medium">Summary</div>
-            <div className="collapse-content">
-              <article className="prose prose-sm dark:prose-invert">
-                <ReactMarkdown>{attributes.details}</ReactMarkdown>
-              </article>
-            </div>
-          </div>
+          <>
+            <CollectionDetails attributes={attributes} />
+            <CollectionMentors mentors={attributes.experts.data} />
+          </>
         )}
       </div>
-      <BookmarkModal collectionId={id} />
+      <CollectionModal collectionId={id} />
     </div>
   );
 };

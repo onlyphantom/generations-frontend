@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookmarkCardCached from "../BookmarkCardCached";
 
-const BookmarkModal = ({ collectionId }) => {
+const CollectionModal = ({ collectionId }) => {
   const [loading, setLoading] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
 
@@ -67,4 +67,4 @@ const BookmarkModal = ({ collectionId }) => {
     );
   }
 };
-export default BookmarkModal;
+export default CollectionModal;
