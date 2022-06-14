@@ -40,8 +40,8 @@ const Question = () => {
         Ask <span className="text-secondary">FellowshipBot</span>
       </h2>
       <div className="form-control w-full">
-        <label className="label">
-          <span className="label-text prose prose-lg lg:prose-xl text-center">
+        <label className="label flex flex-col justify-center items-center">
+          <span className="label-text prose prose-lg lg:prose-xl">
             Ask a question and we'll point you to more resources. Hit{" "}
             <kbd className="kbd kbd-md">ENTER</kbd> to submit <br />(
             <kbd className="kbd kbd-sm">Return</kbd> on mobile devices).

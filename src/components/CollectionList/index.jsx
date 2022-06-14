@@ -29,7 +29,7 @@ export default function BookmarkList(params) {
         <h2 className="text-3xl font-bold mb-12 text-center">
           Practical lessons, <span className="text-secondary">curated.</span>
         </h2>
-        <ul className="columns-1 xl:columns-3 gap-6 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit">
+        <ul className="columns-1 xl:columns-3 gap-6 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit text-center">
           {!loading ? (
             collection
               .sort((a, b) =>

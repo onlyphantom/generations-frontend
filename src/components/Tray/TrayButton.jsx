@@ -1,6 +1,6 @@
 import React from "react";
 
-const TrayButton = () => {
+const TrayButton = ({ setTrayOpen }) => {
   return (
     <div
       style={{
@@ -16,8 +16,8 @@ const TrayButton = () => {
           position: "absolute",
         }}
       >
-        <label
-          for="tray"
+        <button
+          onClick={() => setTrayOpen(true)}
           className="btn bg-info text-black link hover:bg-sky-500 glass shadow-lg"
         >
           <svg
@@ -37,7 +37,7 @@ const TrayButton = () => {
             />
           </svg>
           Learning Tray
-        </label>
+        </button>
       </div>
     </div>
   );

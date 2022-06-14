@@ -9,7 +9,7 @@ const Mentor = () => {
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
         <div className="mb-6 lg:mb-0 rounded-box">
-          <div className="relative block rounded-lg shadow-lg p-6 bg-base-200 border-solid border-2 border-sky-500">
+          <div className="relative block rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-sky-500">
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
@@ -69,7 +69,7 @@ const Mentor = () => {
         </div>
 
         <div className="mb-6 lg:mb-0 rounded-box">
-          <div className="relative block rounded-lg shadow-lg p-6 bg-base-200 border-solid border-2 border-accent">
+          <div className="relative block rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-accent">
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
@@ -129,7 +129,7 @@ const Mentor = () => {
         </div>
 
         <div className="mb-6 lg:mb-0 rounded-box">
-          <div className="relative block rounded-lg shadow-lg p-6 bg-base-200 border-solid border-2 border-sky-500">
+          <div className="relative block rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-sky-500">
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
@@ -189,7 +189,7 @@ const Mentor = () => {
         </div>
 
         <div className="mb-6 lg:mb-0 rounded-box">
-          <div className="relative block rounded-lg shadow-lg p-6 bg-base-200 border-solid border-2 border-sky-500">
+          <div className="relative block rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-sky-500">
             <div className="lg:flex flex-row items-center">
               <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
                 <img
