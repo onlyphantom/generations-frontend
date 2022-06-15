@@ -12,6 +12,7 @@ const HomepageForm = () => {
               name="first-name"
               className="input w-full max-w-xs input-bordered"
               placeholder="First name"
+              required
             />
           </div>
           <div className="mb-6">
@@ -20,6 +21,7 @@ const HomepageForm = () => {
               name="last-name"
               className="input w-full max-w-xs input-bordered"
               placeholder="Last name"
+              required
             />
           </div>
         </div>
@@ -28,6 +30,7 @@ const HomepageForm = () => {
           name="email"
           className="input w-full max-w input-bordered mb-6"
           placeholder="Email address"
+          required
         />
         <div className="form-check flex justify-center mb-6 text-[16px]">
           <label
