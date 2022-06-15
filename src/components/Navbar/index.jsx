@@ -1,6 +1,34 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
+
+import { UserContext } from "../../contexts/UserContext";
+
+import EnrollFormModal from "../EnrollFormModal";
 
 const Navbar = () => {
+  
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const { dispatch } = useContext(UserContext);
+  useEffect(() => {
+    const token = sessionStorage.getItem("userSession");
+    if(token){
+      dispatch({
+        type: "LOGIN",
+        token: token
+      });
+      setLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogOut = (event) => {
+    event.preventDefault();
+    dispatch({
+        type: "LOGOUT"
+    });
+    sessionStorage.removeItem("userSession");
+    window.location.reload();
+  };
+  
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -48,9 +76,19 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn btn-secondary" href="#!">
-          Enroll in Fellowship
-        </a>
+        {loggedIn 
+          ? 
+          <div className="btn btn-secondary" onClick={(event) => handleLogOut(event)}> 
+            Log Out 
+          </div> 
+          :
+          <>
+            <label className="btn btn-secondary" htmlFor="enroll">
+              Enroll in Fellowship
+            </label>
+            <EnrollFormModal/>
+          </>
+        }
       </div>
     </div>
   );
