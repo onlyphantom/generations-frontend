@@ -9,6 +9,7 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const { dispatch } = useContext(UserContext);
+  
   useEffect(() => {
     const token = sessionStorage.getItem("userSession");
     if(token){
@@ -18,7 +19,7 @@ const Navbar = () => {
       });
       setLoggedIn(true);
     }
-  }, []);
+  }, [dispatch]);
 
   const handleLogOut = (event) => {
     event.preventDefault();
