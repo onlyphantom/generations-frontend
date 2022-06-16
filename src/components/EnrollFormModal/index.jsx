@@ -177,7 +177,7 @@ const EnrollFormModal = () => {
                                 </svg>
                             </a>
                             <a
-                                href="#!"
+                                href="https://generationsapi.herokuapp.com/api/connect/google"
                                 role="button"
                                 className="link-accent action:text-blue-800 transition duration-200 ease-in-out"
                             >
@@ -286,7 +286,7 @@ const EnrollFormModal = () => {
                                 </svg>
                             </a>
                             <a
-                                href="#!"
+                                href="https://generationsapi.herokuapp.com/api/connect/google"
                                 role="button"
                                 className="link-accent action:text-blue-800 transition duration-200 ease-in-out"
                             >
@@ -321,7 +321,7 @@ const EnrollFormModal = () => {
                     </div>
                 </div>
             </>
-        )
+        );
     }
     
 };
