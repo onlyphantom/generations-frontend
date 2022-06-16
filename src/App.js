@@ -1,11 +1,6 @@
 import './App.css';
 
-import Header from './components/Header';
-import CollectionList from './components/CollectionList/index.jsx';
-import Mentor from "./components/Mentor";
-import Question from './components/Question';
-import Tray from './components/Tray';
-import Steps from './components/Steps';
+import MainRouter from './routers/MainRouter';
 
 import { UserReducer } from './reducers/UserReducer';
 import { UserContext } from './contexts/UserContext';
@@ -19,12 +14,7 @@ function App() {
   return (
     <UserContext.Provider value= {{user, dispatch}}>
       <div className="App-body">
-        <Header />
-        <CollectionList />
-        <Steps />
-        <Mentor />
-        <Question />
-        <Tray />
+        <MainRouter />
       </div>
     </UserContext.Provider>
   );
