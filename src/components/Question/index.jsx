@@ -35,7 +35,7 @@ const Question = () => {
   }, [prompt]);
 
   return (
-    <section className="mb-32 mx-4 text-center lg:text-left">
+    <section className="mb-32 mx-4 text-center lg:text-left justify-center items-center flex flex-col">
       <h2 className="text-3xl font-bold mb-12 text-center">
         Ask <span className="text-secondary">FellowshipBot</span>
       </h2>
