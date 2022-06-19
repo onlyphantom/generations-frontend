@@ -48,12 +48,7 @@ const HomepageForm = () => {
             Subscribe to our newsletter 💌
           </label>
         </div>
-        <button
-          type="submit"
-          // data-mdb-ripple="true"
-          // data-mdb-ripple-color="light"
-          className="w-full btn btn-secondary"
-        >
+        <button type="submit" className="w-full btn btn-info hover:bg-sky-500">
           Enquire about upcoming cohort
         </button>
       </form>
