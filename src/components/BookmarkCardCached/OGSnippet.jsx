@@ -40,9 +40,9 @@ const OGSnippet = ({
             ></span>
           ))}
         </div>
-        <div className="card-actions justify-end">
+        {/* <div className="card-actions justify-end">
           <button className="btn btn-secondary">Add</button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -9,23 +9,24 @@ const Mentor = () => {
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
         <div className="mb-6 lg:mb-0 rounded-box">
-          <div className="relative block rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-sky-500">
-            <div className="lg:flex flex-row items-center">
-              <div className="grow-0 mask mask-hexagon shrink-0 basis-auto w-full lg:w-5/12 lg:pr-6">
+          {/* <div className="relative block rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-sky-500"> */}
+          <div className="rounded-lg shadow-lg p-6 bg-glass border-solid border-2 border-info">
+            <div className="flex flex-row items-center">
+              <div className="w-7/12 md:grow lg:w-5/12 mr-2 lg:mr-0">
                 <img
                   src="https://supertype.ai/wp-content/uploads/2021/08/vcc-150x150.jpeg"
                   alt="vincentius calvin"
-                  className="w-full rounded-md mb-6 lg:mb-0 filter grayscale sepia-25"
+                  className="mask mask-hexagon rounded-md filter grayscale sepia-25"
                 />
               </div>
-              <div className="grow-0 shrink-0 basis-auto w-full lg:w-7/12">
-                <h5 className="text-lg font-bold mb-2 text-sky-500">
+              <div className="w-6/12 lg:w-7/12 text-left lg:text-center">
+                <h5 className="text-xl font-bold mb-2 text-info">
                   V.C. Calvin
                 </h5>
                 <p className="text-sky-300 mb-4 text-sm">
                   Full-stack data science
                 </p>
-                <ul className="list-inside flex mx-auto justify-center lg:justify-start">
+                <ul className="list-inside flex mx-auto lg:justify-center lg:justify-start">
                   <a href="#!" className="px-2 lg:pl-0 lg:pr-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
