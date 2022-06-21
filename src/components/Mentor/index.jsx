@@ -19,15 +19,15 @@ const Mentor = () => {
                   className="mask mask-hexagon rounded-md filter grayscale sepia-25"
                 />
               </div>
-              <div className="w-6/12 lg:w-7/12 text-left lg:text-center">
+              <div className="w-6/12 lg:w-7/12 text-left">
                 <h5 className="text-xl font-bold mb-2 text-info">
                   V.C. Calvin
                 </h5>
                 <p className="text-sky-300 mb-4 text-sm">
                   Full-stack data science
                 </p>
-                <ul className="list-inside flex mx-auto lg:justify-center lg:justify-start">
-                  <a href="#!" className="px-2 lg:pl-0 lg:pr-2">
+                <ul className="list-inside flex mx-auto">
+                  <a href="#!" className="first:pl-0 px-2 lg:pl-0 lg:pr-2">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 320 512"
