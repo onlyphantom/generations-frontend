@@ -4,6 +4,10 @@ import CollectionDetails from "./CollectionDetails";
 import CollectionMentors from "./CollectionMentors";
 
 const CollectionCard = ({ attributes, id }) => {
+  const handleAddToTray = () => {
+    console.log(`Adding ${id} to tray`);
+  };
+
   return (
     <div
       className="block rounded-lg shadow-lg bg-base-200 p-6 bookmark-card  
@@ -23,7 +27,10 @@ const CollectionCard = ({ attributes, id }) => {
         )}
       </div>
       <div className="card-actions">
-        <button className="btn btn-square btn-outline">
+        <button
+          className="btn btn-square btn-outline"
+          onClick={handleAddToTray}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"

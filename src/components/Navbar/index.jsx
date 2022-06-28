@@ -5,17 +5,16 @@ import { UserContext } from "../../contexts/UserContext";
 import EnrollFormModal from "../EnrollFormModal";
 
 const Navbar = () => {
-  
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const { dispatch } = useContext(UserContext);
-  
+  const { user, dispatch } = useContext(UserContext);
+
   useEffect(() => {
     const token = sessionStorage.getItem("userSession");
-    if(token){
+    if (token) {
       dispatch({
         type: "LOGIN",
-        token: token
+        token: token,
       });
       setLoggedIn(true);
     }
@@ -24,12 +23,12 @@ const Navbar = () => {
   const handleLogOut = (event) => {
     event.preventDefault();
     dispatch({
-        type: "LOGOUT"
+      type: "LOGOUT",
     });
     sessionStorage.removeItem("userSession");
     window.location.reload();
   };
-  
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -77,19 +76,26 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {loggedIn 
-          ? 
-          <div className="btn btn-secondary" onClick={(event) => handleLogOut(event)}> 
-            Log Out 
-          </div> 
-          :
+        <p className="text-xs text-gray-500">
+          {JSON.stringify(user.token)} |{" "}
+          {user.token ? "Logged in" : "Not logged in"}
+        </p>
+
+        {loggedIn ? (
+          <div
+            className="btn btn-secondary"
+            onClick={(event) => handleLogOut(event)}
+          >
+            Log Out
+          </div>
+        ) : (
           <>
             <label className="btn btn-secondary" htmlFor="enroll">
               Enroll in Fellowship
             </label>
-            <EnrollFormModal/>
+            <EnrollFormModal />
           </>
-        }
+        )}
       </div>
     </div>
   );

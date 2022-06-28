@@ -39,6 +39,7 @@ const Mentor = () => {
                   <a
                     href={expert.attributes.website}
                     target="_blank"
+                    rel="noreferrer"
                     className="first:pl-0 px-2 lg:pl-0 lg:pr-2 hover:text-sky-500"
                   >
                     <svg
