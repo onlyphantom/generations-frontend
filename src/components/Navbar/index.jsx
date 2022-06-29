@@ -7,7 +7,8 @@ import EnrollFormModal from "../EnrollFormModal";
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const { user, dispatch } = useContext(UserContext);
+  const { u } = useContext(UserContext);
+  const [user, dispatch] = u;
 
   useEffect(() => {
     const token = sessionStorage.getItem("userSession");

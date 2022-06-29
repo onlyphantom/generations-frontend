@@ -1,6 +1,13 @@
 import React from "react";
 import OGSnippet from "./OGSnippet";
 
+function truncate(s, maxLength) {
+  if (s.length > maxLength) {
+    return s.substring(0, maxLength) + "...";
+  }
+  return s;
+}
+
 const BookmarkCardCached = ({ data }) => {
   return (
     <div>
@@ -8,7 +15,8 @@ const BookmarkCardCached = ({ data }) => {
         title={data.attributes.title}
         subtitle={data.attributes.opengraph.title}
         description={
-          data.attributes.details || data.attributes.opengraph.description
+          data.attributes.details ||
+          truncate(data.attributes.opengraph.description, 360)
         }
         url={data.attributes.opengraph.url}
         imgUrl={

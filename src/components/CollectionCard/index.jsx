@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+
+import { UserContext } from "../../contexts/UserContext";
+
 import CollectionModal from "../CollectionModal";
 import CollectionDetails from "./CollectionDetails";
 import CollectionMentors from "./CollectionMentors";
 
 const CollectionCard = ({ attributes, id }) => {
+  const { u, t } = useContext(UserContext);
+  const [user] = u;
+  const [tray, setTray] = t;
+
   const handleAddToTray = () => {
-    console.log(`Adding ${id} to tray`);
+    console.log(`Adding ${id} to tray by ${user.token}`);
+    setTray([...tray, id]);
   };
 
   return (
