@@ -22,7 +22,8 @@ const Mentor = () => {
             key={expert.id}
           >
             <div className="flex flex-row items-center">
-              <div className="w-7/12 md:grow lg:w-5/12 mr-2 lg:mr-0">
+              {/* <div className="w-7/12 md:grow lg:w-5/12 mr-2 lg:mr-0"> */}
+              <div className="w-7/12 md:grow lg:w-6/12 mr-2">
                 <img
                   src={expert.attributes.imageURL}
                   alt={expert.attributes.name}

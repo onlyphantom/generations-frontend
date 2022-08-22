@@ -5,6 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import TrayButton from "./TrayButton";
 import TrayDrawer from "./TrayDrawer";
 import TrayCard from "./TrayCard";
+import NotLoggedIn from "./NotLoggedIn";
 
 const Tray = () => {
   const [trayOpen, setTrayOpen] = useState(false);
@@ -16,13 +17,18 @@ const Tray = () => {
   return (
     <div>
       {!trayOpen && <TrayButton setTrayOpen={setTrayOpen} />}
+      
 
       <TrayDrawer trayOpen={trayOpen} setTrayOpen={setTrayOpen}>
+        {
+          !user.token && <NotLoggedIn />
+        }
         <TrayCard setTray={setTray} />
         <TrayCard setTray={setTray} />
         <TrayCard setTray={setTray} />
 
         <p className="text-xs text-gray-500">{JSON.stringify(tray)}</p>
+
 
         <p className="text-xs text-gray-500">
           {JSON.stringify(user.token)} |{" "}
