@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useState, useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -10,10 +10,19 @@ const CollectionCard = ({ attributes, id }) => {
   const { u, t } = useContext(UserContext);
   const [user] = u;
   const [tray, setTray] = t;
+  const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
   const handleAddToTray = () => {
     console.log(`Adding ${id} to tray by ${user.token}`);
-    setTray([...tray, id]);
+
+    if (tray.includes(id)) {
+      let newTray = tray
+      newTray.pop(id)
+      setTray(newTray)
+    } else {
+      setTray([...tray, id]);
+    }
+    setBookmarkIcon(prev => !prev)
   };
 
   return (
@@ -36,7 +45,7 @@ const CollectionCard = ({ attributes, id }) => {
       </div>
       <div className="card-actions">
         <button
-          className="btn btn-square btn-outline"
+          className={`btn btn-square ${!bookmarkIcon ? "btn-outline" : "btn-solid border-secondary"}`}
           onClick={handleAddToTray}
         >
           <svg
