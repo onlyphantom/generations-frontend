@@ -6,6 +6,8 @@ import CollectionModal from "../CollectionModal";
 import CollectionDetails from "./CollectionDetails";
 import CollectionMentors from "./CollectionMentors";
 
+import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
+
 const CollectionCard = ({ attributes, id }) => {
   const { u, t } = useContext(UserContext);
   const [user] = u;
@@ -13,15 +15,7 @@ const CollectionCard = ({ attributes, id }) => {
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
   const handleAddToTray = () => {
-    console.log(`Adding ${id} to tray by ${user.token}`);
-
-    if (tray.includes(id)) {
-      let newTray = tray
-      newTray.pop(id)
-      setTray(newTray)
-    } else {
-      setTray([...tray, id]);
-    }
+    addOrRemoveFromTray(tray, id, setTray)
     setBookmarkIcon(prev => !prev)
   };
 
