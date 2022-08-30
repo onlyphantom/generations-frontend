@@ -9,14 +9,15 @@ import CollectionMentors from "./CollectionMentors";
 import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
 
 const CollectionCard = ({ attributes, id }) => {
-  const { u, t } = useContext(UserContext);
-  const [user] = u;
+  // const { u, t } = useContext(UserContext);
+  // const [user] = u;
+  const { t } = useContext(UserContext);
   const [tray, setTray] = t;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
   const handleAddToTray = () => {
-    addOrRemoveFromTray(tray, id, setTray)
-    setBookmarkIcon(prev => !prev)
+    addOrRemoveFromTray(tray, id, setTray);
+    setBookmarkIcon((prev) => !prev);
   };
 
   return (
@@ -39,7 +40,9 @@ const CollectionCard = ({ attributes, id }) => {
       </div>
       <div className="card-actions">
         <button
-          className={`btn btn-square ${!bookmarkIcon ? "btn-outline" : "btn-solid border-secondary"}`}
+          className={`btn btn-square ${
+            !bookmarkIcon ? "btn-outline" : "btn-solid border-secondary"
+          }`}
           onClick={handleAddToTray}
         >
           <svg
