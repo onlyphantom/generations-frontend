@@ -11,10 +11,11 @@ function App() {
 
   const [user, dispatch] = useReducer(UserReducer, { "token": null });
   const [tray, setTray] = useState([])
+  const [collections, setCollections] = useState([])
 
 
   return (
-    <UserContext.Provider value={{ u: [user, dispatch], t: [tray, setTray] }}>
+    <UserContext.Provider value={{ u: [user, dispatch], t: [tray, setTray], c: [collections, setCollections] }} >
       <div className="App-body">
         <MainRouter />
       </div>

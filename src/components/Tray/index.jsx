@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -10,25 +10,37 @@ import TrayContent from "./TrayContent";
 
 const Tray = () => {
   const [trayOpen, setTrayOpen] = useState(false);
+  const [trayCard, setTrayCard] = useState([]);
 
-  const { u, t } = useContext(UserContext);
+  const { u, t, c } = useContext(UserContext);
   const [user] = u;
   const [tray, setTray] = t;
+  const [collection] = c;
+
+  useEffect(() => {
+    // check that tray isn't empty
+    if (Array.isArray(tray) && tray.length) {
+      let bookmarkedCollections = collection.filter((coll) => {
+        return tray.includes(coll.id);
+      });
+      setTrayCard(bookmarkedCollections);
+    }
+  }, [collection, tray]);
 
   return (
     <div>
       {!trayOpen && <TrayButton setTrayOpen={setTrayOpen} />}
 
-
       <TrayDrawer trayOpen={trayOpen} setTrayOpen={setTrayOpen}>
-        {
-          !user.token
-            ? <NotLoggedIn />
-            : <TrayContent tray={tray} setTray={setTray} />
-        }
+        {!user.token ? (
+          <NotLoggedIn />
+        ) : (
+          // <TrayContent tray={tray} setTray={setTray} />
+          <TrayContent tray={trayCard} setTray={setTray} />
+        )}
         {/* <TrayCard setTray={setTray} /> */}
         <p className="text-xs text-gray-500">
-          {JSON.stringify(user.token)} |{" "}
+          {JSON.stringify(user.token)} | {JSON.stringify(tray)}
           {user.token ? "Logged in" : "Not logged in"}
         </p>
       </TrayDrawer>

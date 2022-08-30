@@ -1,9 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import CollectionCard from "../CollectionCard";
 
+import { UserContext } from "../../contexts/UserContext";
+
 export default function BookmarkList(params) {
-  const [collection, setCollection] = useState([]);
+  // const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const { c } = useContext(UserContext);
+  // const [, setLocalCollections] = c;
+  const [collection, setCollection] = c;
 
   useEffect(() => {
     fetch("https://generationsapi.herokuapp.com/api/collections", {
@@ -17,9 +23,10 @@ export default function BookmarkList(params) {
       })
       .then((data) => {
         setCollection(data.data);
+        // setLocalCollections(data.data);
         setLoading(false);
       });
-  }, []);
+  }, [setCollection]);
 
   if (loading) {
     return <progress className="progress w-56"></progress>;
