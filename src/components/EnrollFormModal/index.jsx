@@ -70,11 +70,7 @@ const EnrollFormModal = () => {
       .then((data) => {
         if (data.data === null) {
           throw new Error(
-            `${
-              data.error.message === "Invalid identifier or password"
-                ? "Invalid username or password"
-                : data.error.message
-            }. Please try again.`
+            `${data.error.message}. Please try again.`
           );
         }
         sessionStorage.setItem("userSession", data.jwt);
@@ -274,7 +270,7 @@ const EnrollFormModal = () => {
                 type="text"
                 name="identifier"
                 className="input w-full max-w input-bordered mb-6"
-                placeholder="Username"
+                placeholder="Username or Email Address"
                 onChange={(event) => setIdentifier(event.target.value)}
                 required
               />
