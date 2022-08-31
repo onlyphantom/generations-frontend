@@ -44,14 +44,14 @@ function AuthRedirect() {
 
   if (loading) {
     return (
-      <div className="w-6/12 mx-auto">
+      <div className="w-1/12 mx-auto">
         <img src="/192.png" alt="logo" />
         <progress className="progress mt-4"></progress>
       </div>
     );
   } else {
     return (
-      <div className="w-6/12 mx-auto">
+      <div className="w-3/12 mx-auto">
         <div className="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-8 border-solid border-2 border-sky-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"

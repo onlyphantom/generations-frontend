@@ -16,7 +16,7 @@ const TrayContent = ({ tray, setTray }) => {
       )}
 
       <p className="text-xs text-gray-500">
-        {JSON.stringify(tray[0].attributes)}
+        {Array.isArray(tray) && JSON.stringify(tray[0].attributes)}
       </p>
       {/* <p className="text-xs text-gray-500">{JSON.stringify(tray)}</p> */}
     </div>
