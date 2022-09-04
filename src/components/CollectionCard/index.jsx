@@ -16,14 +16,14 @@ const CollectionCard = ({ attributes, id }) => {
   const [tray, setTray] = t;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
-  const { num_articles, num_challenges, num_courses, num_videos } = attributes
+  const { num_articles, num_challenges, num_courses, num_videos } = attributes;
 
   const num_materials = {
-    'articles': num_articles,
-    'challenges': num_challenges,
-    'courses': num_courses,
-    'videos': num_videos
-  }
+    articles: num_articles,
+    challenges: num_challenges,
+    courses: num_courses,
+    videos: num_videos,
+  };
 
   const handleAddToTray = () => {
     addOrRemoveFromTray(tray, id, setTray);
@@ -48,7 +48,11 @@ const CollectionCard = ({ attributes, id }) => {
           <CollectionMentors mentors={attributes.experts.data} />
         )}
       </div>
-      <CardActions bookmarkIcon={bookmarkIcon} num_materials={num_materials} handleAddToTray={handleAddToTray} />
+      <CardActions
+        bookmarkIcon={bookmarkIcon}
+        num_materials={num_materials}
+        handleAddToTray={handleAddToTray}
+      />
       <CollectionModal collectionId={id} />
     </div>
   );
