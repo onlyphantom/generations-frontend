@@ -1,12 +1,8 @@
 import React from "react";
 import OGSnippet from "./OGSnippet";
 
-function truncate(s, maxLength) {
-  if (s.length > maxLength) {
-    return s.substring(0, maxLength) + "...";
-  }
-  return s;
-}
+import { truncate } from "./utils";
+
 
 const BookmarkCardCached = ({ data }) => {
   return (
