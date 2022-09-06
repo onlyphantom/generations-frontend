@@ -16,13 +16,13 @@ const CollectionCard = ({ attributes, id }) => {
   const [tray, setTray] = t;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
-  const { num_articles, num_challenges, num_courses, num_videos } = attributes;
+  const { numArticles, numChallenges, numCourses, numVideos } = attributes;
 
-  const num_materials = {
-    articles: num_articles,
-    challenges: num_challenges,
-    courses: num_courses,
-    videos: num_videos,
+  const numMaterials = {
+    articles: numArticles,
+    challenges: numChallenges,
+    courses: numCourses,
+    videos: numVideos,
   };
 
   const handleAddToTray = () => {
@@ -50,7 +50,7 @@ const CollectionCard = ({ attributes, id }) => {
       </div>
       <CardActions
         bookmarkIcon={bookmarkIcon}
-        num_materials={num_materials}
+        num_materials={numMaterials}
         handleAddToTray={handleAddToTray}
       />
       <CollectionModal collectionId={id} />
