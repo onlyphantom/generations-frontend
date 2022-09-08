@@ -18,8 +18,8 @@ const Tray = () => {
   const [collection] = c;
 
   useEffect(() => {
-    // check that tray isn't empty
-    if (Array.isArray(tray) && tray.length) {
+    // check that tray is initialized
+    if (Array.isArray(tray)) {
       let bookmarkedCollections = collection.filter((coll) => {
         return tray.includes(coll.id);
       });
@@ -35,10 +35,8 @@ const Tray = () => {
         {!user.token ? (
           <NotLoggedIn />
         ) : (
-          // <TrayContent tray={tray} setTray={setTray} />
           <TrayContent tray={trayCard} setTray={setTray} />
         )}
-        {/* <TrayCard setTray={setTray} /> */}
         <p className="text-xs text-gray-500">
           {JSON.stringify(user.token)} | {JSON.stringify(tray)}
           {user.token ? "Logged in" : "Not logged in"}

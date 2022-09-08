@@ -2,7 +2,7 @@ import React from "react";
 import ReactMarkdown from "react-markdown";
 
 import TrayCard from "./TrayCard";
-import { AddedIcon } from "../CollectionCard/CardActions";
+import { AddIcon, AddedIcon } from "../CollectionCard/CardActions";
 
 import { truncate } from "../BookmarkCardCached/utils";
 
@@ -32,7 +32,13 @@ const TrayContent = ({ tray, setTray }) => {
   return (
     <div>
       {tray.length === 0 ? (
-        <p className="prose m-4">You have not added any lesson yet.</p>
+        <p className="prose m-4">
+          You have not added any lesson yet. You should{" "}
+          <span className="inline-flex border rounded p-1">
+            add <AddIcon />
+          </span>{" "}
+          a lesson that you're interested in, and check the Learning Tray again.
+        </p>
       ) : (
         <>
           <h2 className="prose prose-lg mx-auto w-full max-w-sm">
