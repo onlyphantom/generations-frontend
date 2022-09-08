@@ -14,8 +14,7 @@ const TrayContent = ({ tray, setTray }) => {
         <dd>
           <article className="prose prose-sm dark:prose-invert">
             <ReactMarkdown>
-              {course.attributes.details ||
-                truncate(course.attributes.opengraph.description, 360)}
+              {truncate(course.attributes.details, 240) || ""}
             </ReactMarkdown>
           </article>
           <button

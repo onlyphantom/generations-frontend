@@ -43,9 +43,6 @@ const OGSnippet = ({
           ))}
         </div> */}
         <CardEffortPoints effort={effort} extraClass={`badge-secondary`} />
-        {/* <div className="card-actions justify-end">
-          <button className="btn btn-secondary">Add</button>
-        </div> */}
       </div>
     </div>
   );
