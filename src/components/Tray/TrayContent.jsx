@@ -1,35 +1,47 @@
 import React from "react";
+import ReactMarkdown from "react-markdown";
+
 import TrayCard from "./TrayCard";
+import { AddedIcon } from "../CollectionCard/CardActions";
 
 import { truncate } from "../BookmarkCardCached/utils";
 
 const TrayContent = ({ tray, setTray }) => {
-
-  const trayCourses = tray.map(course => {
+  const trayCourses = tray.map((course) => {
     return (
-      <div key={course.id}>
+      <TrayCard key={course.id}>
         <dt>{course.attributes.title}</dt>
         <dd>
-          {
-            course.attributes.details ||
-            truncate(course.attributes.opengraph.description, 360)
-          }
+          <article className="prose prose-sm dark:prose-invert">
+            <ReactMarkdown>
+              {course.attributes.details ||
+                truncate(course.attributes.opengraph.description, 360)}
+            </ReactMarkdown>
+          </article>
+          <button
+            className="btn btn-square"
+            // TODO: obviously need to remove from tray, not just setTray
+            onClick={setTray}
+          >
+            <AddedIcon />
+          </button>
         </dd>
-        <div className="divider"> - </div>
-      </div>)
-  })
+      </TrayCard>
+    );
+  });
 
   return (
     <div>
-      <h2 className="mx-4">Learning Tray</h2>
-
       {tray.length === 0 ? (
         <p className="prose m-4">You have not added any lesson yet.</p>
       ) : (
         <>
+          <h2 className="prose prose-lg mx-auto w-full max-w-sm">
+            Added Lessons
+          </h2>
           <dl>{trayCourses}</dl>
-          <TrayCard setTray={setTray} />
-          <TrayCard setTray={setTray} />
+          {/* <TrayCard setTray={setTray} />
+          <TrayCard setTray={setTray} />  */}
         </>
       )}
 

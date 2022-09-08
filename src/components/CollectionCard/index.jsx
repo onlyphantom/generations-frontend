@@ -43,7 +43,7 @@ const CollectionCard = ({ attributes, id }) => {
       </h5>
       <div className="text-gray-500 mb-4 text-sm markdown-para">
         <small>{attributes.publishedAt}</small>
-        <small>({JSON.stringify(attributes.totalEffort)})</small>
+        {/* <small>({JSON.stringify(attributes)})</small> */}
         {attributes.details && <CollectionDetails attributes={attributes} />}
         {attributes.experts && (
           <CollectionMentors mentors={attributes.experts.data} />
