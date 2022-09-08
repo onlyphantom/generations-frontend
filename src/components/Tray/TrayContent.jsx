@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 
 import TrayCard from "./TrayCard";
 import { AddIcon, AddedIcon } from "../CollectionCard/CardActions";
 
 import { truncate } from "../BookmarkCardCached/utils";
+import addOrRemoveFromTray from "./addOrRemoveFromTray";
 
 const TrayContent = ({ tray, setTray }) => {
+  const [trayIdArray, setTrayIdArray] = useState([]);
+
+  useEffect(() => {
+    setTrayIdArray(tray.map((t) => t.id));
+  }, [tray]);
+
   const trayCourses = tray.map((course) => {
     return (
       <TrayCard key={course.id}>
@@ -14,13 +21,14 @@ const TrayContent = ({ tray, setTray }) => {
         <dd>
           <article className="prose prose-sm dark:prose-invert">
             <ReactMarkdown>
-              {truncate(course.attributes.details, 240) || ""}
+              {truncate(course.attributes.details || "", 240)}
             </ReactMarkdown>
           </article>
           <button
             className="btn btn-square"
             // TODO: obviously need to remove from tray, not just setTray
-            onClick={setTray}
+            // onClick={setTray}
+            onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray)}
           >
             <AddedIcon />
           </button>

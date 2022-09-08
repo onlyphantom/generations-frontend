@@ -4,11 +4,9 @@ import CollectionCard from "../CollectionCard";
 import { UserContext } from "../../contexts/UserContext";
 
 export default function BookmarkList(params) {
-  // const [collection, setCollection] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { c } = useContext(UserContext);
-  // const [, setLocalCollections] = c;
   const [collection, setCollection] = c;
 
   useEffect(() => {

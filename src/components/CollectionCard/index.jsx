@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -30,6 +30,10 @@ const CollectionCard = ({ attributes, id }) => {
     addOrRemoveFromTray(tray, id, setTray);
     setBookmarkIcon((prev) => !prev);
   };
+
+  useEffect(() => {
+    setBookmarkIcon(tray.includes(id));
+  }, [id, tray]);
 
   return (
     <div
