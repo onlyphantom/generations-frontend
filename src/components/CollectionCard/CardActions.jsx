@@ -136,8 +136,9 @@ const CardActions = ({ bookmarkIcon, num_materials, handleAddToTray }) => {
   return (
     <div className="card-actions">
       <button
-        className={`btn btn-square ${!bookmarkIcon ? "btn-outline" : "btn-solid border-white"
-          }`}
+        className={`btn btn-square ${
+          !bookmarkIcon ? "btn-outline" : "btn-solid border-white"
+        }`}
         onClick={handleAddToTray}
       >
         {!bookmarkIcon ? <AddIcon /> : <AddedIcon />}

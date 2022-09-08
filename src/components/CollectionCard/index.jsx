@@ -5,6 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import CollectionModal from "../CollectionModal";
 import CollectionDetails from "./CollectionDetails";
 import CollectionMentors from "./CollectionMentors";
+import CardEffortPoints from "./CardEffortPoints";
 
 import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
 import CardActions from "./CardActions";
@@ -42,17 +43,30 @@ const CollectionCard = ({ attributes, id }) => {
       </h5>
       <div className="text-gray-500 mb-4 text-sm markdown-para">
         <small>{attributes.publishedAt}</small>
-        {/* <small>{JSON.stringify(attributes)}</small> */}
+        <small>({JSON.stringify(attributes.totalEffort)})</small>
         {attributes.details && <CollectionDetails attributes={attributes} />}
         {attributes.experts && (
           <CollectionMentors mentors={attributes.experts.data} />
         )}
       </div>
-      <CardActions
-        bookmarkIcon={bookmarkIcon}
-        num_materials={numMaterials}
-        handleAddToTray={handleAddToTray}
-      />
+      <div className="flex flex-row">
+        <div className="basis-4/5">
+          <CardActions
+            bookmarkIcon={bookmarkIcon}
+            num_materials={numMaterials}
+            handleAddToTray={handleAddToTray}
+          />
+        </div>
+        <div className="basis-1/5">
+          <div className="tooltip" data-tip="Effort Points">
+            <CardEffortPoints
+              effort={attributes.totalEffort}
+              extraClass="badge"
+            />
+          </div>
+        </div>
+      </div>
+
       <CollectionModal collectionId={id} />
     </div>
   );

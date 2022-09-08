@@ -1,5 +1,7 @@
 import React from "react";
 
+import CardEffortPoints from "../CollectionCard/CardEffortPoints";
+
 const OGSnippet = ({
   title,
   subtitle,
@@ -32,14 +34,15 @@ const OGSnippet = ({
         </h2>
         <p className="text-xs">{subtitle}</p>
         <p>{description}</p>
-        <div className="flex">
+        {/* <div className="flex">
           {Array.from({ length: effort }, (_, i) => (
             <span
               key={i}
               className="badge badge-secondary badge-xs mx-1"
             ></span>
           ))}
-        </div>
+        </div> */}
+        <CardEffortPoints effort={effort} extraClass={`badge-secondary`} />
         {/* <div className="card-actions justify-end">
           <button className="btn btn-secondary">Add</button>
         </div> */}
