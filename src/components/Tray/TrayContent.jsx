@@ -15,18 +15,18 @@ const TrayContent = ({ tray, setTray }) => {
     setTrayIdArray(tray.map((t) => t.id));
   }, [tray]);
 
-  const EffortWidget = () => {
-
+  const totalEffort = () => {
     let effortArray = tray.map((course) => {
       return course.attributes.totalEffort
     })
-    console.log(effortArray)
 
     let sumEffort = effortArray.reduce((sum, x) => sum + x)
+    return sumEffort
+  }
 
+  const EffortWidget = () => {
     return (
-      // sumEffort
-      <CardEffortPoints effort={sumEffort} extraClass={`badge-secondary`} />
+      <CardEffortPoints effort={totalEffort()} extraClass={`badge-primary`} />
     )
   }
 
@@ -64,7 +64,15 @@ const TrayContent = ({ tray, setTray }) => {
         </p>
       ) : (
         <>
-          <EffortWidget />
+          <div className="mb-4">
+            <h2 className="prose prose-lg mx-auto w-full max-w-sm">
+              Total Effort <div className="badge badge-md badge-primary">{totalEffort()}</div>
+              <EffortWidget />
+            </h2>
+          </div>
+
+
+
           <h2 className="prose prose-lg mx-auto w-full max-w-sm">
             Added Lessons
           </h2>
