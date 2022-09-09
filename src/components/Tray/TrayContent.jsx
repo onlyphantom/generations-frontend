@@ -26,8 +26,6 @@ const TrayContent = ({ tray, setTray }) => {
           </article>
           <button
             className="btn btn-square"
-            // TODO: obviously need to remove from tray, not just setTray
-            // onClick={setTray}
             onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray)}
           >
             <AddedIcon />

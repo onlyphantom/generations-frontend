@@ -16,7 +16,6 @@ export default function BookmarkList(params) {
         return response.json();
       })
       .then((data) => {
-        console.log(data.data);
         setBookmarks(data.data);
         setLoading(false);
       });
@@ -26,14 +25,14 @@ export default function BookmarkList(params) {
     <div className="grid lg:grid-cols-3 gap-4 flex items-center">
       {!loading
         ? bookmarks
-            .sort((a, b) =>
-              b.attributes.createdAt.localeCompare(a.attributes.createdAt)
-            )
-            .map((bookmark, i) => (
-              <div key={i}>
-                <BookmarkCard url={bookmark.attributes.url} key={i} />
-              </div>
-            ))
+          .sort((a, b) =>
+            b.attributes.createdAt.localeCompare(a.attributes.createdAt)
+          )
+          .map((bookmark, i) => (
+            <div key={i}>
+              <BookmarkCard url={bookmark.attributes.url} key={i} />
+            </div>
+          ))
         : "Loading..."}
     </div>
   );
