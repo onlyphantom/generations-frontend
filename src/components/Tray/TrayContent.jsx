@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 
 import TrayCard from "./TrayCard";
 import { AddIcon, AddedIcon } from "../CollectionCard/CardActions";
+import CardEffortPoints from "../CollectionCard/CardEffortPoints";
 
 import { truncate } from "../BookmarkCardCached/utils";
 import addOrRemoveFromTray from "./addOrRemoveFromTray";
@@ -13,6 +14,22 @@ const TrayContent = ({ tray, setTray }) => {
   useEffect(() => {
     setTrayIdArray(tray.map((t) => t.id));
   }, [tray]);
+
+  const EffortWidget = () => {
+
+    let effortArray = tray.map((course) => {
+      return course.attributes.totalEffort
+    })
+    console.log(effortArray)
+
+    let sumEffort = effortArray.reduce((sum, x) => sum + x)
+
+    return (
+      // sumEffort
+      <CardEffortPoints effort={sumEffort} extraClass={`badge-secondary`} />
+    )
+  }
+
 
   const trayCourses = tray.map((course) => {
     return (
@@ -47,6 +64,7 @@ const TrayContent = ({ tray, setTray }) => {
         </p>
       ) : (
         <>
+          <EffortWidget />
           <h2 className="prose prose-lg mx-auto w-full max-w-sm">
             Added Lessons
           </h2>
