@@ -17,19 +17,18 @@ const TrayContent = ({ tray, setTray }) => {
 
   const totalEffort = () => {
     let effortArray = tray.map((course) => {
-      return course.attributes.totalEffort
-    })
+      return course.attributes.totalEffort;
+    });
 
-    let sumEffort = effortArray.reduce((sum, x) => sum + x)
-    return sumEffort
-  }
+    let sumEffort = effortArray.reduce((sum, x) => sum + x);
+    return sumEffort;
+  };
 
   const EffortWidget = () => {
     return (
       <CardEffortPoints effort={totalEffort()} extraClass={`badge-primary`} />
-    )
-  }
-
+    );
+  };
 
   const trayCourses = tray.map((course) => {
     return (
@@ -53,7 +52,7 @@ const TrayContent = ({ tray, setTray }) => {
   });
 
   return (
-    <div>
+    <>
       {tray.length === 0 ? (
         <p className="prose m-4">
           You have not added any lesson yet. You should{" "}
@@ -64,18 +63,55 @@ const TrayContent = ({ tray, setTray }) => {
         </p>
       ) : (
         <>
+          <div className="rounded-lg m-4 border-accent border-2">
+            <div className="mb-4 mt-2">
+              <h2 className="prose prose-lg px-4">
+                Expended Effort{" "}
+                <div className="badge badge-md badge-accent">13</div>
+                <div className="flex flex-row">
+                  <div className="basis-3/5">
+                    <div
+                      className="radial-progress text-accent"
+                      style={{ "--value": 70 }}
+                    >
+                      70%
+                    </div>
+                  </div>
+                  <div className="basis-2/5">
+                    <CardEffortPoints effort={13} extraClass={`badge-accent`} />
+                    <div>
+                      <div className="badge badge-sm mx-1">neutral</div>
+                      <div className="badge badge-sm badge-primary mx-1">
+                        python
+                      </div>
+                      <div className="badge badge-sm badge-secondary mx-1">
+                        sql
+                      </div>
+                      <div className="badge badge-sm badge-accent mx-1">r</div>
+                      <div className="badge badge-sm badge-ghost mx-1">
+                        react
+                      </div>
+                      <div className="badge badge-sm badge-primary mx-1">
+                        django
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </h2>
+            </div>
+          </div>
+
           <div className="mb-4">
-            <h2 className="prose prose-lg mx-auto w-full max-w-sm">
-              Total Effort <div className="badge badge-md badge-primary">{totalEffort()}</div>
+            <h2 className="prose prose-lg m-4">
+              Expected Effort{" "}
+              <div className="badge badge-md badge-primary">
+                {totalEffort()}
+              </div>
               <EffortWidget />
             </h2>
           </div>
 
-
-
-          <h2 className="prose prose-lg mx-auto w-full max-w-sm">
-            Added Lessons
-          </h2>
+          <h2 className="prose prose-lg m-4">Pending Lessons</h2>
           <dl>{trayCourses}</dl>
           {/* <TrayCard setTray={setTray} />
           <TrayCard setTray={setTray} />  */}
@@ -86,7 +122,7 @@ const TrayContent = ({ tray, setTray }) => {
         {tray.length > 0 && JSON.stringify(tray[0])}
       </p>
       {/* <p className="text-xs text-gray-500">{JSON.stringify(tray)}</p> */}
-    </div>
+    </>
   );
 };
 

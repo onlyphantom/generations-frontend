@@ -2,7 +2,7 @@ import React from "react";
 
 const TrayCard = ({ children }) => {
   return (
-    <div className="border border-gray-300 shadow rounded-md p-4 max-w-sm w-full mx-auto mb-4">
+    <div className="border border-gray-300 shadow rounded-md p-4 mx-4 mb-2">
       {children}
     </div>
   );
