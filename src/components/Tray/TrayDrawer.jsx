@@ -16,7 +16,7 @@ export default function Drawer({ children, trayOpen, setTrayOpen }) {
           (trayOpen ? " translate-x-0 " : " translate-x-full ")
         }
       >
-        <article className="relative w-screen max-w-xl pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
+        <article className="relative w-screen max-w-xl pb-10 flex flex-col space-y-3 overflow-y-scroll h-full">
           <p className="p-4 font-bold">
             <svg
               onClick={() => {
