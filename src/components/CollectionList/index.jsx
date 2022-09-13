@@ -30,7 +30,10 @@ export default function BookmarkList(params) {
     return <progress className="progress w-56"></progress>;
   } else {
     return (
-      <section className="relative flex min-h-screen flex-col justify-center py-6 px-4 sm:py-12">
+      <section
+        id="curations"
+        className="relative flex min-h-screen flex-col justify-center py-6 px-4 sm:py-12"
+      >
         <h2 className="text-3xl font-bold mb-12 text-center">
           Practical lessons, <span className="text-secondary">curated.</span>
         </h2>

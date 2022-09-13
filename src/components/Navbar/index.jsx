@@ -30,6 +30,11 @@ const Navbar = () => {
     window.location.reload();
   };
 
+  const scrollToCuration = () => {
+    const section = document.querySelector("#curations");
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -55,7 +60,7 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a href="#!">Curations</a>
+              <button onClick={(e) => scrollToCuration()}>Curations</button>
             </li>
             <li>
               <a href="#!">Cohort-based Fellowship</a>
@@ -69,7 +74,7 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <a href="#!">Curations</a>
+            <button onClick={(e) => scrollToCuration()}>Curations</button>
           </li>
           <li>
             <a href="#!">Cohort-based Fellowship</a>
