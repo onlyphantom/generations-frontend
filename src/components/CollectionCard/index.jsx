@@ -11,9 +11,8 @@ import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
 import CardActions from "./CardActions";
 
 const CollectionCard = ({ attributes, id }) => {
-  // const { u, t } = useContext(UserContext);
-  // const [user] = u;
-  const { t } = useContext(UserContext);
+  const { u, t } = useContext(UserContext);
+  const [user] = u;
   const [tray, setTray] = t;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
@@ -27,7 +26,7 @@ const CollectionCard = ({ attributes, id }) => {
   };
 
   const handleAddToTray = () => {
-    addOrRemoveFromTray(tray, id, setTray);
+    addOrRemoveFromTray(tray, id, setTray, user);
     setBookmarkIcon((prev) => !prev);
   };
 

@@ -9,7 +9,9 @@ import { UserContext } from './contexts/UserContext';
 
 function App() {
 
-  const [user, dispatch] = useReducer(UserReducer, { "token": null });
+  let token = sessionStorage.getItem("userSession");
+
+  const [user, dispatch] = useReducer(UserReducer, token ? { "token": token } : { "token": null });
   const [tray, setTray] = useState([])
   const [collections, setCollections] = useState([])
 

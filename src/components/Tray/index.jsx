@@ -18,6 +18,24 @@ const Tray = () => {
   const [collection] = c;
 
   useEffect(() => {
+    if(user.token){
+      fetch(`https://generationsapi.herokuapp.com/api/trays`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${user.token}`
+        }
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          let collections = data.data.map(tray => tray.attributes.collection.data.id);
+          setTray(collections);
+        })
+    }
+  }, [setTray, user.token])
+
+  useEffect(() => {
     // check that tray is initialized
     if (Array.isArray(tray)) {
       let bookmarkedCollections = collection.filter((coll) => {
