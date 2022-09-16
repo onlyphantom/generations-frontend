@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ReactMarkdown from "react-markdown";
+
+import { UserContext } from "../../contexts/UserContext";
 
 import TrayCard from "./TrayCard";
 import { AddIcon, AddedIcon } from "../CollectionCard/CardActions";
@@ -10,6 +12,8 @@ import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
 const TrayContent = ({ tray, setTray }) => {
+  const { u } = useContext(UserContext);
+  const [user] = u;
   const [trayIdArray, setTrayIdArray] = useState([]);
 
   useEffect(() => {
@@ -43,7 +47,7 @@ const TrayContent = ({ tray, setTray }) => {
           </article>
           <button
             className="btn btn-square"
-            onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray)}
+            onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray, user)}
           >
             <AddedIcon />
           </button>
