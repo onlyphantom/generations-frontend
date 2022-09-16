@@ -4,7 +4,7 @@ const addOrRemoveFromTray = (tray, id, setTray, user) => {
         let newTray = tray.filter(i => i !== id);
         setTray(newTray);
 
-        if(user.token){
+        if(user?.token){
             fetch(`https://generationsapi.herokuapp.com/api/trays/collections/${id}`, {
                 method: "DELETE",
                 headers: {
@@ -16,7 +16,7 @@ const addOrRemoveFromTray = (tray, id, setTray, user) => {
     } else {
         setTray([...tray, id]);
         
-        if(user.token){
+        if(user?.token){
             const data = {
                 "data": {
                   "status": "requested",
