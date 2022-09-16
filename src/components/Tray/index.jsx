@@ -18,7 +18,7 @@ const Tray = () => {
   const [collection] = c;
 
   useEffect(() => {
-    if(user.token){
+    if(user?.token){
       fetch(`https://generationsapi.herokuapp.com/api/trays`, {
         method: "GET",
         headers: {
