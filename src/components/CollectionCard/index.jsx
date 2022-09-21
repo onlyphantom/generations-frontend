@@ -16,7 +16,7 @@ const CollectionCard = ({ attributes, id }) => {
   const [tray, setTray] = t;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
-  const { numArticles, numChallenges, numCourses, numVideos } = attributes;
+  const { numArticles, numChallenges, numCourses, numVideos, tagsCount } = attributes;
 
   const numMaterials = {
     articles: numArticles,
@@ -57,6 +57,7 @@ const CollectionCard = ({ attributes, id }) => {
           <CardActions
             bookmarkIcon={bookmarkIcon}
             num_materials={numMaterials}
+            tagsCount={tagsCount}
             handleAddToTray={handleAddToTray}
           />
         </div>

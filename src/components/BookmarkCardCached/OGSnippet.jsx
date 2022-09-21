@@ -1,6 +1,7 @@
 import React from "react";
 
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
+import CardTags from "../CollectionCard/CardTags";
 
 const OGSnippet = ({
   title,
@@ -10,6 +11,7 @@ const OGSnippet = ({
   imgUrl,
   medium,
   effort,
+  tagsCount
 }) => {
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl rounded-xl overflow-hidden">
@@ -42,7 +44,16 @@ const OGSnippet = ({
             ></span>
           ))}
         </div> */}
-        <CardEffortPoints effort={effort} extraClass={`badge-secondary`} />
+        <div className="flex flex-row">
+          <div className="basis-2/5">
+              <div className="tooltip" data-tip="Effort Points">
+              <CardEffortPoints effort={effort} extraClass={`badge-secondary`} />
+              </div>
+          </div>
+          <div className="basis-3/5 text-right">      
+            <CardTags tagsCount={tagsCount} />
+          </div>
+        </div>
       </div>
     </div>
   );
