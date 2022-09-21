@@ -1,4 +1,5 @@
 import React from "react";
+import CardTags from "./CardTags";
 
 export const AddIcon = () => {
   return (
@@ -110,7 +111,7 @@ const VideosIcon = ({ count }) => {
   );
 };
 
-const MaterialCounts = ({ num_materials }) => {
+const MaterialCounts = ({ num_materials, tagsCount }) => {
   let content = [];
 
   if (num_materials.articles > 0) {
@@ -129,11 +130,14 @@ const MaterialCounts = ({ num_materials }) => {
   if (num_materials.videos > 0) {
     content.push(<VideosIcon count={num_materials.videos} key="videos" />);
   }
+  if (Object.keys(tagsCount).length > 0) {
+    content.push(<CardTags tagsCount={tagsCount} key="tagsCount" />)
+  }
 
   return <div className="flex flex-row ml-4">{content}</div>;
 };
 
-const CardActions = ({ bookmarkIcon, num_materials, handleAddToTray }) => {
+const CardActions = ({ bookmarkIcon, num_materials, tagsCount, handleAddToTray }) => {
   return (
     <div className="card-actions">
       <button
@@ -144,7 +148,7 @@ const CardActions = ({ bookmarkIcon, num_materials, handleAddToTray }) => {
       >
         {!bookmarkIcon ? <AddIcon /> : <AddedIcon />}
       </button>
-      <MaterialCounts num_materials={num_materials} />
+      <MaterialCounts num_materials={num_materials} tagsCount={tagsCount}/>
     </div>
   );
 };

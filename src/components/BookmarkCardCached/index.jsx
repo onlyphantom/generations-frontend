@@ -21,6 +21,7 @@ const BookmarkCardCached = ({ data }) => {
         }
         medium={data.attributes.medium}
         effort={data.attributes.effort}
+        tagsCount={data.attributes.tagsCount}
       />
       {/* <small>{JSON.stringify(data)}</small> */}
     </div>
