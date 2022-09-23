@@ -11,7 +11,7 @@ import { truncate } from "../BookmarkCardCached/utils";
 import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
-const TrayContent = ({ tray, setTray }) => {
+const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
   const { u } = useContext(UserContext);
   const [user] = u;
   const [trayIdArray, setTrayIdArray] = useState([]);
@@ -58,7 +58,7 @@ const TrayContent = ({ tray, setTray }) => {
 
   return (
     <>
-      <UserProgress />
+      <UserProgress tagAwards={tagAwards} expendedEffort={expendedEffort} />
 
       {tray.length === 0 ? (
         <p className="prose m-4">
