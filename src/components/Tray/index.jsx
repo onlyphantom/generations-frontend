@@ -12,10 +12,12 @@ const Tray = () => {
   const [trayOpen, setTrayOpen] = useState(false);
   const [trayCard, setTrayCard] = useState([]);
 
-  const { u, t, c } = useContext(UserContext);
+  const { u, t, c, ta, ee } = useContext(UserContext);
   const [user] = u;
   const [tray, setTray] = t;
   const [collection] = c;
+  const [tagAwards, setTagAwards] = ta;
+  const [expendedEffort, setExpendedEffort] = ee;
 
   useEffect(() => {
     if(user?.token){
@@ -32,8 +34,34 @@ const Tray = () => {
           let collections = data.data.map(tray => tray.attributes.collection.data.id);
           setTray(collections);
         })
+
+      fetch(`https://generationsapi.herokuapp.com/api/tag-awards`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${user.token}`
+        }
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setTagAwards(data.data.attributes.tagsCount);
+        })
+
+      fetch(`https://generationsapi.herokuapp.com/api/users/me`, {
+        method: "GET",
+        headers: {
+          "Authorization": `Bearer ${user.token}`
+        }
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setExpendedEffort(data.expendedEffort ? data.expendedEffort : 0);
+        })
     }
-  }, [setTray, user.token])
+  }, [setTray, setTagAwards, setExpendedEffort, user.token])
 
   useEffect(() => {
     // check that tray is initialized
@@ -53,7 +81,7 @@ const Tray = () => {
         {!user.token ? (
           <NotLoggedIn />
         ) : (
-          <TrayContent tray={trayCard} setTray={setTray} />
+          <TrayContent tray={trayCard} setTray={setTray} tagAwards={tagAwards} expendedEffort={expendedEffort} />
         )}
         <p className="text-xs text-gray-500">
           {JSON.stringify(user.token)} | {JSON.stringify(tray)}

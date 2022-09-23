@@ -12,12 +12,13 @@ function App() {
   let token = sessionStorage.getItem("userSession");
 
   const [user, dispatch] = useReducer(UserReducer, token ? { "token": token } : { "token": null });
-  const [tray, setTray] = useState([])
-  const [collections, setCollections] = useState([])
-
+  const [tray, setTray] = useState([]);
+  const [collections, setCollections] = useState([]);
+  const [tagAwards, setTagAwards] = useState({});
+  const [expendedEffort, setExpendedEffort] = useState();
 
   return (
-    <UserContext.Provider value={{ u: [user, dispatch], t: [tray, setTray], c: [collections, setCollections] }} >
+    <UserContext.Provider value={{ u: [user, dispatch], t: [tray, setTray], c: [collections, setCollections], ta: [tagAwards, setTagAwards], ee: [expendedEffort, setExpendedEffort] }} >
       <div className="App-body">
         <MainRouter />
       </div>
