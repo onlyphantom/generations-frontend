@@ -53,3 +53,9 @@ code {
 .markdown-para h4 {
   font-size: 1.2rem;
 }
+
+
+/* Overwriting daisy (primarily fixes) */
+.badge {
+    line-height: inherit;
+}

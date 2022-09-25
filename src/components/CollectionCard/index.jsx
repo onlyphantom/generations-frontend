@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -16,7 +16,10 @@ const CollectionCard = ({ attributes, id }) => {
   const [tray, setTray] = t;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
-  const { numArticles, numChallenges, numCourses, numVideos, tagsCount } = attributes;
+  const dateRef = useRef(attributes.publishedAt);
+
+  const { numArticles, numChallenges, numCourses, numVideos, tagsCount } =
+    attributes;
 
   const numMaterials = {
     articles: numArticles,
@@ -32,6 +35,10 @@ const CollectionCard = ({ attributes, id }) => {
 
   useEffect(() => {
     setBookmarkIcon(tray.includes(id));
+
+    // handle dates
+    const isoDate = new Date(attributes.publishedAt).toISOString();
+    dateRef.current = isoDate.substring(0, isoDate.indexOf("T"));
   }, [id, tray]);
 
   return (
@@ -45,7 +52,7 @@ const CollectionCard = ({ attributes, id }) => {
         </label>
       </h5>
       <div className="text-gray-500 mb-4 text-sm markdown-para">
-        <small>{attributes.publishedAt}</small>
+        <small>Last Updated on {dateRef.current}</small>
         {/* <small>({JSON.stringify(attributes)})</small> */}
         {attributes.details && <CollectionDetails attributes={attributes} />}
         {attributes.experts && (
