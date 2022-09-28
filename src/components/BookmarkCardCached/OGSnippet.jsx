@@ -11,7 +11,7 @@ const OGSnippet = ({
   imgUrl,
   medium,
   effort,
-  tagsCount
+  tagsCount,
 }) => {
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl rounded-xl overflow-hidden">
@@ -46,11 +46,14 @@ const OGSnippet = ({
         </div> */}
         <div className="flex flex-row">
           <div className="basis-2/5">
-              <div className="tooltip" data-tip="Effort Points">
-              <CardEffortPoints effort={effort} extraClass={`badge-secondary`} />
-              </div>
+            <div className="tooltip" data-tip="Effort Points">
+              <CardEffortPoints
+                effort={effort}
+                extraClass={`badge-secondary`}
+              />
+            </div>
           </div>
-          <div className="basis-3/5 text-right">      
+          <div className="basis-3/5 text-right">
             <CardTags tagsCount={tagsCount} />
           </div>
         </div>
