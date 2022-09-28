@@ -39,7 +39,7 @@ const CollectionCard = ({ attributes, id }) => {
     // handle dates
     const isoDate = new Date(attributes.publishedAt).toISOString();
     dateRef.current = isoDate.substring(0, isoDate.indexOf("T"));
-  }, [id, tray]);
+  }, [id, tray, attributes.publishedAt]);
 
   return (
     <div
