@@ -10,6 +10,7 @@ const TrayButton = ({ setTrayOpen }) => {
         width: 220,
         height: 100,
       }}
+      className="animate-pulse"
     >
       <div
         style={{

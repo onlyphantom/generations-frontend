@@ -3,7 +3,7 @@ import CardEffortPoints from "../CollectionCard/CardEffortPoints";
 import CardTags from "../CollectionCard/CardTags";
 
 const diagonalLine = {
-  borderBottom: "1px solid var(--tw-prose-body)",
+  borderBottom: "2px solid var(--tw-prose-body)",
   width: "100%",
   transform: "rotate(7deg)",
   transformOrigin: "top left",
