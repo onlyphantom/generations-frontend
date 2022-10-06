@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { UserContext } from "../../contexts/UserContext";
@@ -12,9 +12,9 @@ import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
 
-export const TrayCourses = ({ tray, trayIdArray, setTray, user }) => {
+export const TrayCourses = ({ trayCollections, tray, setTray, user }) => {
 
-  return tray.map((course) => {
+  return trayCollections?.map((course) => {
     return (
       <TrayCard key={course.id}>
         <dt>{course.attributes.title}</dt>
@@ -26,7 +26,7 @@ export const TrayCourses = ({ tray, trayIdArray, setTray, user }) => {
           </article>
           <button
             className="btn btn-square"
-            onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray, user)}
+            onClick={() => addOrRemoveFromTray(tray, course.id, setTray, user)}
           >
             <AddedIcon />
           </button>
@@ -38,17 +38,12 @@ export const TrayCourses = ({ tray, trayIdArray, setTray, user }) => {
 
 }
 
-const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
+const TrayContent = ({ trayCollections, tray, setTray, tagAwards, expendedEffort }) => {
   const { u } = useContext(UserContext);
   const [user] = u;
-  const [trayIdArray, setTrayIdArray] = useState([]);
-
-  useEffect(() => {
-    setTrayIdArray(tray.map((t) => t.id));
-  }, [tray]);
 
   const totalEffort = () => {
-    let effortArray = tray.map((course) => {
+    let effortArray = trayCollections.map((course) => {
       return course.attributes.totalEffort;
     });
 
@@ -68,7 +63,7 @@ const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
     <>
       <UserProgress tagAwards={tagAwards} expendedEffort={expendedEffort} />
 
-      {tray.length === 0 ? (
+      {trayCollections.length === 0 ? (
         <p className="prose m-4">
           You have not added any lesson yet. You should{" "}
           <span className="inline-flex border rounded p-1">
@@ -86,7 +81,7 @@ const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
           </h3>
 
           <dl>
-            <TrayCourses tray={tray} trayIdArray={trayIdArray} setTray={setTray} user={user} />
+            <TrayCourses trayCollections={trayCollections} tray={tray} setTray={setTray} user={user} />
           </dl>
           {/* <TrayCard setTray={setTray} />
           <TrayCard setTray={setTray} />  */}
@@ -94,7 +89,7 @@ const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
       )}
 
       <p className="text-xs text-gray-500">
-        {tray.length > 0 && JSON.stringify(tray[0])}
+        {trayCollections.length > 0 && JSON.stringify(trayCollections[0])}
       </p>
       {/* <p className="text-xs text-gray-500">{JSON.stringify(tray)}</p> */}
     </>

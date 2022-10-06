@@ -34,7 +34,8 @@ const CollectionCard = ({ attributes, id }) => {
   };
 
   useEffect(() => {
-    setBookmarkIcon(tray.includes(id));
+    let trayCollections = tray.map(collection => collection.collectionId);
+    setBookmarkIcon(trayCollections.includes(id));
 
     // handle dates
     const isoDate = new Date(attributes.publishedAt).toISOString();
