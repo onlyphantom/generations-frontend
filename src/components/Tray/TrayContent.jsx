@@ -11,6 +11,33 @@ import { truncate } from "../BookmarkCardCached/utils";
 import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
+
+export const TrayCourses = ({ tray, trayIdArray, setTray, user }) => {
+
+  return tray.map((course) => {
+    return (
+      <TrayCard key={course.id}>
+        <dt>{course.attributes.title}</dt>
+        <dd>
+          <article className="prose prose-sm dark:prose-invert">
+            <ReactMarkdown>
+              {truncate(course.attributes.details || "", 240)}
+            </ReactMarkdown>
+          </article>
+          <button
+            className="btn btn-square"
+            onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray, user)}
+          >
+            <AddedIcon />
+          </button>
+        </dd>
+      </TrayCard>
+    );
+  });
+
+
+}
+
 const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
   const { u } = useContext(UserContext);
   const [user] = u;
@@ -35,26 +62,7 @@ const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
     );
   };
 
-  const trayCourses = tray.map((course) => {
-    return (
-      <TrayCard key={course.id}>
-        <dt>{course.attributes.title}</dt>
-        <dd>
-          <article className="prose prose-sm dark:prose-invert">
-            <ReactMarkdown>
-              {truncate(course.attributes.details || "", 240)}
-            </ReactMarkdown>
-          </article>
-          <button
-            className="btn btn-square"
-            onClick={() => addOrRemoveFromTray(trayIdArray, course.id, setTray, user)}
-          >
-            <AddedIcon />
-          </button>
-        </dd>
-      </TrayCard>
-    );
-  });
+
 
   return (
     <>
@@ -77,7 +85,9 @@ const TrayContent = ({ tray, setTray, tagAwards, expendedEffort }) => {
             <EffortWidget />
           </h3>
 
-          <dl>{trayCourses}</dl>
+          <dl>
+            <TrayCourses tray={tray} trayIdArray={trayIdArray} setTray={setTray} user={user} />
+          </dl>
           {/* <TrayCard setTray={setTray} />
           <TrayCard setTray={setTray} />  */}
         </>

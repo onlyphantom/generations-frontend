@@ -1,16 +1,31 @@
-import { useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
+import { TrayCourses } from "../Tray/TrayContent";
+
 const Curation = ({ setCurrentStep }) => {
-  const { t } = useContext(UserContext);
+  const { u, c, t } = useContext(UserContext);
   const [tray, setTray] = t;
+  const [collection] = c;
+  const [trayCard, setTrayCard] = useState([]);
+
+  useEffect(() => {
+
+    if (Array.isArray(tray)) {
+      let bookmarkedCollections = collection.filter((coll) => {
+        return tray.includes(coll.id);
+      });
+      setTrayCard(bookmarkedCollections);
+    }
+
+  }, [collection, tray])
+
 
   return (
-    <div>
-      <p className="prose prose-stone" onClick={() => setTray()}>
-        {JSON.stringify(tray)}
-      </p>
+    <div className="my-4">
+      <TrayCourses tray={trayCard} trayIdArray={tray} setTray={setTray} user={u} />
+
     </div>
   );
 };
