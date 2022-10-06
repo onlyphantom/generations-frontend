@@ -23,9 +23,8 @@ const Curation = ({ setCurrentStep }) => {
 
 
   return (
-    <div className="my-4">
+    <div className="my-4 w-3/4">
       <TrayCourses tray={trayCard} trayIdArray={tray} setTray={setTray} user={u} />
-
     </div>
   );
 };

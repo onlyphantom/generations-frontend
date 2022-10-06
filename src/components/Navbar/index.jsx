@@ -8,7 +8,7 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const { u } = useContext(UserContext);
-  const [user, dispatch] = u;
+  const [, dispatch] = u;
 
   useEffect(() => {
     const token = sessionStorage.getItem("userSession");
@@ -82,10 +82,10 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <p className="text-xs text-gray-500">
+        {/* <p className="text-xs text-gray-500">
           {JSON.stringify(user.token)} |{" "}
           {user.token ? "Logged in" : "Not logged in"}
-        </p>
+        </p> */}
 
         {loggedIn ? (
           <div
