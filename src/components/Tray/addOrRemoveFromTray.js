@@ -1,7 +1,8 @@
 const addOrRemoveFromTray = (tray, id, setTray, user) => {
+    let trayCollections = tray.map(collection => collection.collectionId);
 
-    if (tray.includes(id)) {
-        let newTray = tray.filter(i => i !== id);
+    if (trayCollections.includes(id)) {
+        let newTray = tray.filter(i => i.collectionId !== id);
         setTray(newTray);
 
         if(user?.token){
@@ -16,7 +17,10 @@ const addOrRemoveFromTray = (tray, id, setTray, user) => {
         }  
 
     } else {
-        setTray([...tray, id]);
+        setTray([
+            ...tray, 
+            { "collectionId": id, "status": "requested" }
+        ]);
 
         if(user?.token){
             const data = {

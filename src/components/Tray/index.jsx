@@ -31,7 +31,13 @@ const Tray = () => {
           return response.json();
         })
         .then((data) => {
-          let collections = data.data.map(tray => tray.attributes.collection.data.id);
+          let collections = data.data.map(tray => {
+            let collection = { 
+              "collectionId": tray.attributes.collection.data.id, 
+              "status": tray.attributes.status
+            };
+            return collection
+          });
           setTray(collections);
         })
 
@@ -67,7 +73,8 @@ const Tray = () => {
     // check that tray is initialized
     if (Array.isArray(tray)) {
       let bookmarkedCollections = collection.filter((coll) => {
-        return tray.includes(coll.id);
+        let trayCollections = tray.map(collection => collection.collectionId);
+        return trayCollections.includes(coll.id);
       });
       setTrayCard(bookmarkedCollections);
     }
@@ -81,7 +88,7 @@ const Tray = () => {
         {!user.token ? (
           <NotLoggedIn />
         ) : (
-          <TrayContent tray={trayCard} setTray={setTray} tagAwards={tagAwards} expendedEffort={expendedEffort} />
+          <TrayContent trayCollections={trayCard} tray={tray} setTray={setTray} tagAwards={tagAwards} expendedEffort={expendedEffort} />
         )}
         <p className="text-xs text-gray-500">
           {JSON.stringify(user.token)} | {JSON.stringify(tray)}
