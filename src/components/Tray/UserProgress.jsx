@@ -22,12 +22,29 @@ const UserProgress = ({ tagAwards, expendedEffort }) => {
       );
     } else {
       return (
-        <p className="prose prose-slate prose-sm leading-snug mr-2">
-          <small>
-            As you complete lessons, your mentor will reward you with points and
-            competency tags that will appear here.
-          </small>
-        </p>
+        <div className="alert shadow-lg">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="stroke-info flex-shrink-0 w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              ></path>
+            </svg>
+            <span className="prose prose-slate prose-sm leading-snug">
+              <small>
+                As you complete lessons, your mentor will reward you with points
+                and competency tags that will appear here.
+              </small>
+            </span>
+          </div>
+        </div>
       );
     }
   };
@@ -39,7 +56,7 @@ const UserProgress = ({ tagAwards, expendedEffort }) => {
           Scoreboard{" "}
           <div className="badge badge-md badge-accent">{expendedEffort}</div>
           <div className="flex flex-row">
-            <div className="basis-3/5">
+            <div className="basis-3/5 mr-3">
               <RadialProgess />
             </div>
             <div className="basis-2/5">

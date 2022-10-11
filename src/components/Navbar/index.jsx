@@ -4,6 +4,11 @@ import { UserContext } from "../../contexts/UserContext";
 
 import EnrollFormModal from "../EnrollFormModal";
 
+export const scrollToCuration = () => {
+  const section = document.querySelector("#curations");
+  section.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
 const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -28,11 +33,6 @@ const Navbar = () => {
     });
     sessionStorage.removeItem("userSession");
     window.location.reload();
-  };
-
-  const scrollToCuration = () => {
-    const section = document.querySelector("#curations");
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
