@@ -4,8 +4,8 @@ import { UserContext } from "../../contexts/UserContext";
 
 import EnrollFormModal from "../EnrollFormModal";
 
-export const scrollToCuration = () => {
-  const section = document.querySelector("#curations");
+export const scrollToSection = (sectionName) => {
+  const section = document.querySelector(`#${sectionName}`);
   section.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start">
+      <div className="navbar-start text-sm">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg
@@ -60,24 +60,55 @@ const Navbar = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <button onClick={(e) => scrollToCuration()}>Curations</button>
+              <button onClick={(e) => scrollToSection("curations")}>
+                Curations
+              </button>
             </li>
             <li>
-              <a href="#!">Cohort-based Fellowship</a>
+              <button onClick={(e) => scrollToSection("fellowship")}>
+                Cohort-based Fellowship
+              </button>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl" href="#!">
-          Fellowship
-        </a>
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost normal-case text-xl">
+            Fellowship
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <button onClick={(e) => scrollToSection("curations")}>
+                Curations
+              </button>
+            </li>
+            <li>
+              <button onClick={(e) => scrollToSection("fellowship")}>
+                Cohort Program
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">
           <li>
-            <button onClick={(e) => scrollToCuration()}>Curations</button>
+            <button
+              onClick={(e) => scrollToSection("curations")}
+              className="btn btn-ghost"
+            >
+              Curations
+            </button>
           </li>
           <li>
-            <a href="#!">Cohort-based Fellowship</a>
+            <button
+              onClick={(e) => scrollToSection("fellowship")}
+              className="btn btn-ghost"
+            >
+              Cohort-based Fellowship
+            </button>
           </li>
         </ul>
       </div>

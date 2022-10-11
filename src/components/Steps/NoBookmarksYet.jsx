@@ -1,4 +1,4 @@
-import { scrollToCuration } from "../Navbar";
+import { scrollToSection } from "../Navbar";
 
 const NoBookmarksYet = () => {
   return (
@@ -26,7 +26,10 @@ const NoBookmarksYet = () => {
         </div>
       </div>
       <div className="flex-none">
-        <button className="btn btn-sm" onClick={(e) => scrollToCuration()}>
+        <button
+          className="btn btn-sm"
+          onClick={(e) => scrollToSection("curations")}
+        >
           Scroll to Curations
         </button>
       </div>
