@@ -9,27 +9,24 @@ const Curation = ({ setCurrentStep }) => {
   const { u, c, t } = useContext(UserContext);
   const [tray, setTray] = t;
   const [collection] = c;
-  const [trayCard, setTrayCard] = useState([]);
+  const [trayCollections, setTrayCollections] = useState([]);
 
   useEffect(() => {
     if (Array.isArray(tray)) {
-      let bookmarkedCollections = collection.filter((coll) => {
-        return tray.includes(coll.id);
+      let bookmarkedCollections = tray.map((t) => {
+        let val = collection.find((coll) => coll.id === t.collectionId);
+        return { ...val, status: t.status };
       });
-      setTrayCard(bookmarkedCollections);
-      console.log(collection);
-      console.log(tray);
-      console.log(bookmarkedCollections);
+      setTrayCollections(bookmarkedCollections);
     }
   }, [collection, tray]);
 
-  if (trayCard.length > 0) {
+  if (trayCollections.length > 0) {
     return (
       <div className="my-4 w-3/4">
-        <p>{JSON.stringify(trayCard)}</p>
         <TrayCourses
-          tray={trayCard}
-          trayIdArray={tray}
+          trayCollections={trayCollections}
+          tray={tray}
           setTray={setTray}
           user={u}
         />

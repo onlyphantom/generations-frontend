@@ -11,13 +11,13 @@ import { truncate } from "../BookmarkCardCached/utils";
 import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
-
 export const TrayCourses = ({ trayCollections, tray, setTray, user }) => {
-
   return trayCollections?.map((course) => {
     return (
       <TrayCard key={course.id}>
-        <dt>{course.attributes.title}</dt>
+        <dt>
+          {course.attributes.title} <small>({course.status})</small>
+        </dt>
         <dd>
           <article className="prose prose-sm dark:prose-invert">
             <ReactMarkdown>
@@ -34,11 +34,15 @@ export const TrayCourses = ({ trayCollections, tray, setTray, user }) => {
       </TrayCard>
     );
   });
+};
 
-
-}
-
-const TrayContent = ({ trayCollections, tray, setTray, tagAwards, expendedEffort }) => {
+const TrayContent = ({
+  trayCollections,
+  tray,
+  setTray,
+  tagAwards,
+  expendedEffort,
+}) => {
   const { u } = useContext(UserContext);
   const [user] = u;
 
@@ -56,8 +60,6 @@ const TrayContent = ({ trayCollections, tray, setTray, tagAwards, expendedEffort
       <CardEffortPoints effort={totalEffort()} extraClass={`badge-primary`} />
     );
   };
-
-
 
   return (
     <>
@@ -81,10 +83,13 @@ const TrayContent = ({ trayCollections, tray, setTray, tagAwards, expendedEffort
           </h3>
 
           <dl>
-            <TrayCourses trayCollections={trayCollections} tray={tray} setTray={setTray} user={user} />
+            <TrayCourses
+              trayCollections={trayCollections}
+              tray={tray}
+              setTray={setTray}
+              user={user}
+            />
           </dl>
-          {/* <TrayCard setTray={setTray} />
-          <TrayCard setTray={setTray} />  */}
         </>
       )}
 
