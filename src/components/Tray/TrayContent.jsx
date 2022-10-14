@@ -11,8 +11,11 @@ import { truncate } from "../BookmarkCardCached/utils";
 import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
-export const TrayCourses = ({ trayCollections, tray, setTray, user }) => {
-  return trayCollections?.map((course) => {
+export const TrayCourses = ({ trayCollections, tray, setTray, user, status }) => {
+
+  const filteredTrayCollections = status ? trayCollections?.filter(tray => tray.status === status) : trayCollections;
+
+  return filteredTrayCollections?.map((course) => {
     return (
       <TrayCard key={course.id}>
         <dt>
@@ -46,12 +49,14 @@ const TrayContent = ({
   const { u } = useContext(UserContext);
   const [user] = u;
 
-  const totalEffort = () => {
-    let effortArray = trayCollections.map((course) => {
+  const totalEffort = (status) => {
+    let filteredTrayCollections = trayCollections?.filter(tray => tray.status === status);
+
+    let effortArray = filteredTrayCollections?.map((course) => {
       return course.attributes?.totalEffort;
     });
 
-    let sumEffort = effortArray.reduce((sum, x) => sum + x);
+    let sumEffort = effortArray?.reduce((sum, x) => sum + x, 0);
     return sumEffort;
   };
 
@@ -75,10 +80,10 @@ const TrayContent = ({
         </p>
       ) : (
         <>
-          <h2 className="prose prose-lg mx-4">Pending Lessons</h2>
+          <h2 className="prose prose-lg mx-4">Ongoing Lessons</h2>
           <h3 className="prose prose-md mx-4">
             Expected Effort{" "}
-            <div className="badge badge-md badge-primary">{totalEffort()}</div>
+            <div className="badge badge-md badge-primary">{totalEffort("ongoing")}</div>
             <EffortWidget />
           </h3>
 
@@ -88,6 +93,18 @@ const TrayContent = ({
               tray={tray}
               setTray={setTray}
               user={user}
+              status="ongoing"
+            />
+          </dl>
+
+          <h2 className="prose prose-lg mx-4">Pending Lessons</h2>
+          <dl>
+            <TrayCourses
+              trayCollections={trayCollections}
+              tray={tray}
+              setTray={setTray}
+              user={user}
+              status="requested"
             />
           </dl>
         </>
