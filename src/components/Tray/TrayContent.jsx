@@ -4,7 +4,7 @@ import ReactMarkdown from "react-markdown";
 import { UserContext } from "../../contexts/UserContext";
 
 import TrayCard from "./TrayCard";
-import { AddIcon, AddedIcon } from "../CollectionCard/CardActions";
+import { AddIcon, AddedIcon, CompleteIcon } from "../CollectionCard/CardActions";
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
 
 import { truncate } from "../BookmarkCardCached/utils";
@@ -34,6 +34,12 @@ export const TrayCourses = ({ trayCollections, tray, setTray, user, status }) =>
                 onClick={() => addOrRemoveFromTray(tray, course.id, setTray, user)}
               >
                 <AddedIcon />
+              </button>
+            ) : course.status === "completed" ? (
+              <button
+                className="btn btn-square btn-solid hover:cursor-default"
+              >
+                <CompleteIcon />
               </button>
             ) : (null)
           }
