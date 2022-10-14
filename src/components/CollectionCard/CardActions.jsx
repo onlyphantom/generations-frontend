@@ -111,7 +111,7 @@ const VideosIcon = ({ count }) => {
   );
 };
 
-const MaterialCounts = ({ num_materials, tagsCount }) => {
+const MaterialCounts = ({ num_materials, tagsCount, trayStatus }) => {
   let content = [];
 
   if (num_materials.articles > 0) {
@@ -134,21 +134,26 @@ const MaterialCounts = ({ num_materials, tagsCount }) => {
     content.push(<CardTags tagsCount={tagsCount} key="tagsCount" />)
   }
 
-  return <div className="flex flex-row ml-4">{content}</div>;
+  return <div className={`flex flex-row ${trayStatus !== "ongoing" ? "ml-4" : ""}`}>{content}</div>;
 };
 
-const CardActions = ({ bookmarkIcon, num_materials, tagsCount, handleAddToTray }) => {
+const CardActions = ({ bookmarkIcon, num_materials, tagsCount, handleAddToTray, trayStatus }) => {
   return (
     <div className="card-actions">
-      <button
-        className={`btn btn-square ${
-          !bookmarkIcon ? "btn-outline" : "btn-solid border-white"
-        }`}
-        onClick={handleAddToTray}
-      >
-        {!bookmarkIcon ? <AddIcon /> : <AddedIcon />}
-      </button>
-      <MaterialCounts num_materials={num_materials} tagsCount={tagsCount}/>
+      {
+        trayStatus !== "ongoing" ? (
+          <button
+            className={`btn btn-square ${
+              !bookmarkIcon ? "btn-outline" : "btn-solid border-white"
+            }`}
+            onClick={handleAddToTray}
+          >
+            {!bookmarkIcon ? <AddIcon /> : <AddedIcon />}
+          </button>
+        ) : (null)
+      }
+      
+      <MaterialCounts num_materials={num_materials} tagsCount={tagsCount} trayStatus={trayStatus} />
     </div>
   );
 };

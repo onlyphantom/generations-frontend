@@ -28,6 +28,8 @@ const CollectionCard = ({ attributes, id }) => {
     videos: numVideos,
   };
 
+  const selectedTray = tray.find(collection => collection.collectionId === id);
+
   const handleAddToTray = () => {
     addOrRemoveFromTray(tray, id, setTray, user);
     setBookmarkIcon((prev) => !prev);
@@ -67,6 +69,7 @@ const CollectionCard = ({ attributes, id }) => {
             num_materials={numMaterials}
             tagsCount={tagsCount}
             handleAddToTray={handleAddToTray}
+            trayStatus={selectedTray?.status}
           />
         </div>
         <div className="basis-1/5">

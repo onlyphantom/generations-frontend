@@ -27,12 +27,17 @@ export const TrayCourses = ({ trayCollections, tray, setTray, user, status }) =>
               {truncate(course.attributes?.details || "", 240)}
             </ReactMarkdown>
           </article>
-          <button
-            className="btn btn-square"
-            onClick={() => addOrRemoveFromTray(tray, course.id, setTray, user)}
-          >
-            <AddedIcon />
-          </button>
+          {
+            course.status === "requested" ? (
+              <button
+                className="btn btn-square"
+                onClick={() => addOrRemoveFromTray(tray, course.id, setTray, user)}
+              >
+                <AddedIcon />
+              </button>
+            ) : (null)
+          }
+          
         </dd>
       </TrayCard>
     );
