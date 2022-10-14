@@ -16,12 +16,12 @@ export const TrayCourses = ({ trayCollections, tray, setTray, user }) => {
     return (
       <TrayCard key={course.id}>
         <dt>
-          {course.attributes.title} <small>({course.status})</small>
+          {course.attributes?.title} <small>({course.status})</small>
         </dt>
         <dd>
           <article className="prose prose-sm dark:prose-invert">
             <ReactMarkdown>
-              {truncate(course.attributes.details || "", 240)}
+              {truncate(course.attributes?.details || "", 240)}
             </ReactMarkdown>
           </article>
           <button
@@ -48,7 +48,7 @@ const TrayContent = ({
 
   const totalEffort = () => {
     let effortArray = trayCollections.map((course) => {
-      return course.attributes.totalEffort;
+      return course.attributes?.totalEffort;
     });
 
     let sumEffort = effortArray.reduce((sum, x) => sum + x);
