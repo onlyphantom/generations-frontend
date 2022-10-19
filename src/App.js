@@ -1,9 +1,8 @@
 import './App.css';
 
-import { useState, useReducer } from 'react';
+import { useState, useEffect } from 'react';
 
 import MainRouter from './routers/MainRouter';
-import { UserReducer } from './reducers/UserReducer';
 import { UserContext } from './contexts/UserContext';
 
 
@@ -11,14 +10,41 @@ function App() {
 
   let token = sessionStorage.getItem("userSession");
 
-  const [user, dispatch] = useReducer(UserReducer, token ? { "token": token } : { "token": null });
+  const [user, setUser] = useState();
   const [tray, setTray] = useState([]);
   const [collections, setCollections] = useState([]);
   const [tagAwards, setTagAwards] = useState({});
-  const [expendedEffort, setExpendedEffort] = useState();
+
+  useEffect(() => {
+    if (token) {
+    fetch(`https://generationsapi.herokuapp.com/api/users/me`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      return response.json();
+    })
+    .then((userData) => {
+      setUser({ 
+        "token": token, 
+        "expendedEffort": userData?.expendedEffort, 
+        "proUser": userData?.proUser, 
+        "proExpiry": userData?.proExpiry 
+      });
+    })
+  } else {
+    setUser({ 
+      "token": null, 
+      "expendedEffort": null, 
+      "proUser": null, 
+      "proExpiry": null
+    });
+  }}, [token, setUser]);
 
   return (
-    <UserContext.Provider value={{ u: [user, dispatch], t: [tray, setTray], c: [collections, setCollections], ta: [tagAwards, setTagAwards], ee: [expendedEffort, setExpendedEffort] }} >
+    <UserContext.Provider value={{ u: [user, setUser], t: [tray, setTray], c: [collections, setCollections], ta: [tagAwards, setTagAwards] }} >
       <div className="App-body">
         <MainRouter />
       </div>

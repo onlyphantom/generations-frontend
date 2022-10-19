@@ -13,24 +13,16 @@ const Navbar = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const { u } = useContext(UserContext);
-  const [, dispatch] = u;
+  const [user] = u;
 
   useEffect(() => {
-    const token = sessionStorage.getItem("userSession");
-    if (token) {
-      dispatch({
-        type: "LOGIN",
-        token: token,
-      });
+    if (user?.token) {
       setLoggedIn(true);
     }
-  }, [dispatch]);
+  }, [user]);
 
   const handleLogOut = (event) => {
     event.preventDefault();
-    dispatch({
-      type: "LOGOUT",
-    });
     sessionStorage.removeItem("userSession");
     window.location.reload();
   };
