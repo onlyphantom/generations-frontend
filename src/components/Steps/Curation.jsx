@@ -15,7 +15,6 @@ const Curation = ({ setCurrentStep }) => {
     if (Array.isArray(tray)) {
       let bookmarkedCollections = tray.map((t) => {
         let val = collection.find((coll) => coll.id === t.collectionId);
-        console.log("t", t);
         return { ...val, status: t.status, expert: t.expert };
       });
       console.log("bookmarkedCollections", bookmarkedCollections);
