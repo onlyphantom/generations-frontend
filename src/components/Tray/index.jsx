@@ -9,12 +9,12 @@ import TrayContent from "./TrayContent";
 
 const Tray = () => {
   const [trayOpen, setTrayOpen] = useState(false);
-  const [trayCollections, setTrayCollections] = useState([]);
 
-  const { u, t, c, ta } = useContext(UserContext);
+  const { u, t, c, bc, ta } = useContext(UserContext);
   const [user] = u;
   const [tray, setTray] = t;
   const [collection] = c;
+  const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [tagAwards, setTagAwards] = ta;
 
   useEffect(() => {
@@ -58,12 +58,12 @@ const Tray = () => {
   useEffect(() => {
     // check that tray is initialized
     if (Array.isArray(tray)) {
-      let bookmarkedCollections = tray.map((t) => {
+      let trayCollections = tray.map((t) => {
         let val = collection.find((coll) => coll.id === t.collectionId);
         return { ...val, status: t.status };
       });
 
-      setTrayCollections(bookmarkedCollections);
+      setBookmarkedCollections(trayCollections);
     }
   }, [collection, tray]);
 
@@ -76,7 +76,7 @@ const Tray = () => {
           <NotLoggedIn />
         ) : (
           <TrayContent
-            trayCollections={trayCollections}
+            trayCollections={bookmarkedCollections}
             tray={tray}
             setTray={setTray}
             tagAwards={tagAwards}

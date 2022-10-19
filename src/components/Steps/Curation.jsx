@@ -1,4 +1,4 @@
-import { useEffect, useContext, useState } from "react";
+import { useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
@@ -6,27 +6,17 @@ import NoBookmarksYet from "./NoBookmarksYet";
 import { TrayCourses } from "../Tray/TrayContent";
 
 const Curation = ({ setCurrentStep }) => {
-  const { u, c, t } = useContext(UserContext);
+  const { u, t, bc } = useContext(UserContext);
   const [tray, setTray] = t;
-  const [collection] = c;
-  const [trayCollections, setTrayCollections] = useState([]);
+  const [bookmarkedCollections] = bc;
 
-  useEffect(() => {
-    if (Array.isArray(tray)) {
-      let bookmarkedCollections = tray.map((t) => {
-        let val = collection.find((coll) => coll.id === t.collectionId);
-        return { ...val, status: t.status, expert: t.expert };
-      });
-      console.log("bookmarkedCollections", bookmarkedCollections);
-      setTrayCollections(bookmarkedCollections);
-    }
-  }, [collection, tray]);
-
-  if (trayCollections.length > 0) {
+  console.log("bookmarkedCollections", bookmarkedCollections);
+  
+  if (bookmarkedCollections.length > 0) {
     return (
       <div className="my-4 w-3/4 max-w-2xl">
         <TrayCourses
-          trayCollections={trayCollections}
+          trayCollections={bookmarkedCollections}
           tray={tray}
           setTray={setTray}
           user={u}

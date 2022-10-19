@@ -13,6 +13,7 @@ function App() {
   const [user, setUser] = useState();
   const [tray, setTray] = useState([]);
   const [collections, setCollections] = useState([]);
+  const [bookmarkedCollections, setBookmarkedCollections] = useState([]);
   const [tagAwards, setTagAwards] = useState({});
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
   }}, [token, setUser]);
 
   return (
-    <UserContext.Provider value={{ u: [user, setUser], t: [tray, setTray], c: [collections, setCollections], ta: [tagAwards, setTagAwards] }} >
+    <UserContext.Provider value={{ u: [user, setUser], t: [tray, setTray], c: [collections, setCollections], bc: [bookmarkedCollections, setBookmarkedCollections], ta: [tagAwards, setTagAwards] }} >
       <div className="App-body">
         <MainRouter />
       </div>
