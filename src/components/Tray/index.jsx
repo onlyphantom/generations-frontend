@@ -65,7 +65,7 @@ const Tray = () => {
 
       setBookmarkedCollections(trayCollections);
     }
-  }, [collection, tray]);
+  }, [collection, tray, setBookmarkedCollections]);
 
   return (
     <div>
