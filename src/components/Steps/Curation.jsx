@@ -17,6 +17,8 @@ const Curation = ({ setCurrentStep }) => {
         let val = collection.find((coll) => coll.id === t.collectionId);
         return { ...val, status: t.status };
       });
+      console.log("bookmarkedCollections", bookmarkedCollections);
+      console.log("user", u);
       setTrayCollections(bookmarkedCollections);
     }
   }, [collection, tray]);

@@ -28,7 +28,9 @@ const CollectionCard = ({ attributes, id }) => {
     videos: numVideos,
   };
 
-  const selectedTray = tray.find(collection => collection.collectionId === id);
+  const selectedTray = tray.find(
+    (collection) => collection.collectionId === id
+  );
 
   const handleAddToTray = () => {
     addOrRemoveFromTray(tray, id, setTray, user);
@@ -36,7 +38,7 @@ const CollectionCard = ({ attributes, id }) => {
   };
 
   useEffect(() => {
-    let trayCollections = tray.map(collection => collection.collectionId);
+    let trayCollections = tray.map((collection) => collection.collectionId);
     setBookmarkIcon(trayCollections.includes(id));
 
     // handle dates
@@ -56,7 +58,6 @@ const CollectionCard = ({ attributes, id }) => {
       </h5>
       <div className="text-gray-500 mb-4 text-sm markdown-para">
         <small>Last Updated on {dateRef.current}</small>
-        {/* <small>({JSON.stringify(attributes)})</small> */}
         {attributes.details && <CollectionDetails attributes={attributes} />}
         {attributes.experts && (
           <CollectionMentors mentors={attributes.experts.data} />
