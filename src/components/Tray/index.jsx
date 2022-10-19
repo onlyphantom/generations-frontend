@@ -9,14 +9,13 @@ import TrayContent from "./TrayContent";
 
 const Tray = () => {
   const [trayOpen, setTrayOpen] = useState(false);
-  const [trayCollections, setTrayCollections] = useState([]);
 
-  const { u, t, c, ta, ee } = useContext(UserContext);
+  const { u, t, c, bc, ta } = useContext(UserContext);
   const [user] = u;
   const [tray, setTray] = t;
   const [collection] = c;
+  const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [tagAwards, setTagAwards] = ta;
-  const [expendedEffort, setExpendedEffort] = ee;
 
   useEffect(() => {
     if (user?.token) {
@@ -53,31 +52,18 @@ const Tray = () => {
         .then((data) => {
           setTagAwards(data.data.attributes.tagsCount);
         });
-
-      fetch(`https://generationsapi.herokuapp.com/api/users/me`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          setExpendedEffort(data.expendedEffort ? data.expendedEffort : 0);
-        });
     }
-  }, [setTray, setTagAwards, setExpendedEffort, user.token]);
+  }, [setTray, setTagAwards, user?.token]);
 
   useEffect(() => {
     // check that tray is initialized
     if (Array.isArray(tray)) {
-      let bookmarkedCollections = tray.map((t) => {
+      let trayCollections = tray.map((t) => {
         let val = collection.find((coll) => coll.id === t.collectionId);
         return { ...val, status: t.status };
       });
 
-      setTrayCollections(bookmarkedCollections);
+      setBookmarkedCollections(trayCollections);
     }
   }, [collection, tray]);
 
@@ -86,20 +72,20 @@ const Tray = () => {
       {!trayOpen && <TrayButton setTrayOpen={setTrayOpen} />}
 
       <TrayDrawer trayOpen={trayOpen} setTrayOpen={setTrayOpen}>
-        {!user.token ? (
+        {!user?.token ? (
           <NotLoggedIn />
         ) : (
           <TrayContent
-            trayCollections={trayCollections}
+            trayCollections={bookmarkedCollections}
             tray={tray}
             setTray={setTray}
             tagAwards={tagAwards}
-            expendedEffort={expendedEffort}
+            expendedEffort={user.expendedEffort}
           />
         )}
         <p className="text-xs text-gray-500">
-          {JSON.stringify(user.token)} | {JSON.stringify(tray)}
-          {user.token ? "Logged in" : "Not logged in"}
+          {JSON.stringify(user?.token)} | {JSON.stringify(tray)}
+          {user?.token ? "Logged in" : "Not logged in"}
         </p>
       </TrayDrawer>
     </div>
