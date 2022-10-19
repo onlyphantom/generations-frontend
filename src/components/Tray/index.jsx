@@ -34,6 +34,7 @@ const Tray = () => {
             let collection = {
               collectionId: tray.attributes.collection.data.id,
               status: tray.attributes.status,
+              expert: tray.attributes.expert.data,
             };
             return collection;
           });
