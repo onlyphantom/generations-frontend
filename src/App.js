@@ -18,34 +18,45 @@ function App() {
 
   useEffect(() => {
     if (token) {
-    fetch(`https://generationsapi.herokuapp.com/api/users/me`, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((userData) => {
-      setUser({ 
-        "token": token, 
-        "expendedEffort": userData?.expendedEffort, 
-        "proUser": userData?.proUser, 
-        "proExpiry": userData?.proExpiry 
+      fetch(`https://generationsapi.herokuapp.com/api/users/me`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => {
+          return response.json();
+        })
+        .then((userData) => {
+          setUser({
+            "token": token,
+            "expendedEffort": userData?.expendedEffort,
+            "proUser": userData?.proUser,
+            "proExpiry": userData?.proExpiry
+          });
+        })
+    } else {
+      setUser({
+        "token": null,
+        "expendedEffort": null,
+        "proUser": null,
+        "proExpiry": null
       });
-    })
-  } else {
-    setUser({ 
-      "token": null, 
-      "expendedEffort": null, 
-      "proUser": null, 
-      "proExpiry": null
-    });
-  }}, [token, setUser]);
+    }
+  }, [token, setUser]);
 
   return (
-    <UserContext.Provider value={{ u: [user, setUser], t: [tray, setTray], c: [collections, setCollections], bc: [bookmarkedCollections, setBookmarkedCollections], ta: [tagAwards, setTagAwards] }} >
+    <UserContext.Provider
+      value={{
+        u: [user, setUser],
+        t: [tray, setTray],
+        // all collections, regardless of bookmarked status
+        c: [collections, setCollections],
+        // all collections that were bookmarked by user
+        bc: [bookmarkedCollections, setBookmarkedCollections],
+        ta: [tagAwards, setTagAwards]
+      }}
+    >
       <div className="App-body">
         <MainRouter />
       </div>

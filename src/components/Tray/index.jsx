@@ -60,7 +60,7 @@ const Tray = () => {
     if (Array.isArray(tray)) {
       let trayCollections = tray.map((t) => {
         let val = collection.find((coll) => coll.id === t.collectionId);
-        return { ...val, status: t.status };
+        return { ...val, status: t.status, assigned_expert: t.expert?.id };
       });
 
       setBookmarkedCollections(trayCollections);
