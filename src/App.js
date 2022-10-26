@@ -15,6 +15,7 @@ function App() {
   const [collections, setCollections] = useState([]);
   const [bookmarkedCollections, setBookmarkedCollections] = useState([]);
   const [tagAwards, setTagAwards] = useState({});
+  const [experts, setExperts] = useState([]);
 
   useEffect(() => {
     if (token) {
@@ -43,18 +44,25 @@ function App() {
         "proExpiry": null
       });
     }
+
+    fetch("https://generationsapi.herokuapp.com/api/experts/")
+      .then((res) => res.json())
+      .then((data) => setExperts(data.data));
+
   }, [token, setUser]);
 
   return (
     <UserContext.Provider
       value={{
         u: [user, setUser],
+        // TODO: this should be refactored out
         t: [tray, setTray],
         // all collections, regardless of bookmarked status
         c: [collections, setCollections],
+        e: [experts],
         // all collections that were bookmarked by user
         bc: [bookmarkedCollections, setBookmarkedCollections],
-        ta: [tagAwards, setTagAwards]
+        ta: [tagAwards, setTagAwards],
       }}
     >
       <div className="App-body">

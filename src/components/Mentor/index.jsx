@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const Mentor = () => {
-  const [experts, setExperts] = useState([]);
+  const { e } = useContext(UserContext);
+  const [experts] = e;
 
-  useEffect(() => {
-    fetch("https://generationsapi.herokuapp.com/api/experts/")
-      .then((res) => res.json())
-      .then((data) => setExperts(data.data));
-  }, []);
+  // const [experts, setExperts] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("https://generationsapi.herokuapp.com/api/experts/")
+  //     .then((res) => res.json())
+  //     .then((data) => setExperts(data.data));
+  // }, []);
 
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">

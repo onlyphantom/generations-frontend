@@ -4,22 +4,35 @@ import ReactMarkdown from "react-markdown";
 import { UserContext } from "../../contexts/UserContext";
 
 import TrayCard from "./TrayCard";
-import { AddIcon, AddedIcon, CompleteIcon } from "../CollectionCard/CardActions";
+import {
+  AddIcon,
+  AddedIcon,
+  CompleteIcon,
+} from "../CollectionCard/CardActions";
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
 
 import { truncate } from "../BookmarkCardCached/utils";
 import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
-export const TrayCourses = ({ trayCollections, tray, setTray, user, status }) => {
-
-  const filteredTrayCollections = status ? trayCollections?.filter(tray => tray.status === status) : trayCollections;
+export const TrayCourses = ({
+  trayCollections,
+  tray,
+  setTray,
+  user,
+  status,
+}) => {
+  const filteredTrayCollections = status
+    ? trayCollections?.filter((tray) => tray.status === status)
+    : trayCollections;
 
   return filteredTrayCollections?.map((course) => {
     return (
       <TrayCard key={course.id}>
         <dt>
-          {course.attributes?.title} <small>({course.status})</small>
+          {course.attributes?.title}{" "}
+          {/* <small>({course.assigned_expert || course.status})</small> */}
+          <small>({course.status})</small>
         </dt>
         <dd>
           <article className="prose prose-sm dark:prose-invert">
@@ -27,23 +40,20 @@ export const TrayCourses = ({ trayCollections, tray, setTray, user, status }) =>
               {truncate(course.attributes?.details || "", 240)}
             </ReactMarkdown>
           </article>
-          {
-            course.status === "requested" ? (
-              <button
-                className="btn btn-square"
-                onClick={() => addOrRemoveFromTray(tray, course.id, setTray, user)}
-              >
-                <AddedIcon />
-              </button>
-            ) : course.status === "completed" ? (
-              <button
-                className="btn btn-square btn-solid hover:cursor-default"
-              >
-                <CompleteIcon />
-              </button>
-            ) : (null)
-          }
-          
+          {course.status === "requested" ? (
+            <button
+              className="btn btn-square"
+              onClick={() =>
+                addOrRemoveFromTray(tray, course.id, setTray, user)
+              }
+            >
+              <AddedIcon />
+            </button>
+          ) : course.status === "completed" ? (
+            <button className="btn btn-square btn-solid hover:cursor-default">
+              <CompleteIcon />
+            </button>
+          ) : null}
         </dd>
       </TrayCard>
     );
@@ -61,7 +71,9 @@ const TrayContent = ({
   const [user] = u;
 
   const totalEffort = (status) => {
-    let filteredTrayCollections = trayCollections?.filter(tray => tray.status === status);
+    let filteredTrayCollections = trayCollections?.filter(
+      (tray) => tray.status === status
+    );
 
     let effortArray = filteredTrayCollections?.map((course) => {
       return course.attributes?.totalEffort;
@@ -94,7 +106,9 @@ const TrayContent = ({
           <h2 className="prose prose-lg mx-4">Ongoing Lessons</h2>
           <h3 className="prose prose-md mx-4">
             Expected Effort{" "}
-            <div className="badge badge-md badge-primary">{totalEffort("ongoing")}</div>
+            <div className="badge badge-md badge-primary">
+              {totalEffort("ongoing")}
+            </div>
             <EffortWidget />
           </h3>
 
