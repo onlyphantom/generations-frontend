@@ -11,9 +11,10 @@ import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
 import CardActions from "./CardActions";
 
 const CollectionCard = ({ attributes, id }) => {
-  const { u, t } = useContext(UserContext);
+  const { u, c, bc } = useContext(UserContext);
   const [user] = u;
-  const [tray, setTray] = t;
+  const [collection] = c;
+  const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
 
   const dateRef = useRef(attributes.publishedAt);
@@ -28,23 +29,23 @@ const CollectionCard = ({ attributes, id }) => {
     videos: numVideos,
   };
 
-  const selectedTray = tray.find(
-    (collection) => collection.collectionId === id
+  const selectedTray = bookmarkedCollections.find(
+    (collection) => collection.id === id
   );
 
   const handleAddToTray = () => {
-    addOrRemoveFromTray(tray, id, setTray, user);
+    addOrRemoveFromTray(bookmarkedCollections, id, setBookmarkedCollections, user, collection);
     setBookmarkIcon((prev) => !prev);
   };
 
   useEffect(() => {
-    let trayCollections = tray.map((collection) => collection.collectionId);
+    let trayCollections = bookmarkedCollections.map((collection) => collection.id);
     setBookmarkIcon(trayCollections.includes(id));
 
     // handle dates
     const isoDate = new Date(attributes.publishedAt).toISOString();
     dateRef.current = isoDate.substring(0, isoDate.indexOf("T"));
-  }, [id, tray, attributes.publishedAt]);
+  }, [id, bookmarkedCollections, attributes.publishedAt]);
 
   return (
     <div

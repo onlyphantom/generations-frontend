@@ -1,15 +1,14 @@
 import NoBookmarksYet from "./NoBookmarksYet";
 import { TrayCourses } from "../Tray/TrayContent";
 
-const Curation = ({ setCurrentStep, bc, tray, setTray, u }) => {
-  if (bc.length > 0) {
+const Curation = ({ setCurrentStep, bookmarkedCollections, setBookmarkedCollections, user }) => {
+  if (bookmarkedCollections.length > 0) {
     return (
       <div className="my-4 w-3/4 max-w-2xl">
         <TrayCourses
-          trayCollections={bc}
-          tray={tray}
-          setTray={setTray}
-          user={u}
+          bookmarkedCollections={bookmarkedCollections}
+          setBookmarkedCollections={setBookmarkedCollections}
+          user={user}
         />
       </div>
     );
