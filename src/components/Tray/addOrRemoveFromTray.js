@@ -1,12 +1,11 @@
-const addOrRemoveFromTray = (tray, id, setTray, user) => {
-    let trayCollections = tray.map(collection => collection.collectionId);
+const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections, user, collection) => {
+    let trayCollections = bookmarkedCollections.map(collection => collection.id);
 
     if (trayCollections.includes(id)) {
-        let newTray = tray.filter(i => i.collectionId !== id);
-        setTray(newTray);
+        let newTray = bookmarkedCollections.filter(i => i.id !== id);
+        setBookmarkedCollections(newTray);
 
         if(user?.token){
-            
             fetch(`https://generationsapi.herokuapp.com/api/trays/collections/${id}`, {
                 method: "DELETE",
                 headers: {
@@ -14,12 +13,14 @@ const addOrRemoveFromTray = (tray, id, setTray, user) => {
                 }
             })
                 .then((response) => response.json());
-        }  
+        }
 
     } else {
-        setTray([
-            ...tray, 
-            { "collectionId": id, "status": "requested" }
+        let newBookmarkedCollection = collection.find((coll) => coll.id === id);
+
+        setBookmarkedCollections([
+            ...bookmarkedCollections, 
+            { ...newBookmarkedCollection, status: "requested", assigned_expert: null }
         ]);
 
         if(user?.token){
@@ -39,7 +40,7 @@ const addOrRemoveFromTray = (tray, id, setTray, user) => {
                 body: JSON.stringify(data),
             })
                 .then((response) => response.json());
-        }  
+        }
     }
 }
 

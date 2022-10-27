@@ -16,17 +16,20 @@ import addOrRemoveFromTray from "./addOrRemoveFromTray";
 import UserProgress from "./UserProgress";
 
 export const TrayCourses = ({
-  trayCollections,
-  tray,
-  setTray,
+  bookmarkedCollections,
+  setBookmarkedCollections,
   user,
-  status,
+  status
 }) => {
-  const filteredTrayCollections = status
-    ? trayCollections?.filter((tray) => tray.status === status)
-    : trayCollections;
 
-  return filteredTrayCollections?.map((course) => {
+  const { c } = useContext(UserContext);
+  const [collection] = c;
+
+  const filteredBookmarkedCollections = status
+    ? bookmarkedCollections?.filter((tray) => tray.status === status)
+    : bookmarkedCollections;
+  
+  return filteredBookmarkedCollections?.map((course) => {
     return (
       <TrayCard key={course.id}>
         <dt>
@@ -44,7 +47,7 @@ export const TrayCourses = ({
             <button
               className="btn btn-square"
               onClick={() =>
-                addOrRemoveFromTray(tray, course.id, setTray, user)
+                addOrRemoveFromTray(bookmarkedCollections, course.id, setBookmarkedCollections, user, collection)
               }
             >
               <AddedIcon />
@@ -61,9 +64,8 @@ export const TrayCourses = ({
 };
 
 const TrayContent = ({
-  trayCollections,
-  tray,
-  setTray,
+  bookmarkedCollections,
+  setBookmarkedCollections,
   tagAwards,
   expendedEffort,
 }) => {
@@ -71,11 +73,11 @@ const TrayContent = ({
   const [user] = u;
 
   const totalEffort = (status) => {
-    let filteredTrayCollections = trayCollections?.filter(
+    let filteredBookmarkedCollections = bookmarkedCollections?.filter(
       (tray) => tray.status === status
     );
 
-    let effortArray = filteredTrayCollections?.map((course) => {
+    let effortArray = filteredBookmarkedCollections?.map((course) => {
       return course.attributes?.totalEffort;
     });
 
@@ -93,7 +95,7 @@ const TrayContent = ({
     <>
       <UserProgress tagAwards={tagAwards} expendedEffort={expendedEffort} />
 
-      {trayCollections.length === 0 ? (
+      {bookmarkedCollections.length === 0 ? (
         <p className="prose m-4">
           You have not added any lesson yet. You should{" "}
           <span className="inline-flex border rounded p-1">
@@ -114,9 +116,8 @@ const TrayContent = ({
 
           <dl>
             <TrayCourses
-              trayCollections={trayCollections}
-              tray={tray}
-              setTray={setTray}
+              bookmarkedCollections={bookmarkedCollections}
+              setBookmarkedCollections={setBookmarkedCollections}
               user={user}
               status="ongoing"
             />
@@ -125,9 +126,8 @@ const TrayContent = ({
           <h2 className="prose prose-lg mx-4">Pending Lessons</h2>
           <dl>
             <TrayCourses
-              trayCollections={trayCollections}
-              tray={tray}
-              setTray={setTray}
+              bookmarkedCollections={bookmarkedCollections}
+              setBookmarkedCollections={setBookmarkedCollections}
               user={user}
               status="requested"
             />
@@ -136,9 +136,8 @@ const TrayContent = ({
       )}
 
       <p className="text-xs text-gray-500">
-        {trayCollections.length > 0 && JSON.stringify(trayCollections[0])}
+        {bookmarkedCollections.length > 0 && JSON.stringify(bookmarkedCollections[0])}
       </p>
-      {/* <p className="text-xs text-gray-500">{JSON.stringify(tray)}</p> */}
     </>
   );
 };

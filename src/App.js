@@ -11,7 +11,6 @@ function App() {
   let token = sessionStorage.getItem("userSession");
 
   const [user, setUser] = useState();
-  const [tray, setTray] = useState([]);
   const [collections, setCollections] = useState([]);
   const [bookmarkedCollections, setBookmarkedCollections] = useState([]);
   const [tagAwards, setTagAwards] = useState({});
@@ -55,8 +54,6 @@ function App() {
     <UserContext.Provider
       value={{
         u: [user, setUser],
-        // TODO: this should be refactored out
-        t: [tray, setTray],
         // all collections, regardless of bookmarked status
         c: [collections, setCollections],
         e: [experts],

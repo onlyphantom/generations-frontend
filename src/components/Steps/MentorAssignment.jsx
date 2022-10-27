@@ -4,7 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 import NoBookmarksYet from "./NoBookmarksYet";
 
 const MentorAssignment = ({ setCurrentStep }) => {
-  const { u, c, t } = useContext(UserContext);
+  const { u, c, bc } = useContext(UserContext);
 
   return <div>MentorAssignment</div>;
 };

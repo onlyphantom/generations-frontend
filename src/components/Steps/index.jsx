@@ -8,10 +8,10 @@ import MentorAssignment from "./MentorAssignment";
 import NoBookmarksYet from "./NoBookmarksYet";
 
 const Steps = () => {
-  const { u, t, bc, e } = useContext(UserContext);
-  const [tray, setTray] = t;
-  const [bookmarkedCollections] = bc;
+  const { u, bc, e } = useContext(UserContext);
+  const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [currentStep, setCurrentStep] = useState(0);
+  const [user] = u;
 
   console.log("e", e);
 
@@ -24,10 +24,9 @@ const Steps = () => {
           return (
             <Curation
               setCurrentStep={setCurrentStep}
-              bc={bookmarkedCollections}
-              tray={tray}
-              setTray={setTray}
-              u={u}
+              bookmarkedCollections={bookmarkedCollections}
+              setBookmarkedCollections={setBookmarkedCollections}
+              user={user}
             />
           );
         case 1:
