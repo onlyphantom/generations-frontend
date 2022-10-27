@@ -24,7 +24,6 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
         ]);
 
         if(user?.token){
-            console.log("ada token")
             const data = {
                 "data": {
                   "status": "requested",
@@ -41,8 +40,6 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
                 body: JSON.stringify(data),
             })
                 .then((response) => response.json());
-        }  else {
-            console.log("gaada token")
         }
     }
 }
