@@ -10,7 +10,8 @@ const MentorAssignment = () => {
 
   useEffect(() => {
     console.log(bookmarkedCollections);
-  }, [bookmarkedCollections]);
+    console.log(setBookmarkedCollections);
+  }, [bookmarkedCollections, setBookmarkedCollections]);
 
   return (
     <div>

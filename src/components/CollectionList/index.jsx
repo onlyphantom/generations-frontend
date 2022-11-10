@@ -9,7 +9,7 @@ export default function BookmarkList(params) {
   const { u, c, bc } = useContext(UserContext);
   const [user] = u;
   const [collection, setCollection] = c;
-  const [bookmarkedCollections, setBookmarkedCollections] = bc;
+  const [setBookmarkedCollections] = bc;
 
   useEffect(() => {
     fetch("https://generationsapi.herokuapp.com/api/collections", {
