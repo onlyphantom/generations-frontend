@@ -41,15 +41,20 @@ export default function BookmarkList(params) {
         })
         .then((data) => {
           let trayCollections = data.data.map((t) => {
-              let val = collection.find((coll) => coll.id === t.attributes.collection.data.id);
-              return { ...val, status: t.attributes.status, assigned_expert: t.attributes.expert.data };
+            let val = collection.find(
+              (coll) => coll.id === t.attributes.collection.data.id
+            );
+            return {
+              ...val,
+              status: t.attributes.status,
+              assigned_expert: t.attributes.expert.data,
+            };
           });
-            
+
           setBookmarkedCollections(trayCollections);
-        }
-      );
+        });
     }
-  }, [user, collection, bookmarkedCollections, setBookmarkedCollections]);
+  }, [user, collection, setBookmarkedCollections]);
 
   if (loading) {
     return (

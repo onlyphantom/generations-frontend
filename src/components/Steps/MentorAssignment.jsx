@@ -3,14 +3,19 @@ import { UserContext } from "../../contexts/UserContext";
 
 // import NoBookmarksYet from "./NoBookmarksYet";
 
-const MentorAssignment = ({ setCurrentStep }) => {
-  // const { u, c, bc } = useContext(UserContext);
-  const { e } = useContext(UserContext);
+const MentorAssignment = () => {
+  // const { u, c, bc, e } = useContext(UserContext);
+  const { bc } = useContext(UserContext);
+  const [bookmarkedCollections, setBookmarkedCollections] = bc;
+
+  useEffect(() => {
+    console.log(bookmarkedCollections);
+  }, [bookmarkedCollections]);
 
   return (
     <div>
       MentorAssignment
-      <p className="text-xs">{JSON.stringify(e)}</p>
+      <hr />
     </div>
   );
 };
