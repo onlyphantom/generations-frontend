@@ -19,16 +19,15 @@ export const TrayCourses = ({
   bookmarkedCollections,
   setBookmarkedCollections,
   user,
-  status
+  status,
 }) => {
-
   const { c } = useContext(UserContext);
   const [collection] = c;
 
   const filteredBookmarkedCollections = status
     ? bookmarkedCollections?.filter((tray) => tray.status === status)
     : bookmarkedCollections;
-  
+
   return filteredBookmarkedCollections?.map((course) => {
     return (
       <TrayCard key={course.id}>
@@ -47,7 +46,13 @@ export const TrayCourses = ({
             <button
               className="btn btn-square"
               onClick={() =>
-                addOrRemoveFromTray(bookmarkedCollections, course.id, setBookmarkedCollections, user, collection)
+                addOrRemoveFromTray(
+                  bookmarkedCollections,
+                  course.id,
+                  setBookmarkedCollections,
+                  user,
+                  collection
+                )
               }
             >
               <AddedIcon />
@@ -136,7 +141,8 @@ const TrayContent = ({
       )}
 
       <p className="text-xs text-gray-500">
-        {bookmarkedCollections.length > 0 && JSON.stringify(bookmarkedCollections[0])}
+        {bookmarkedCollections.length > 0 &&
+          JSON.stringify(bookmarkedCollections[0])}
       </p>
     </>
   );

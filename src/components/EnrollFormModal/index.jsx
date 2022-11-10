@@ -69,9 +69,7 @@ const EnrollFormModal = () => {
       })
       .then((data) => {
         if (data.data === null) {
-          throw new Error(
-            `${data.error.message}. Please try again.`
-          );
+          throw new Error(`${data.error.message}. Please try again.`);
         }
         sessionStorage.setItem("userSession", data.jwt);
         event.target.reset();
@@ -139,6 +137,7 @@ const EnrollFormModal = () => {
                 <div className="mb-6">
                   <input
                     type="email"
+                    autoComplete="username"
                     name="email"
                     className="input w-full max-w-xs input-bordered"
                     placeholder="Email address"
@@ -150,6 +149,7 @@ const EnrollFormModal = () => {
               <input
                 type="password"
                 name="password"
+                autoComplete="new-password"
                 className="input w-full max-w input-bordered mb-6"
                 placeholder="Password"
                 onChange={(event) => setPassword(event.target.value)}
@@ -277,6 +277,7 @@ const EnrollFormModal = () => {
               <input
                 type="password"
                 name="pass"
+                autoComplete="current-password"
                 className="input w-full max-w input-bordered mb-6"
                 placeholder="Password"
                 onChange={(event) => setPass(event.target.value)}

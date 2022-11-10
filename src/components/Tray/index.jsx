@@ -17,7 +17,6 @@ const Tray = () => {
 
   useEffect(() => {
     if (user?.token) {
-
       fetch(`https://generationsapi.herokuapp.com/api/tag-awards`, {
         method: "GET",
         headers: {
@@ -48,10 +47,10 @@ const Tray = () => {
             expendedEffort={user.expendedEffort}
           />
         )}
-        <p className="text-xs text-gray-500">
+        {/* <p className="text-xs text-gray-500">
           {JSON.stringify(user?.token)} | {JSON.stringify(bookmarkedCollections)}
           {user?.token ? "Logged in" : "Not logged in"}
-        </p>
+        </p> */}
       </TrayDrawer>
     </div>
   );

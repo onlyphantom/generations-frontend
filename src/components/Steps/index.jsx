@@ -8,12 +8,10 @@ import MentorAssignment from "./MentorAssignment";
 import NoBookmarksYet from "./NoBookmarksYet";
 
 const Steps = () => {
-  const { u, bc, e } = useContext(UserContext);
+  const { u, bc } = useContext(UserContext);
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [currentStep, setCurrentStep] = useState(0);
   const [user] = u;
-
-  console.log("e", e);
 
   const StepContent = () => {
     if (bookmarkedCollections.length === 0) {
