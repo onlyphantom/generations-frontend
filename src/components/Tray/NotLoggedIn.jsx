@@ -28,7 +28,7 @@ const NotLoggedIn = () => {
         <div>
           <h3 className="font-bold"> You are not signed in 😟.</h3>
           <div className="text-xs">
-            The Learning Tray functionality is available with an account.
+            This functionality is available with an account.
             <br />
             Create an account or sign in with an existing account to access more
             learning facilities on this portal.

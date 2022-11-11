@@ -39,7 +39,8 @@ const Steps = () => {
   return (
     <section
       id="fellowship"
-      className="m-4 p-8 flex flex-col justify-center items-center"
+      // className="m-4 p-8 flex flex-col justify-center items-center"
+      className="m-4 p-8 flex flex-col justify-center"
     >
       <StepBar currentStep={currentStep} setCurrentStep={setCurrentStep} />
       <StepContent />

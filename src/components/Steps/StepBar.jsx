@@ -1,7 +1,7 @@
 import React from "react";
 
 const stepButtonStyles =
-  "btn btn-outline transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:button-secondary duration-300 ";
+  "btn btn-outline transition ease-in-out hover:button-secondary border-sky-500";
 
 const StepBar = ({ currentStep, setCurrentStep }) => {
   return (
