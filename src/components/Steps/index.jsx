@@ -15,7 +15,11 @@ const Steps = () => {
 
   const StepContent = () => {
     if (bookmarkedCollections.length === 0) {
-      return <NoBookmarksYet />;
+      return (
+        <div className="flex items-center justify-center mt-4">
+          <NoBookmarksYet />
+        </div>
+      );
     } else {
       switch (currentStep) {
         case 0:

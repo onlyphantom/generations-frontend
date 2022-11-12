@@ -3,7 +3,7 @@ import { UserContext } from "../../contexts/UserContext";
 import NotLoggedIn from "../Tray/NotLoggedIn";
 
 const MentorAssignment = () => {
-  // const { u, c, bc, e } = useContext(UserContext);
+  // const { u, e } = useContext(UserContext);
   const { u, bc } = useContext(UserContext);
   const [user] = u;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
@@ -32,22 +32,29 @@ const MentorAssignment = () => {
           {ongoingLessons.current?.length > 0 &&
             ongoingLessons.current.map((lesson) => (
               <li key={lesson.id} className="gap-1">
-                <div className="grid grid-cols-3 gap-1 mt-4">
-                  <h5>{lesson.attributes.title}</h5>
-                  <p className="text-xs">
-                    Assigned Mentor: {lesson.assigned_expert.attributes.name}
-                  </p>
+                <div className="grid grid-cols-2 gap-1 mt-4">
+                  <div className="text-left">
+                    <h5 className="text-lg">{lesson.attributes.title}</h5>
+                    <p className="text-xs">
+                      Mentor:
+                      <br />
+                      {lesson.assigned_expert.attributes.name}
+                    </p>
+                  </div>
                   <div
                     className="tooltip"
                     data-tip="You already have a mentor assigned for this lesson."
                   >
-                    <button className="btn btn-square btn-disabled  btn-secondary btn-sm">
+                    <button
+                      disabled
+                      className="btn gap-2 btn-disabled  btn-secondary btn-sm"
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
                         viewBox="0 0 24 24"
                         strokeWidth={1.5}
-                        stroke="white"
+                        stroke="#005983"
                         className="w-6 h-6"
                       >
                         <path
@@ -56,6 +63,7 @@ const MentorAssignment = () => {
                           d="M4.5 12.75l6 6 9-13.5"
                         />
                       </svg>
+                      Assigned
                     </button>
                   </div>
                 </div>
@@ -64,7 +72,7 @@ const MentorAssignment = () => {
         </ul>
       </div>
       <div className="p-4 rounded-lg shadow-lg bg-sky-500 col-span-2">
-        Pending Lessons
+        <h3 className="text-lg">Pending Lessons</h3>
       </div>
     </div>
   );
