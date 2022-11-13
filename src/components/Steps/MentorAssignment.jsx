@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import NotLoggedIn from "../Tray/NotLoggedIn";
+import NoProMembership from "./NoProMembership";
 
 const MentorAssignment = () => {
   // const { u, e } = useContext(UserContext);
@@ -14,7 +15,8 @@ const MentorAssignment = () => {
 
   useEffect(() => {
     console.log(bookmarkedCollections);
-  }, [bookmarkedCollections, setBookmarkedCollections]);
+    console.log("u", user);
+  }, [bookmarkedCollections, setBookmarkedCollections, user]);
 
   if (!user?.token) {
     return (
@@ -71,8 +73,13 @@ const MentorAssignment = () => {
             ))}
         </ul>
       </div>
-      <div className="p-4 rounded-lg shadow-lg bg-sky-500 col-span-2">
+      <div className="p-4 rounded-lg shadow-lg col-span-2">
         <h3 className="text-lg">Pending Lessons</h3>
+        {!user.proUser ? (
+          <NoProMembership />
+        ) : (
+          <p>Mentor assignment and confirmation</p>
+        )}
       </div>
     </div>
   );
