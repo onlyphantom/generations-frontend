@@ -172,13 +172,13 @@ const CardActions = ({
           className="tooltip"
           data-tip="Already enrolled in this collection."
         >
-          <button className="btn btn-square btn-disabled btn-solid border-white">
+          <button className="btn btn-square btn-disabled">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
-              stroke="white"
+              stroke="#313742"
               className="w-6 h-6"
             >
               <path

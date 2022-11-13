@@ -1,11 +1,12 @@
 const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections, user, collection) => {
     let trayCollections = bookmarkedCollections.map(collection => collection.id);
 
+    // handle remove scenario
     if (trayCollections.includes(id)) {
         let newTray = bookmarkedCollections.filter(i => i.id !== id);
         setBookmarkedCollections(newTray);
 
-        if(user?.token){
+        if (user?.token) {
             fetch(`https://generationsapi.herokuapp.com/api/trays/collections/${id}`, {
                 method: "DELETE",
                 headers: {
@@ -15,19 +16,20 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
                 .then((response) => response.json());
         }
 
-    } else {
+    }
+    // handle add scenario
+    else {
         let newBookmarkedCollection = collection.find((coll) => coll.id === id);
-
         setBookmarkedCollections([
-            ...bookmarkedCollections, 
+            ...bookmarkedCollections,
             { ...newBookmarkedCollection, status: "requested", assigned_expert: null }
         ]);
 
-        if(user?.token){
+        if (user?.token) {
             const data = {
                 "data": {
-                  "status": "requested",
-                  "collection": id,
+                    "status": "requested",
+                    "collection": id,
                 }
             };
 
