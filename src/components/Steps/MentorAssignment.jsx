@@ -13,6 +13,9 @@ const MentorAssignment = () => {
   const ongoingLessons = useRef(
     bookmarkedCollections.filter((bc) => bc.status === "ongoing")
   );
+  const requestedLessons = useRef(
+    bookmarkedCollections.filter((bc) => bc.status === "requested")
+  );
 
   useEffect(() => {
     console.log(bookmarkedCollections);
@@ -30,21 +33,26 @@ const MentorAssignment = () => {
 
   return (
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
-      <div className="p-4 rounded-lg px-2">
-        <h3 className="text-lg text-left">Ongoing Lessons</h3>
+      <div className="p-4 rounded-lg px-2 col-span-3 lg:col-span-1">
+        <h3 className="text-lg text-left mb-4">Ongoing Lessons</h3>
         <ul className="list-none">
           {ongoingLessons.current?.length > 0 &&
             ongoingLessons.current.map((lesson) => (
-              <MentorAssignmentCard lesson={lesson} />
+              <MentorAssignmentCard lesson={lesson} key={lesson.id} />
             ))}
         </ul>
       </div>
-      <div className="p-4 rounded-lg shadow-lg col-span-2">
-        <h3 className="text-lg">Pending Lessons</h3>
+      <div className="p-4 rounded-lg shadow-lg col-span-3 md:col-span-2">
+        <h3 className="text-lg text-left mb-4">Pending Lessons</h3>
         {!user.proUser ? (
           <NoProMembership />
         ) : (
-          <p>Mentor assignment and confirmation</p>
+          <ul className="list-none">
+            {requestedLessons.current?.length > 0 &&
+              requestedLessons.current.map((lesson) => (
+                <MentorAssignmentCard lesson={lesson} key={lesson.id} />
+              ))}
+          </ul>
         )}
       </div>
     </div>
