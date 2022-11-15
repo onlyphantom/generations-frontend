@@ -167,11 +167,8 @@ const CardActions = ({
         <button className="btn btn-square btn-solid hover:cursor-default">
           <CompleteIcon />
         </button>
-      ) : trayStatus === "ongoing" ? (
-        <div
-          className="tooltip"
-          data-tip="Already enrolled in this collection."
-        >
+      ) : trayStatus === "ongoing" || trayStatus === "preaccept" ? (
+        <div className="tooltip" data-tip="Already enrolled in this lesson.">
           <button className="btn btn-square btn-disabled">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -191,7 +188,7 @@ const CardActions = ({
         </div>
       ) : (
         <button
-          className={`btn btn-square ${
+          className={`btn btn-square hover:animate-pulse ${
             !bookmarkIcon ? "btn-outline" : "btn-solid border-white"
           }`}
           onClick={handleAddToTray}

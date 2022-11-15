@@ -1,3 +1,4 @@
+import { useState } from "react";
 import selectMentor from "./selectMentor";
 
 const MentorProfile = ({ mentor }) => {
@@ -40,12 +41,29 @@ const AlreadyAssignedBtn = () => {
   );
 };
 
-const ConfirmAssignmentBtn = ({ trayId, expertId, token }) => {
+const ConfirmAssignmentBtn = ({
+  trayId,
+  expertId,
+  user,
+  collection,
+  setBookmarkedCollections,
+}) => {
+  const [btnEnable, setBtnEnable] = useState(true);
+
   return (
     <button
-      className="btn gap-2 btn-block"
+      className={`btn gap-2 btn-block hover:animate-pulse ${
+        !btnEnable && "btn-disabled loading"
+      }`}
       onClick={() => {
-        selectMentor(trayId, expertId, token);
+        setBtnEnable(false);
+        selectMentor(
+          trayId,
+          expertId,
+          user,
+          collection,
+          setBookmarkedCollections
+        );
       }}
     >
       <span className="flex items-center">
@@ -70,7 +88,12 @@ const ConfirmAssignmentBtn = ({ trayId, expertId, token }) => {
   );
 };
 
-const MentorAssignmentCard = ({ lesson, token }) => {
+const MentorAssignmentCard = ({
+  lesson,
+  user,
+  collection,
+  setBookmarkedCollections,
+}) => {
   return (
     <div className="card bg-base-100 shadow-xl overflow-visible mb-4">
       <div className="card-body">
@@ -79,11 +102,13 @@ const MentorAssignmentCard = ({ lesson, token }) => {
             <div className="text-left md:col-span-2 col-span-3">
               <h2 className="card-title">{lesson.attributes.title}</h2>
 
-              {lesson.status === "ongoing" ? (
+              {lesson.status === "ongoing" || lesson.status === "preaccept" ? (
                 <>
                   <p className="font-light">Assigned Mentor:</p>
                   <span className="flex items-center">
-                    <MentorProfile mentor={lesson.assigned_expert?.attributes} />
+                    <MentorProfile
+                      mentor={lesson.assigned_expert?.attributes}
+                    />
                   </span>
                 </>
               ) : (
@@ -101,11 +126,19 @@ const MentorAssignmentCard = ({ lesson, token }) => {
             <div className="col-span-3 lg:col-span-1">
               {lesson.status === "ongoing" ? (
                 <AlreadyAssignedBtn />
+              ) : lesson.status === "preaccept" ? (
+                <span className="flex items-center">
+                  <span className="text-xs ml-2 prose prose-slate">
+                    Waiting for confirmation
+                  </span>
+                </span>
               ) : (
                 <ConfirmAssignmentBtn
                   trayId={lesson.trayId}
                   expertId={lesson.attributes?.recommendedExpert?.id}
-                  token={token}
+                  user={user}
+                  collection={collection}
+                  setBookmarkedCollections={setBookmarkedCollections}
                 />
               )}
             </div>

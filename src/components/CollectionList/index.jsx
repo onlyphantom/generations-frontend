@@ -3,7 +3,44 @@ import CollectionCard from "../CollectionCard";
 
 import { UserContext } from "../../contexts/UserContext";
 
-export default function BookmarkList(params) {
+export const getBookmarkedCollections = (
+  user,
+  collection,
+  setBookmarkedCollections
+) => {
+  fetch(`https://generationsapi.herokuapp.com/api/trays`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Sorry, something went wrong");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("data from getbookmarked collections");
+      console.log(data.data);
+      let trayCollections = data.data.map((t) => {
+        let val = collection.find(
+          (coll) => coll.id === t.attributes.collection.data.id
+        );
+        return {
+          ...val,
+          status: t.attributes.status,
+          assigned_expert: t.attributes.expert.data,
+          trayId: t.id,
+        };
+      });
+      console.log(`Setting bookmark`);
+      console.log(trayCollections);
+      setBookmarkedCollections(trayCollections);
+    });
+};
+
+export default function BookmarkList() {
   const [loading, setLoading] = useState(true);
 
   const { u, c, bc } = useContext(UserContext);
@@ -23,37 +60,13 @@ export default function BookmarkList(params) {
       })
       .then((data) => {
         setCollection(data.data);
-        // setLocalCollections(data.data);
         setLoading(false);
       });
   }, [setCollection]);
 
   useEffect(() => {
     if (user?.token) {
-      fetch(`https://generationsapi.herokuapp.com/api/trays`, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
-        .then((response) => {
-          return response.json();
-        })
-        .then((data) => {
-          let trayCollections = data.data.map((t) => {
-            let val = collection.find(
-              (coll) => coll.id === t.attributes.collection.data.id
-            );
-            return {
-              ...val,
-              status: t.attributes.status,
-              assigned_expert: t.attributes.expert.data,
-              trayId: t.id,
-            };
-          });
-
-          setBookmarkedCollections(trayCollections);
-        });
+      getBookmarkedCollections(user, collection, setBookmarkedCollections);
     }
   }, [user, collection, setBookmarkedCollections]);
 

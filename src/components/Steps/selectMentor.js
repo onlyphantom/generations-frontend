@@ -1,4 +1,6 @@
-const selectMentor = (trayId, expertId, token) => {
+import { getBookmarkedCollections } from "../CollectionList"
+
+const selectMentor = (trayId, expertId, user, collection, setBookmarkedCollections) => {
 
     const data = {
         "data": {
@@ -8,11 +10,13 @@ const selectMentor = (trayId, expertId, token) => {
     }
     fetch(`https://generationsapi.herokuapp.com/api/trays/${trayId}`, {
         method: "PUT",
-        headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
+        headers: { "Authorization": `Bearer ${user.token}`, "Content-Type": "application/json" },
         body: JSON.stringify(data)
     }).then(
-        response => response.json()
+        getBookmarkedCollections(user, collection, setBookmarkedCollections)
     )
+
+
 }
 
 export default selectMentor

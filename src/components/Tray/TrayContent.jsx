@@ -32,9 +32,7 @@ export const TrayCourses = ({
     return (
       <TrayCard key={course.id}>
         <dt>
-          {course.attributes?.title}{" "}
-          {/* <small>({course.assigned_expert || course.status})</small> */}
-          <small>({course.status})</small>
+          {course.attributes?.title} <small>({course.status})</small>
         </dt>
         <dd>
           <article className="prose prose-sm dark:prose-invert">
