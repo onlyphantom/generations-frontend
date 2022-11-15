@@ -4,12 +4,12 @@ const MentorProfile = ({ mentor }) => {
   return (
     <>
       <img
-        src={mentor.imageURL}
-        alt={mentor.name}
+        src={mentor?.imageURL}
+        alt={mentor?.name}
         className="mask mask-hexagon rounded-md filter grayscale sepia-25 self-center w-5 h-5 rounded-full mx-2"
       />
 
-      <span className="font-bold">{mentor.name}</span>
+      <span className="font-bold">{mentor?.name}</span>
     </>
   );
 };
@@ -40,12 +40,12 @@ const AlreadyAssignedBtn = () => {
   );
 };
 
-const ConfirmAssignmentBtn = ({ trayCollectionId, expertId, token }) => {
+const ConfirmAssignmentBtn = ({ trayId, expertId, token }) => {
   return (
     <button
       className="btn gap-2 btn-block"
       onClick={() => {
-        selectMentor(trayCollectionId, expertId, token);
+        selectMentor(trayId, expertId, token);
       }}
     >
       <span className="flex items-center">
@@ -83,7 +83,7 @@ const MentorAssignmentCard = ({ lesson, token }) => {
                 <>
                   <p className="font-light">Assigned Mentor:</p>
                   <span className="flex items-center">
-                    <MentorProfile mentor={lesson.assigned_expert.attributes} />
+                    <MentorProfile mentor={lesson.assigned_expert?.attributes} />
                   </span>
                 </>
               ) : (
@@ -103,8 +103,8 @@ const MentorAssignmentCard = ({ lesson, token }) => {
                 <AlreadyAssignedBtn />
               ) : (
                 <ConfirmAssignmentBtn
-                  trayCollectionId={lesson.trayId}
-                  expertId={lesson.attributes?.recommendedExpert}
+                  trayId={lesson.trayId}
+                  expertId={lesson.attributes?.recommendedExpert?.id}
                   token={token}
                 />
               )}
