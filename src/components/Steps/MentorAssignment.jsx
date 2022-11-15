@@ -79,6 +79,7 @@ const MentorAssignment = () => {
                   key={lesson.id}
                   user={user}
                   collection={collection}
+                  bookmarkedCollections={bookmarkedCollections}
                   setBookmarkedCollections={setBookmarkedCollections}
                 />
               ))}

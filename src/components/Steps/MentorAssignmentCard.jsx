@@ -46,6 +46,7 @@ const ConfirmAssignmentBtn = ({
   expertId,
   user,
   collection,
+  bookmarkedCollections,
   setBookmarkedCollections,
 }) => {
   const [btnEnable, setBtnEnable] = useState(true);
@@ -62,6 +63,7 @@ const ConfirmAssignmentBtn = ({
           expertId,
           user,
           collection,
+          bookmarkedCollections,
           setBookmarkedCollections
         );
       }}
@@ -92,6 +94,7 @@ const MentorAssignmentCard = ({
   lesson,
   user,
   collection,
+  bookmarkedCollections,
   setBookmarkedCollections,
 }) => {
   return (
@@ -138,6 +141,7 @@ const MentorAssignmentCard = ({
                   expertId={lesson.attributes?.recommendedExpert?.id}
                   user={user}
                   collection={collection}
+                  bookmarkedCollections={bookmarkedCollections}
                   setBookmarkedCollections={setBookmarkedCollections}
                 />
               )}
