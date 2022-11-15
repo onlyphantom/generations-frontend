@@ -21,8 +21,6 @@ export const getBookmarkedCollections = (
       return response.json();
     })
     .then((data) => {
-      console.log("data from getbookmarked collections");
-      console.log(data.data);
       let trayCollections = data.data.map((t) => {
         let val = collection.find(
           (coll) => coll.id === t.attributes.collection.data.id
