@@ -1,4 +1,4 @@
-const selectMentor = (trayCollectionId, expertId, token) => {
+const selectMentor = (trayId, expertId, token) => {
 
     const data = {
         "data": {
@@ -6,8 +6,8 @@ const selectMentor = (trayCollectionId, expertId, token) => {
             "expert": expertId
         }
     }
-    fetch(`https://generstionsapi.herokuapp.com/api/trays/collections/${trayCollectionId}`, {
-        method: "PATCH",
+    fetch(`https://generationsapi.herokuapp.com/api/trays/${trayId}`, {
+        method: "PUT",
         headers: { "Authorization": `Bearer ${token}`, "Content-Type": "application/json" },
         body: JSON.stringify(data)
     }).then(

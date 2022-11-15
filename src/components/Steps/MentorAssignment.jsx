@@ -53,7 +53,7 @@ const MentorAssignment = () => {
                 <MentorAssignmentCard
                   lesson={lesson}
                   key={lesson.id}
-                  token={u.token}
+                  token={user.token}
                 />
               ))}
           </ul>
