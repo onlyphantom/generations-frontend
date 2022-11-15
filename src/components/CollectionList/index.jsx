@@ -48,6 +48,7 @@ export default function BookmarkList(params) {
               ...val,
               status: t.attributes.status,
               assigned_expert: t.attributes.expert.data,
+              trayId: t.id,
             };
           });
 

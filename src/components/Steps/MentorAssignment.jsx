@@ -50,7 +50,11 @@ const MentorAssignment = () => {
           <ul className="list-none">
             {requestedLessons.current?.length > 0 &&
               requestedLessons.current.map((lesson) => (
-                <MentorAssignmentCard lesson={lesson} key={lesson.id} />
+                <MentorAssignmentCard
+                  lesson={lesson}
+                  key={lesson.id}
+                  token={u.token}
+                />
               ))}
           </ul>
         )}
