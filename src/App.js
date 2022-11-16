@@ -28,13 +28,19 @@ function App() {
           return response.json();
         })
         .then((userData) => {
-          // TODO: check that the user's proExpiry date is not in the past, if it is, 
+          // check that the user's proExpiry date is not in the past, if it is, 
           // set proUser to False through an API call
           if (userData.proExpiry < new Date()) {
             userData.proUser = false;
             userData.proExpiry = null;
+            // make API CALL to update user's proUser and proExpiry
+            fetch(`https://generationsapi.herokuapp.com/api/users/cancel-subscription/`, {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${token}`,
+              }
+            })
           }
-          // make API CALL to update user's proUser and proExpiry
 
           setUser({
             "token": token,
