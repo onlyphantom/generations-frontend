@@ -1,11 +1,11 @@
-const selectMentor = (trayId, expertId, user, collection, bookmarkedCollections, setBookmarkedCollections) => {
+const selectMentor = (trayId, expertId, user, bookmarkedCollections, setBookmarkedCollections) => {
 
     const newData = bookmarkedCollections.map(tray => {
-        if(tray.trayId === trayId){
+        if (tray.trayId === trayId) {
             tray.status = "preaccept";
             tray.assigned_expert = tray.attributes?.experts?.data?.find(expert => expert.id === expertId);
         }
-        
+
         return tray
     });
     setBookmarkedCollections(newData);

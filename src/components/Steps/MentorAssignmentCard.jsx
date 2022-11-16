@@ -45,7 +45,6 @@ const ConfirmAssignmentBtn = ({
   trayId,
   expertId,
   user,
-  collection,
   bookmarkedCollections,
   setBookmarkedCollections,
 }) => {
@@ -62,7 +61,6 @@ const ConfirmAssignmentBtn = ({
           trayId,
           expertId,
           user,
-          collection,
           bookmarkedCollections,
           setBookmarkedCollections
         );
@@ -93,7 +91,6 @@ const ConfirmAssignmentBtn = ({
 const MentorAssignmentCard = ({
   lesson,
   user,
-  collection,
   bookmarkedCollections,
   setBookmarkedCollections,
 }) => {
@@ -140,7 +137,6 @@ const MentorAssignmentCard = ({
                   trayId={lesson.trayId}
                   expertId={lesson.attributes?.recommendedExpert?.id}
                   user={user}
-                  collection={collection}
                   bookmarkedCollections={bookmarkedCollections}
                   setBookmarkedCollections={setBookmarkedCollections}
                 />

@@ -5,9 +5,8 @@ import NoProMembership from "./NoProMembership";
 import MentorAssignmentCard from "./MentorAssignmentCard";
 
 const MentorAssignment = () => {
-  const { u, c, bc } = useContext(UserContext);
+  const { u, bc } = useContext(UserContext);
   const [user] = u;
-  const [collection] = c;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
 
   const ongoingLessons = useRef(
@@ -21,7 +20,6 @@ const MentorAssignment = () => {
   );
 
   useEffect(() => {
-    console.log("rendering useeffect in mentorassignment");
     console.log(bookmarkedCollections);
     ongoingLessons.current = bookmarkedCollections.filter(
       (b) => b.status === "ongoing"
@@ -78,7 +76,6 @@ const MentorAssignment = () => {
                   lesson={lesson}
                   key={lesson.id}
                   user={user}
-                  collection={collection}
                   bookmarkedCollections={bookmarkedCollections}
                   setBookmarkedCollections={setBookmarkedCollections}
                 />
