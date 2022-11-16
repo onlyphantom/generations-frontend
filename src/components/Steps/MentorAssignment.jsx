@@ -4,6 +4,34 @@ import NotLoggedIn from "../Tray/NotLoggedIn";
 import NoProMembership from "./NoProMembership";
 import MentorAssignmentCard from "./MentorAssignmentCard";
 
+const MentorAssignmentAlert = () => {
+  return (
+    <div className="alert alert-warning shadow-lg m-4">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="stroke-current flex-shrink-0 h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+          />
+        </svg>
+        <span className="text-left font-light">
+          Confirming a mentor assignment will queue the lesson and represents an
+          actual time investment between you and your mentor. <br />
+          Please make sure you are <b>ready to commit</b> to the lesson and be
+          respectful of your mentor's time.
+        </span>
+      </div>
+    </div>
+  );
+};
+
 const MentorAssignment = () => {
   const { u, bc } = useContext(UserContext);
   const [user] = u;
@@ -69,18 +97,28 @@ const MentorAssignment = () => {
         {!user.proUser ? (
           <NoProMembership />
         ) : (
-          <ul className="list-none">
-            {requestedLessons.current?.length > 0 &&
-              requestedLessons.current.map((lesson) => (
-                <MentorAssignmentCard
-                  lesson={lesson}
-                  key={lesson.id}
-                  user={user}
-                  bookmarkedCollections={bookmarkedCollections}
-                  setBookmarkedCollections={setBookmarkedCollections}
-                />
-              ))}
-          </ul>
+          <>
+            {requestedLessons.current?.length > 0 && (
+              <>
+                {/* showing the following only to relatively new users */}
+                {ongoingLessons.current?.length < 2 && (
+                  <MentorAssignmentAlert />
+                )}
+
+                <ul className="list-none">
+                  {requestedLessons.current.map((lesson) => (
+                    <MentorAssignmentCard
+                      lesson={lesson}
+                      key={lesson.id}
+                      user={user}
+                      bookmarkedCollections={bookmarkedCollections}
+                      setBookmarkedCollections={setBookmarkedCollections}
+                    />
+                  ))}
+                </ul>
+              </>
+            )}
+          </>
         )}
       </div>
     </div>
