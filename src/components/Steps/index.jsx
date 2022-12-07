@@ -24,7 +24,7 @@ const Steps = () => {
     } else {
       if (!user?.token && currentStep > 0) {
         return (
-          <div className="mt-4">
+          <div className="mt-4 flex flex-col justify-center items-center">
             <NotLoggedIn />
           </div>
         );

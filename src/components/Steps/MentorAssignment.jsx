@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../contexts/UserContext";
-// import NotLoggedIn from "../Tray/NotLoggedIn";
 import NoProMembership from "./NoProMembership";
 import MentorAssignmentCard from "./MentorAssignmentCard";
 
@@ -59,14 +58,6 @@ const MentorAssignment = () => {
       (b) => b.status === "preaccept"
     );
   }, [bookmarkedCollections]);
-
-  // if (!user?.token) {
-  //   return (
-  //     <div className="mt-4">
-  //       <NotLoggedIn />
-  //     </div>
-  //   );
-  // }
 
   return (
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
