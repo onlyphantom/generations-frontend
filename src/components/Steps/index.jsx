@@ -6,6 +6,7 @@ import StepBar from "./StepBar";
 import Curation from "./Curation";
 import MentorAssignment from "./MentorAssignment";
 import NoBookmarksYet from "./NoBookmarksYet";
+import NotLoggedIn from "../Tray/NotLoggedIn";
 
 const Steps = () => {
   const { u, bc } = useContext(UserContext);
@@ -21,6 +22,14 @@ const Steps = () => {
         </div>
       );
     } else {
+      if (!user?.token && currentStep > 0) {
+        return (
+          <div className="mt-4">
+            <NotLoggedIn />
+          </div>
+        );
+      }
+
       switch (currentStep) {
         case 0:
           return (
