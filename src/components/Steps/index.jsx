@@ -5,6 +5,7 @@ import { UserContext } from "../../contexts/UserContext";
 import StepBar from "./StepBar";
 import Curation from "./Curation";
 import MentorAssignment from "./MentorAssignment";
+import Fellowship from "./Fellowship";
 import NoBookmarksYet from "./NoBookmarksYet";
 import NotLoggedIn from "../Tray/NotLoggedIn";
 
@@ -42,7 +43,8 @@ const Steps = () => {
           );
         case 1:
           return <MentorAssignment />;
-
+        case 2:
+          return <Fellowship />;
         default:
           return "Section under construction. Coming soon.";
       }
