@@ -20,10 +20,6 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
     // handle add scenario
     else {
         let newBookmarkedCollection = collection.find((coll) => coll.id === id);
-        setBookmarkedCollections([
-            ...bookmarkedCollections,
-            { ...newBookmarkedCollection, status: "requested", assigned_expert: null }
-        ]);
 
         if (user?.token) {
             const data = {
@@ -41,7 +37,13 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
                 },
                 body: JSON.stringify(data),
             })
-                .then((response) => response.json());
+                .then((response) => response.json())
+                .then((data) => {
+                    setBookmarkedCollections([
+                        ...bookmarkedCollections,
+                        { ...newBookmarkedCollection, status: "requested", assigned_expert: null, trayId: data.data.id }
+                    ]);
+                });
         }
     }
 }
