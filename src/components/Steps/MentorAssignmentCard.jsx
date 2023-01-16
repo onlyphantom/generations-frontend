@@ -88,12 +88,7 @@ const ConfirmAssignmentBtn = ({
   );
 };
 
-const MentorAssignmentCard = ({
-  lesson,
-  user,
-  bookmarkedCollections,
-  setBookmarkedCollections,
-}) => {
+export const LessonCardFrame = ({ children, lesson }) => {
   return (
     <div className="card bg-base-100 shadow-xl overflow-visible mb-4">
       <div className="card-body">
@@ -101,8 +96,9 @@ const MentorAssignmentCard = ({
           <div className="grid grid-cols-3 gap-1 items-center">
             <div className="text-left md:col-span-2 col-span-3">
               <h2 className="card-title">{lesson.attributes.title}</h2>
-
-              {lesson.status === "ongoing" || lesson.status === "preaccept" ? (
+              {lesson.status === "ongoing" ||
+              lesson.status === "preaccept" ||
+              lesson.status === "completed" ? (
                 <>
                   <p className="font-light">Assigned Mentor:</p>
                   <span className="flex items-center">
@@ -122,30 +118,43 @@ const MentorAssignmentCard = ({
                 </>
               )}
             </div>
-            {/* TODO: need to handle cases when there is no available expert */}
-            <div className="col-span-3 lg:col-span-1">
-              {lesson.status === "ongoing" ? (
-                <AlreadyAssignedBtn />
-              ) : lesson.status === "preaccept" ? (
-                <span className="flex items-center">
-                  <span className="text-xs ml-2 prose prose-slate">
-                    Waiting for confirmation
-                  </span>
-                </span>
-              ) : (
-                <ConfirmAssignmentBtn
-                  trayId={lesson.trayId}
-                  expertId={lesson.attributes?.recommendedExpert?.id}
-                  user={user}
-                  bookmarkedCollections={bookmarkedCollections}
-                  setBookmarkedCollections={setBookmarkedCollections}
-                />
-              )}
-            </div>
+            <div className="col-span-3 lg:col-span-1">{children}</div>
           </div>
         </li>
       </div>
     </div>
+  );
+};
+
+const MentorAssignmentCard = ({
+  lesson,
+  user,
+  bookmarkedCollections,
+  setBookmarkedCollections,
+}) => {
+  return (
+    <LessonCardFrame lesson={lesson}>
+      {/* TODO: need to handle cases when there is no available expert */}
+      <div className="col-span-3 lg:col-span-1">
+        {lesson.status === "ongoing" ? (
+          <AlreadyAssignedBtn />
+        ) : lesson.status === "preaccept" ? (
+          <span className="flex items-center">
+            <span className="text-xs ml-2 prose prose-slate">
+              Waiting for confirmation
+            </span>
+          </span>
+        ) : (
+          <ConfirmAssignmentBtn
+            trayId={lesson.trayId}
+            expertId={lesson.attributes?.recommendedExpert?.id}
+            user={user}
+            bookmarkedCollections={bookmarkedCollections}
+            setBookmarkedCollections={setBookmarkedCollections}
+          />
+        )}
+      </div>
+    </LessonCardFrame>
   );
 };
 

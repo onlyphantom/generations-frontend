@@ -47,10 +47,6 @@ const Tray = () => {
             expendedEffort={user.expendedEffort}
           />
         )}
-        {/* <p className="text-xs text-gray-500">
-          {JSON.stringify(user?.token)} | {JSON.stringify(bookmarkedCollections)}
-          {user?.token ? "Logged in" : "Not logged in"}
-        </p> */}
       </TrayDrawer>
     </div>
   );
