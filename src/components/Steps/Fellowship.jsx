@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
+import CardTags from "../CollectionCard/CardTags";
 
 const Fellowship = () => {
   const { ta } = useContext(UserContext);
@@ -37,6 +38,9 @@ const Fellowship = () => {
               ? `You have earned ${Object.keys(tagAwards).length} badge(s) 🥇.`
               : `You have not earned any badges yet.`}
           </span>
+        </div>
+        <div>
+          <CardTags tagsCount={tagAwards} badge={`sm`} key="tagAwards" />
         </div>
       </div>
     );

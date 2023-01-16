@@ -73,7 +73,7 @@ export default function BookmarkList() {
   if (loading) {
     return (
       <section className="relative flex min-h-screen flex-col justify-center py-6 px-4 sm:py-12">
-        <progress className="progress w-56"></progress>;
+        <progress className="progress w-56"></progress>
       </section>
     );
   } else {
