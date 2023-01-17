@@ -164,7 +164,7 @@ const CardActions = ({
   return (
     <div className="card-actions">
       {trayStatus === "completed" ? (
-        <button className="btn btn-square btn-solid hover:cursor-default">
+        <button className="btn btn-disabled btn-square btn-solid hover:cursor-default">
           <CompleteIcon />
         </button>
       ) : trayStatus === "ongoing" || trayStatus === "preaccept" ? (

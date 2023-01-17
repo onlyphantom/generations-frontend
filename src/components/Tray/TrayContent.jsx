@@ -3,7 +3,9 @@ import ReactMarkdown from "react-markdown";
 
 import { UserContext } from "../../contexts/UserContext";
 
-import TrayCard from "./TrayCard";
+// import TrayCard from "./TrayCard";
+import { LessonCardFrame } from "../Steps/MentorAssignmentCard";
+
 import {
   AddIcon,
   AddedIcon,
@@ -30,11 +32,12 @@ export const TrayCourses = ({
 
   return filteredBookmarkedCollections?.map((course) => {
     return (
-      <TrayCard key={course.id}>
-        <dt>
+      // <TrayCard key={course.id}>
+      <LessonCardFrame key={course.id} lesson={course} wide={true}>
+        {/* <dt>
           {course.attributes?.title} <small>({course.status})</small>
-        </dt>
-        <dd>
+        </dt> */}
+        <p>
           <article className="prose prose-sm dark:prose-invert">
             <ReactMarkdown>
               {truncate(course.attributes?.details || "", 240)}
@@ -56,12 +59,14 @@ export const TrayCourses = ({
               <AddedIcon />
             </button>
           ) : course.status === "completed" ? (
-            <button className="btn btn-square btn-solid hover:cursor-default">
-              <CompleteIcon />
+            <button className="btn btn-solid hover:cursor-default btn-disabled mt-4">
+              <CompleteIcon />{" "}
+              <span className="ml-4">Completed on 1/4/2023</span>
             </button>
           ) : null}
-        </dd>
-      </TrayCard>
+        </p>
+      </LessonCardFrame>
+      // </TrayCard>
     );
   });
 };
@@ -117,14 +122,12 @@ const TrayContent = ({
             <EffortWidget />
           </h3>
 
-          <dl>
-            <TrayCourses
-              bookmarkedCollections={bookmarkedCollections}
-              setBookmarkedCollections={setBookmarkedCollections}
-              user={user}
-              status="ongoing"
-            />
-          </dl>
+          <TrayCourses
+            bookmarkedCollections={bookmarkedCollections}
+            setBookmarkedCollections={setBookmarkedCollections}
+            user={user}
+            status="ongoing"
+          />
 
           <h2 className="prose prose-lg mx-4">Pending Lessons</h2>
           <dl>

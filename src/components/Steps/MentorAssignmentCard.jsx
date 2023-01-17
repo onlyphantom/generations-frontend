@@ -88,19 +88,23 @@ const ConfirmAssignmentBtn = ({
   );
 };
 
-export const LessonCardFrame = ({ children, lesson }) => {
+export const LessonCardFrame = ({ children, lesson, wide }) => {
   return (
     <div className="card bg-base-100 shadow-xl overflow-visible mb-4">
       <div className="card-body">
-        <li className="gap-1">
-          <div className="grid grid-cols-3 gap-1 items-center">
-            <div className="text-left md:col-span-2 col-span-3">
-              <h2 className="card-title">{lesson.attributes.title}</h2>
+        <div className="gap-1">
+          <div
+            className={`grid gap-1 items-center ${
+              wide ? "grid-cols-2" : "grid-cols-3"
+            }`}
+          >
+            <div className={`text-left ${!wide && "md:col-span-2 col-span-3"}`}>
+              <h2 className="card-title">{lesson.attributes?.title}</h2>
               {lesson.status === "ongoing" ||
               lesson.status === "preaccept" ||
               lesson.status === "completed" ? (
                 <>
-                  <p className="font-light">Assigned Mentor:</p>
+                  <p className="font-light text-sm">Assigned Mentor:</p>
                   <span className="flex items-center">
                     <MentorProfile
                       mentor={lesson.assigned_expert?.attributes}
@@ -120,7 +124,7 @@ export const LessonCardFrame = ({ children, lesson }) => {
             </div>
             <div className="col-span-3 lg:col-span-1">{children}</div>
           </div>
-        </li>
+        </div>
       </div>
     </div>
   );
