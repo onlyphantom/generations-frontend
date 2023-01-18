@@ -32,6 +32,7 @@ export const getBookmarkedCollections = (
           status: t.attributes.status,
           assigned_expert: t.attributes.expert.data,
           trayId: t.id,
+          completed_on: t.attributes.completedOn,
         };
       });
       console.log(`Setting bookmark`);

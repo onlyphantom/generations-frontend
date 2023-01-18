@@ -61,7 +61,7 @@ export const TrayCourses = ({
           ) : course.status === "completed" ? (
             <button className="btn btn-solid hover:cursor-default btn-disabled mt-4">
               <CompleteIcon />{" "}
-              <span className="ml-4">Completed on 1/4/2023</span>
+              <span className="ml-4">Completed on {course.completed_on}</span>
             </button>
           ) : null}
         </p>
