@@ -1,6 +1,8 @@
 import { useState } from "react";
 import selectMentor from "./selectMentor";
 
+import CardEffortPoints from "../CollectionCard/CardEffortPoints";
+
 const MentorProfile = ({ mentor }) => {
   return (
     <>
@@ -113,14 +115,20 @@ export const LessonCardFrame = ({ children, lesson, wide }) => {
                 </>
               ) : (
                 <>
-                  <p className="font-light">Suggested Mentor:</p>
+                  <p className="font-light text-sm">Suggested Mentor:</p>
                   <span className="flex items-center">
                     <MentorProfile
                       mentor={lesson.attributes?.recommendedExpert}
                     />
+                    {/* {JSON.stringify(lesson.attributes?.totalEffort)} */}
                   </span>
                 </>
               )}
+              <br />
+              <CardEffortPoints
+                effort={lesson.attributes?.totalEffort}
+                extraClass={lesson.status === "completed" && `badge-secondary`}
+              />
             </div>
             <div className="col-span-3 lg:col-span-1">{children}</div>
           </div>
