@@ -104,7 +104,7 @@ const Fellowship = () => {
         <h3 className="text-lg text-left mb-4">Fellowship Progress Timeline</h3>
         <FellowshipScoreAlert />
 
-        <ol class="relative border-l border-gray-200 dark:border-gray-800">
+        <ol class="relative border-l border-gray-200 dark:border-gray-700">
           <li class="mb-10 ml-6">
             <span class="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-3">
               <svg
@@ -122,20 +122,15 @@ const Fellowship = () => {
                 />
               </svg>
             </span>
-            <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-800 dark:border-gray-600">
+            <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
               <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                 24 days ago
               </time>
               <div class="text-sm font-normal text-gray-500 dark:text-gray-300">
                 Created an account on{" "}
-                <span href="#" class="font-semibold text-white">
-                  {user.createdAt}
-                </span>{" "}
+                <span class="font-semibold text-white">{user.createdAt}</span>{" "}
                 and earned{" "}
-                <span
-                  href="#"
-                  class="font-semibold text-primary hover:underline"
-                >
+                <span class="font-semibold text-primary hover:underline">
                   1
                 </span>{" "}
                 effort point.
@@ -159,17 +154,14 @@ const Fellowship = () => {
                 />
               </svg>
             </span>
-            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-600">
+            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600">
               <div class="items-center justify-between mb-3 sm:flex">
                 <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                   3 days ago
                 </time>
                 <div class="text-sm font-normal text-gray-500 lex dark:text-gray-300">
                   Bookmarked{" "}
-                  <a
-                    href="#"
-                    class="font-semibold text-gray-900 dark:text-white hover:underline"
-                  >
+                  <a class="font-semibold text-gray-900 dark:text-white hover:underline">
                     Cloud Engineering Fundamentals
                   </a>
                 </div>
@@ -199,13 +191,13 @@ const Fellowship = () => {
                 />
               </svg>
             </span>
-            <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-800 dark:border-gray-600">
+            <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
               <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                 14 hours ago
               </time>
               <div class="text-sm font-normal text-gray-500 lex dark:text-gray-300">
                 Completed{" "}
-                <span href="#" class="font-semibold hover:underline">
+                <span class="font-semibold hover:underline">
                   SQL Essentials 2
                 </span>{" "}
                 on{" "}
@@ -213,10 +205,7 @@ const Fellowship = () => {
                   2023-01-01
                 </span>
                 and earned{" "}
-                <span
-                  href="#"
-                  class="font-semibold text-primary hover:underline"
-                >
+                <span class="font-semibold text-primary hover:underline">
                   5
                 </span>{" "}
                 effort points.
