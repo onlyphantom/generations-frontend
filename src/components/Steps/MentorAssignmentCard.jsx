@@ -106,7 +106,11 @@ export const LessonCardFrame = ({ children, lesson, wide }) => {
               lesson.status === "preaccept" ||
               lesson.status === "completed" ? (
                 <>
-                  <p className="font-light text-sm">Assigned Mentor:</p>
+                  <p className="font-light text-sm">
+                    {lesson.status === "preaccept"
+                      ? "Suggested Mentor:"
+                      : "Assigned Mentor"}
+                  </p>
                   <span className="flex items-center">
                     <MentorProfile
                       mentor={lesson.assigned_expert?.attributes}

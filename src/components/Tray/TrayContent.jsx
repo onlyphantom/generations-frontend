@@ -34,9 +34,6 @@ export const TrayCourses = ({
     return (
       // <TrayCard key={course.id}>
       <LessonCardFrame key={course.id} lesson={course} wide={true}>
-        {/* <dt>
-          {course.attributes?.title} <small>({course.status})</small>
-        </dt> */}
         <p>
           <article className="prose prose-sm dark:prose-invert">
             <ReactMarkdown>
