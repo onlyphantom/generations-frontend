@@ -4,6 +4,8 @@ import { UserContext } from "../../contexts/UserContext";
 import CardTags from "../CollectionCard/CardTags";
 import { LessonCardFrame } from "./MentorAssignmentCard";
 
+import timeAgo from "./timeAgo";
+
 const Fellowship = () => {
   const { u, ta, bc } = useContext(UserContext);
   const [tagAwards] = ta;
@@ -11,6 +13,7 @@ const Fellowship = () => {
   const [user] = u;
   const [completedCollections, setCompletedCollections] = useState([]);
   const [totalEffortEarned, setTotalEffortEarned] = useState(0);
+  const [timelineEvents, setTimelineEvents] = useState([]);
 
   useEffect(() => {
     console.log(bookmarkedCollections);
@@ -21,6 +24,35 @@ const Fellowship = () => {
         (collection) => collection.status === "completed"
       )
     );
+    let val = [];
+    bookmarkedCollections.forEach((x) =>
+      val.push([
+        x.tray_created_at,
+        x.status,
+        x.attributes.title,
+        x.id,
+        x.attributes.totalEffort,
+      ])
+    );
+    bookmarkedCollections.forEach((x) =>
+      val.push([
+        x.tray_updated_at,
+        x.status,
+        x.attributes.title,
+        x.id,
+        x.attributes.totalEffort,
+      ])
+    );
+    val.sort((a, b) => b[0].localeCompare(a[0]));
+
+    // map first element of each array in val to timeAgo
+    val = val.map((x) => {
+      x[0] = timeAgo(new Date(x[0]).getTime());
+      return x;
+    });
+
+    setTimelineEvents(val);
+
     // create a chronological list of completed collections
   }, [bookmarkedCollections]);
 
@@ -134,11 +166,13 @@ const Fellowship = () => {
             </span>
             <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
               <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
-                24 days ago
+                {timeAgo(new Date(user.createdAt).getTime())}
               </time>
               <div class="text-sm font-normal text-gray-500 dark:text-gray-300">
                 Created an account on{" "}
-                <span class="font-semibold text-white">{user.createdAt}</span>{" "}
+                <span class="font-semibold text-white">
+                  {new Date(user.createdAt).toDateString().replace(/\s+/, ", ")}
+                </span>{" "}
                 and earned{" "}
                 <span class="font-semibold text-primary hover:underline">
                   1
@@ -223,6 +257,7 @@ const Fellowship = () => {
             </div>
           </li>
         </ol>
+        {JSON.stringify(timelineEvents)}
       </div>
     </div>
   );
