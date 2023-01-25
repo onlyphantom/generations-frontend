@@ -10,6 +10,7 @@ const Fellowship = () => {
   const [bookmarkedCollections] = bc;
   const [user] = u;
   const [completedCollections, setCompletedCollections] = useState([]);
+  const [totalEffortEarned, setTotalEffortEarned] = useState(0);
 
   useEffect(() => {
     console.log(bookmarkedCollections);
@@ -20,10 +21,17 @@ const Fellowship = () => {
         (collection) => collection.status === "completed"
       )
     );
+    // create a chronological list of completed collections
   }, [bookmarkedCollections]);
 
   useEffect(() => {
-    // create a chronological list of completed collections
+    // console.log(completedCollections);
+    // get the total effort points earned
+    let totalEffort = 0;
+    completedCollections.forEach((collection) => {
+      totalEffort += collection.attributes.totalEffort;
+    });
+    setTotalEffortEarned(totalEffort);
   }, [user, completedCollections]);
 
   const FellowshipScoreAlert = () => {
@@ -44,13 +52,15 @@ const Fellowship = () => {
             />
           </svg>
           <span className="text-left font-light">
-            Scoreboard is a quick way to see your progress and compare it to
-            other peers in the same program.
-            <br /> As you complete lessons, you will earn points and badges.
+            As you complete lessons, you will earn points and badges.
             <br />{" "}
             {Object.keys(tagAwards).length > 0
-              ? `You have earned ${Object.keys(tagAwards).length} badge(s) 🥇.`
+              ? `You have earned ${
+                  Object.keys(tagAwards).length
+                } badge(s) 🥇 from ${completedCollections.length} lessons.`
               : `You have not earned any badges yet.`}
+            <br />
+            You have earned a total of {totalEffortEarned} effort points.
           </span>
         </div>
         <div>
@@ -161,9 +171,9 @@ const Fellowship = () => {
                 </time>
                 <div class="text-sm font-normal text-gray-500 lex dark:text-gray-300">
                   Bookmarked{" "}
-                  <a class="font-semibold text-gray-900 dark:text-white hover:underline">
+                  <span class="font-semibold text-gray-900 dark:text-white hover:underline">
                     Cloud Engineering Fundamentals
-                  </a>
+                  </span>
                 </div>
               </div>
               <div class="p-3 text-xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">

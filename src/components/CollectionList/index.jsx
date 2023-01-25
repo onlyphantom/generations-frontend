@@ -33,6 +33,8 @@ export const getBookmarkedCollections = (
           assigned_expert: t.attributes.expert.data,
           trayId: t.id,
           completed_on: t.attributes.completedOn,
+          tray_updated_at: t.attributes.updatedAt,
+          tray_created_at: t.attributes.createdAt,
         };
       });
       console.log(`Setting bookmark`);
