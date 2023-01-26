@@ -6,6 +6,21 @@ import { LessonCardFrame } from "./MentorAssignmentCard";
 
 import timeAgo from "./timeAgo";
 
+const eventType = (s, mentorinfo) => {
+  switch (s) {
+    case "bookmarked":
+      return "Bookmarked";
+    case "completed":
+      return "Completed";
+    case "ongoing":
+      return `${mentorinfo} started mentoring you for `;
+    case "preaccept":
+      return `Requested mentorship from ${mentorinfo} for `;
+    default:
+      return "Bookmarked";
+  }
+};
+
 const Fellowship = () => {
   const { u, ta, bc } = useContext(UserContext);
   const [tagAwards] = ta;
@@ -28,10 +43,10 @@ const Fellowship = () => {
     bookmarkedCollections.forEach((x) =>
       val.push([
         x.tray_created_at,
-        x.status,
+        "bookmarked",
         x.attributes.title,
         x.id,
-        x.attributes.totalEffort,
+        null,
       ])
     );
     bookmarkedCollections.forEach((x) =>
@@ -41,13 +56,15 @@ const Fellowship = () => {
         x.attributes.title,
         x.id,
         x.attributes.totalEffort,
+        x.assigned_expert?.attributes.name,
       ])
     );
     val.sort((a, b) => b[0].localeCompare(a[0]));
 
     // map first element of each array in val to timeAgo
     val = val.map((x) => {
-      x[0] = timeAgo(new Date(x[0]).getTime());
+      x[0] = new Date(x[0]).toDateString().replace(/\s+/, ", ");
+      x[6] = timeAgo(new Date(x[0]).getTime());
       return x;
     });
 
@@ -146,7 +163,47 @@ const Fellowship = () => {
         <h3 className="text-lg text-left mb-4">Fellowship Progress Timeline</h3>
         <FellowshipScoreAlert />
 
-        <ol class="relative border-l border-gray-200 dark:border-gray-700">
+        <ol className="relative border-l border-gray-200 dark:border-gray-700">
+          {timelineEvents.map((event, index) => {
+            return (
+              <li className="mb-10 ml-6" key={index}>
+                <span className="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-3">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-4 h-4"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
+                    />
+                  </svg>
+                </span>
+                <div className="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
+                  <time className="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
+                    {event[6]}
+                  </time>
+                  <div className="text-sm font-normal text-gray-500 dark:text-gray-300">
+                    {eventType(event[1], event[5])} {event[2]} on{" "}
+                    <span className="font-semibold text-white">{event[0]}</span>{" "}
+                    {event[1] === "completed" && (
+                      <div class="p-3 mt-2 text-left text-xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">
+                        You earned{" "}
+                        <span className="font-semibold text-primary hover:underline">
+                          {event[4]}
+                        </span>{" "}
+                        effort points.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </li>
+            );
+          })}
           <li class="mb-10 ml-6">
             <span class="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-3">
               <svg
@@ -164,95 +221,22 @@ const Fellowship = () => {
                 />
               </svg>
             </span>
-            <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
-              <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
+            <div className="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
+              <time className="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                 {timeAgo(new Date(user.createdAt).getTime())}
               </time>
-              <div class="text-sm font-normal text-gray-500 dark:text-gray-300">
+              <div className="text-sm font-normal text-gray-500 dark:text-gray-300">
                 Created an account on{" "}
-                <span class="font-semibold text-white">
+                <span className="font-semibold text-white">
                   {new Date(user.createdAt).toDateString().replace(/\s+/, ", ")}
-                </span>{" "}
-                and earned{" "}
-                <span class="font-semibold text-primary hover:underline">
-                  1
-                </span>{" "}
-                effort point.
-              </div>
-            </div>
-          </li>
-          <li class="mb-10 ml-6">
-            <span class="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
-                />
-              </svg>
-            </span>
-            <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600">
-              <div class="items-center justify-between mb-3 sm:flex">
-                <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
-                  3 days ago
-                </time>
-                <div class="text-sm font-normal text-gray-500 lex dark:text-gray-300">
-                  Bookmarked{" "}
-                  <span class="font-semibold text-gray-900 dark:text-white hover:underline">
-                    Cloud Engineering Fundamentals
-                  </span>
-                </div>
-              </div>
-              <div class="p-3 text-xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
-                suscipit neque voluptas eius quod provident iste, tempore totam
-                quos ipsa iusto ea! Molestiae reprehenderit est incidunt neque
-                corporis harum. Esse?
-              </div>
-            </div>
-          </li>
-          <li class="ml-6">
-            <span class="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-4"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
-                />
-              </svg>
-            </span>
-            <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
-              <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
-                14 hours ago
-              </time>
-              <div class="text-sm font-normal text-gray-500 lex dark:text-gray-300">
-                Completed{" "}
-                <span class="font-semibold hover:underline">
-                  SQL Essentials 2
-                </span>{" "}
-                on{" "}
-                <span class="font-semibold text-gray-900 dark:text-white">
-                  2023-01-01
                 </span>
-                and earned{" "}
-                <span class="font-semibold text-primary hover:underline">
-                  5
-                </span>{" "}
-                effort points.
+                <div className="p-3 mt-2 text-left text-xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">
+                  You earned{" "}
+                  <span className="font-semibold text-primary hover:underline">
+                    1
+                  </span>{" "}
+                  effort points.
+                </div>
               </div>
             </div>
           </li>

@@ -16,7 +16,7 @@ const timeAgo = (date) => {
             return Math.round(diff / hour) + ' hours ago';
         case diff < 2 * week:
             return Math.round(diff / day) + ' days ago';
-        case diff < 2 * month:
+        case diff < 3 * month:
             return Math.round(diff / week) + ' weeks ago';
         case diff < 2 * year:
             return Math.round(diff / month) + ' months ago';
