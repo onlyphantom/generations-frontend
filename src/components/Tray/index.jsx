@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 
-import TrayButton from "./TrayButton";
+// import TrayButton from "./TrayButton";
 import TrayDrawer from "./TrayDrawer";
 import NotLoggedIn from "./NotLoggedIn";
 import TrayContent from "./TrayContent";
@@ -34,7 +34,7 @@ const Tray = () => {
 
   return (
     <div>
-      {!trayOpen && <TrayButton setTrayOpen={setTrayOpen} />}
+      {/* {!trayOpen && <TrayButton setTrayOpen={setTrayOpen} />} */}
 
       <TrayDrawer trayOpen={trayOpen} setTrayOpen={setTrayOpen}>
         {!user?.token ? (

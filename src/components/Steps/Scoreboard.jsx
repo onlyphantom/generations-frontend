@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 import CardTags from "../CollectionCard/CardTags";
+import CardEffortPoints from "../CollectionCard/CardEffortPoints";
 
 const Scoreboard = () => {
   const { u, ta, bc } = useContext(UserContext);
@@ -9,8 +10,9 @@ const Scoreboard = () => {
   const [tagAwards] = ta;
   const [bookmarkedCollections] = bc;
   const [completedCollections, setCompletedCollections] = useState([]);
-
+  const [pointsPerWeek, setPointsPerWeek] = useState(0);
   const [totalEffortEarned, setTotalEffortEarned] = useState(0);
+  const [weekSinceCreated, setWeekSinceCreated] = useState(0);
 
   useEffect(() => {
     setCompletedCollections(
@@ -27,7 +29,21 @@ const Scoreboard = () => {
       totalEffort += collection.attributes.totalEffort;
     });
     setTotalEffortEarned(totalEffort);
-  }, [completedCollections]);
+
+    // calculate points per week
+    const today = new Date();
+    const userCreatedDate = new Date(user.createdAt);
+
+    const weeksSinceUserCreated = Math.round(
+      (today - userCreatedDate) / (1000 * 60 * 60 * 24 * 7)
+    );
+    setWeekSinceCreated(weeksSinceUserCreated);
+
+    const pointsPerWeek = (totalEffort / weeksSinceUserCreated).toFixed(2);
+    console.log(pointsPerWeek);
+    console.log(totalEffort);
+    setPointsPerWeek(pointsPerWeek);
+  }, [completedCollections, user.createdAt]);
 
   return (
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
@@ -131,7 +147,7 @@ const Scoreboard = () => {
             </div>
             <div className="stat-title">Effort Points</div>
             <div className="stat-value text-secondary">{totalEffortEarned}</div>
-            <div className="stat-desc">avg +0.8 points/month</div>
+            <div className="stat-desc">avg +{pointsPerWeek} points/week</div>
           </div>
 
           <div className="stat">
@@ -157,6 +173,25 @@ const Scoreboard = () => {
                 tagsCount={tagAwards}
                 badge={`sm badge-success`}
                 key="tagAwards"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* add Radial Progress */}
+        <div className="p-4 rounded-lg col-span-3 md:col-span-2">
+          {/* two divs next to each other */}
+          <div className="flex flex-row mt-4">
+            <div className="basis-2/5 mr-3">
+              <div className="text-8xl font-bold">{weekSinceCreated}</div>
+              <div className="text-sm">
+                Weeks since you're in <br /> the Fellowship program.
+              </div>
+            </div>
+            <div className="basis-3/5">
+              <CardEffortPoints
+                effort={totalEffortEarned}
+                extraClass={`badge-accent`}
               />
             </div>
           </div>
