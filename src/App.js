@@ -28,6 +28,7 @@ function App() {
           return response.json();
         })
         .then((userData) => {
+
           // check that the user's proExpiry date is not in the past, if it is, 
           // set proUser to False through an API call
           if (userData.proExpiry < new Date()) {
@@ -47,7 +48,8 @@ function App() {
             "createdAt": userData?.createdAt,
             "expendedEffort": userData?.expendedEffort,
             "proUser": userData?.proUser,
-            "proExpiry": userData?.proExpiry
+            "proExpiry": userData?.proExpiry,
+            "earnings": userData?.earnings
           });
         })
     } else {
