@@ -8,6 +8,7 @@ import MentorAssignment from "./MentorAssignment";
 import Fellowship from "./Fellowship";
 import NoBookmarksYet from "./NoBookmarksYet";
 import NotLoggedIn from "../Tray/NotLoggedIn";
+import Scoreboard from "./Scoreboard";
 
 const Steps = () => {
   const { u, bc } = useContext(UserContext);
@@ -46,7 +47,7 @@ const Steps = () => {
         case 2:
           return <Fellowship />;
         default:
-          return "Section under construction. Coming soon.";
+          return <Scoreboard />;
       }
     }
   };

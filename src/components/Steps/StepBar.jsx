@@ -33,7 +33,7 @@ const StepBar = ({ currentStep, setCurrentStep }) => {
           className={`btn ${currentStep === 2 && stepButtonStyles}`}
           onClick={() => setCurrentStep(2)}
         >
-          Scoreboard
+          Timeline
         </button>
       </li>
       <li className={`step ${currentStep >= 3 && "step-secondary"}`}>
@@ -41,7 +41,7 @@ const StepBar = ({ currentStep, setCurrentStep }) => {
           className={`btn ${currentStep === 3 && stepButtonStyles}`}
           onClick={() => setCurrentStep(3)}
         >
-          Work Placement
+          Scoreboard
         </button>
       </li>
     </ul>

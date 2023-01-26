@@ -23,9 +23,9 @@ const eventType = (s, mentorinfo) => {
 
 const Fellowship = () => {
   const { u, ta, bc } = useContext(UserContext);
+  const [user] = u;
   const [tagAwards] = ta;
   const [bookmarkedCollections] = bc;
-  const [user] = u;
   const [completedCollections, setCompletedCollections] = useState([]);
   const [totalEffortEarned, setTotalEffortEarned] = useState(0);
   const [timelineEvents, setTimelineEvents] = useState([]);
@@ -76,12 +76,13 @@ const Fellowship = () => {
   useEffect(() => {
     // console.log(completedCollections);
     // get the total effort points earned
-    let totalEffort = 0;
+    // when user signs up, they get 1 point automatically
+    let totalEffort = 1;
     completedCollections.forEach((collection) => {
       totalEffort += collection.attributes.totalEffort;
     });
     setTotalEffortEarned(totalEffort);
-  }, [user, completedCollections]);
+  }, [completedCollections]);
 
   const FellowshipScoreAlert = () => {
     return (
@@ -109,7 +110,7 @@ const Fellowship = () => {
                 } badge(s) 🥇 from ${completedCollections.length} lessons.`
               : `You have not earned any badges yet.`}
             <br />
-            You have earned a total of {totalEffortEarned} effort points.
+            You have earned {totalEffortEarned} effort points up to date.
           </span>
         </div>
         <div>
@@ -235,7 +236,7 @@ const Fellowship = () => {
                   <span className="font-semibold text-primary hover:underline">
                     1
                   </span>{" "}
-                  effort points.
+                  effort point.
                 </div>
               </div>
             </div>
