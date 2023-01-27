@@ -4,6 +4,7 @@ import { UserContext } from "../../contexts/UserContext";
 import CardTags from "../CollectionCard/CardTags";
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
 import { earningBoard } from "./earningBoard";
+import SetTarget from "./SetTarget";
 
 import NoProMembership from "./NoProMembership";
 
@@ -43,8 +44,6 @@ const Scoreboard = () => {
     setWeekSinceCreated(weeksSinceUserCreated);
 
     const pointsPerWeek = (totalEffort / weeksSinceUserCreated).toFixed(2);
-    console.log(pointsPerWeek);
-    console.log(totalEffort);
     setPointsPerWeek(pointsPerWeek);
   }, [completedCollections, user.createdAt]);
 
@@ -183,10 +182,13 @@ const Scoreboard = () => {
             </div>
           </div>
         </div>
-        <div className="divider">Program Goals</div>
-        {JSON.stringify(user.target)}
-        {JSON.stringify(user.watchlist)}
-        {/* handle case where target and watchlist is absent / not set */}
+        <div className="divider mb-4">Program Goals</div>
+        <div className="flex flex-row mt-4">
+          {!user.target && <SetTarget user={user} />}
+        </div>
+
+        {/* {JSON.stringify(user.target)}
+        {JSON.stringify(user.watchlist)} */}
       </div>
     </div>
   );
