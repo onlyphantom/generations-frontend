@@ -1,6 +1,6 @@
 import { scrollToSection } from "../Navbar";
 
-const NoProMembership = () => {
+const NoProMembership = ({ btnDisplay }) => {
   return (
     <div className="alert alert-error shadow-lg mt-4 max-w-2xl">
       <div>
@@ -26,14 +26,16 @@ const NoProMembership = () => {
           </div>
         </div>
       </div>
-      <div className="flex-none">
-        <button
-          className="btn btn-sm"
-          onClick={(e) => scrollToSection("curations")}
-        >
-          Scroll to Curations
-        </button>
-      </div>
+      {btnDisplay && (
+        <div className="flex-none">
+          <button
+            className="btn btn-sm"
+            onClick={(e) => scrollToSection("curations")}
+          >
+            Scroll to Curations
+          </button>
+        </div>
+      )}
     </div>
   );
 };

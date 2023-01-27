@@ -3,6 +3,9 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import CardTags from "../CollectionCard/CardTags";
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
+import { earningBoard } from "./earningBoard";
+
+import NoProMembership from "./NoProMembership";
 
 const Scoreboard = () => {
   const { u, ta, bc } = useContext(UserContext);
@@ -47,7 +50,7 @@ const Scoreboard = () => {
 
   return (
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
-      <div className="p-4 rounded-lg shadow-lg px-2 col-span-3 lg:col-span-1">
+      <div className="p-4 rounded-lg px-2 col-span-3 lg:col-span-1">
         <h3 className="text-lg text-left mb-4">
           Learn to Earn{" "}
           <svg
@@ -65,27 +68,14 @@ const Scoreboard = () => {
             />
           </svg>
         </h3>
-        <div className="stats bg-primary text-primary-content">
-          <div className="stat">
-            <div className="stat-title">Total Payouts</div>
-            <div className="stat-value">{user.earnings.length}</div>
-            <div className="stat-desc">
-              Since joining on {user.createdAt.slice(0, 10)}
-            </div>
-          </div>
-
-          <div className="stat">
-            <div className="stat-title">Earnings (IDR)</div>
-            <div className="stat-value">
-              {user.earnings
-                .reduce((sum, curr) => sum + Number(curr.amount), 0)
-                .toLocaleString()}
-            </div>
-            <div className="stat-actions">
-              <button className="btn btn-sm">View History</button>
-            </div>
-          </div>
-        </div>
+        {!user.proUser ? (
+          <NoProMembership />
+        ) : u.earnings.length > 0 ? (
+          earningBoard(user)
+        ) : (
+          `You are not eligible for the learn to earn program yet.
+          Complete a few lessons and check back soon.`
+        )}
       </div>
       <div className="p-4 rounded-lg col-span-3 md:col-span-2">
         <h3 className="text-lg text-left mb-4">

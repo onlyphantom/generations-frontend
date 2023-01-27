@@ -86,7 +86,7 @@ const MentorAssignment = () => {
       <div className="p-4 rounded-lg shadow-lg col-span-3 md:col-span-2">
         <h3 className="text-lg text-left mb-4">Pending Lessons</h3>
         {!user.proUser ? (
-          <NoProMembership />
+          <NoProMembership btnDisplay={true} />
         ) : (
           <>
             {requestedLessons.current?.length > 0 && (
