@@ -34,12 +34,20 @@ const CollectionCard = ({ attributes, id }) => {
   );
 
   const handleAddToTray = () => {
-    addOrRemoveFromTray(bookmarkedCollections, id, setBookmarkedCollections, user, collection);
+    addOrRemoveFromTray(
+      bookmarkedCollections,
+      id,
+      setBookmarkedCollections,
+      user,
+      collection
+    );
     setBookmarkIcon((prev) => !prev);
   };
 
   useEffect(() => {
-    let trayCollections = bookmarkedCollections.map((collection) => collection.id);
+    let trayCollections = bookmarkedCollections.map(
+      (collection) => collection.id
+    );
     setBookmarkIcon(trayCollections.includes(id));
 
     // handle dates
@@ -78,7 +86,7 @@ const CollectionCard = ({ attributes, id }) => {
           <div className="tooltip" data-tip="Effort Points">
             <CardEffortPoints
               effort={attributes.totalEffort}
-              extraClass="badge"
+              extraClass="badge-info"
             />
           </div>
         </div>

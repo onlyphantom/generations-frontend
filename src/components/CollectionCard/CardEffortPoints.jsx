@@ -3,6 +3,10 @@ import React from "react";
 const CardEffortPoints = ({ effort, extraClass }) => {
   /* every increment of 10 in effort */
 
+  if (extraClass === undefined) {
+    extraClass = "badge-accent";
+  }
+
   let remaining = effort;
   let elemToBeRendered = [];
 
@@ -21,7 +25,6 @@ const CardEffortPoints = ({ effort, extraClass }) => {
           {/* break a new line if n is 10 otherwise add some paddings*/}
           {n !== 10 &&
             Array.from({ length: Math.ceil(n / 10) * 10 - n }, (_, i) => (
-              // <span key={i} className={`badge badge-xs mx-1 ${color}`}></span>
               <div key={i} className={`badge badge-xs`}></div>
             ))}
         </div>

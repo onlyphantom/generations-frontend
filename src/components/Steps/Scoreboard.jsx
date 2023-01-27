@@ -156,7 +156,9 @@ const Scoreboard = () => {
                 ></path>
               </svg>
             </div>
-            <div className="stat-value">{Object.keys(tagAwards).length}</div>
+            <div className="stat-value">
+              {tagAwards ? Object.keys(tagAwards).length : 0}
+            </div>
             <div className="stat-title">Unique tags earned</div>
             <div className="stat-desc text-success">
               <CardTags
@@ -168,9 +170,7 @@ const Scoreboard = () => {
           </div>
         </div>
 
-        {/* add Radial Progress */}
         <div className="p-4 rounded-lg col-span-3 md:col-span-2">
-          {/* two divs next to each other */}
           <div className="flex flex-row mt-4">
             <div className="basis-2/5 mr-3">
               <div className="text-8xl font-bold">{weekSinceCreated}</div>
@@ -179,13 +179,14 @@ const Scoreboard = () => {
               </div>
             </div>
             <div className="basis-3/5">
-              <CardEffortPoints
-                effort={totalEffortEarned}
-                extraClass={`badge-accent`}
-              />
+              <CardEffortPoints effort={totalEffortEarned} />
             </div>
           </div>
         </div>
+        <div className="divider">Program Goals</div>
+        {JSON.stringify(user.target)}
+        {JSON.stringify(user.watchlist)}
+        {/* handle case where target and watchlist is absent / not set */}
       </div>
     </div>
   );

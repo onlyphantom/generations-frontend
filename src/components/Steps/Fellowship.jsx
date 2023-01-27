@@ -104,7 +104,7 @@ const Fellowship = () => {
           <span className="text-left font-light">
             As you complete lessons, you will earn points and badges.
             <br />{" "}
-            {Object.keys(tagAwards).length > 0
+            {tagAwards && Object.keys(tagAwards).length > 0
               ? `You have earned ${
                   Object.keys(tagAwards).length
                 } badge(s) 🥇 from ${completedCollections.length} lessons.`
