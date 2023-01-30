@@ -183,9 +183,8 @@ const Scoreboard = () => {
           </div>
         </div>
         <div className="divider mb-4">Program Goals</div>
-        <div className="flex flex-row mt-4">
-          <SetTarget totalEffortEarned={totalEffortEarned} />
-        </div>
+
+        <SetTarget totalEffortEarned={totalEffortEarned} />
 
         {/* {JSON.stringify(user.target)}
         {JSON.stringify(user.watchlist)} */}

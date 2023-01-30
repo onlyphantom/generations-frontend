@@ -90,10 +90,41 @@ const SetTarget = ({ totalEffortEarned }) => {
   }
   if (user.target && user.target > 0) {
     return (
-      <p>
-        {`Your target is ${user.target} effort points, and you have
+      <div className="p-4 rounded-lg col-span-3 md:col-span-2">
+        <div className="flex flex-row mt-4">
+          <div className="basis-2/5 mr-3 gap-3">
+            <div
+              className="radial-progress text-primary"
+              style={{
+                "--value": (totalEffortEarned / user.target) * 100,
+                "--size": "12rem",
+                "--thickness": "2rem",
+              }}
+            >
+              {(totalEffortEarned / user.target) * 100} %
+            </div>
+          </div>
+
+          <div className="basis-3/5 text-left">
+            {/* <p>
+              {`Your target is ${user.target} effort points, and you have
         ${totalEffortEarned} effort points.`}
-      </p>
+            </p> */}
+            <div className="stats shadow text-center">
+              <div className="stat">
+                <div className="stat-title">Current Progress</div>
+                <div className="stat-value">{totalEffortEarned}</div>
+                <div className="stat-desc">Your target is {user.target}.</div>
+                <div className="stat-actions">
+                  <button className="btn btn-sm btn-success">
+                    Change Target
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 };
