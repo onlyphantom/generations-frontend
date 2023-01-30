@@ -96,16 +96,19 @@ const EnrollFormModal = () => {
             >
               ✕
             </label>
-            <h2 className="text-3xl font-bold mb-4 text-center">
+            <h2 className="text-4xl font-bold mb-4 text-center">
               Enroll in <span className="text-secondary">Fellowship</span>
             </h2>
             <div className="text-center mb-6 text-gray-500 text-[16px]">
-              <small>
+              <p className="text-lg">
                 Already have an account?{" "}
-                <span className="link" onClick={() => setStatus("login")}>
+                <span
+                  className="link link-secondary"
+                  onClick={() => setStatus("login")}
+                >
                   Login here
                 </span>
-              </small>
+              </p>
             </div>
             <div
               className={
@@ -139,7 +142,7 @@ const EnrollFormModal = () => {
                     type="email"
                     autoComplete="username"
                     name="email"
-                    className="input w-full max-w-xs input-bordered"
+                    className="input w-full input-bordered"
                     placeholder="Email address"
                     onChange={(event) => setEmail(event.target.value)}
                     required
@@ -150,7 +153,7 @@ const EnrollFormModal = () => {
                 type="password"
                 name="password"
                 autoComplete="new-password"
-                className="input w-full max-w input-bordered mb-6"
+                className="input w-full  input-bordered mb-6"
                 placeholder="Password"
                 onChange={(event) => setPassword(event.target.value)}
                 required
@@ -167,7 +170,7 @@ const EnrollFormModal = () => {
               </label>
             </form>
             <div className="text-center text-gray-500 ">
-              <p className="mb-6 text-[16px]">or enroll with:</p>
+              <p className="mb-6 text-lg">or enroll with:</p>
             </div>
             <div className="flex justify-center">
               <a
@@ -243,12 +246,15 @@ const EnrollFormModal = () => {
               Welcome back to <span className="text-secondary">Fellowship</span>
             </h2>
             <div className="text-center mb-6 text-gray-500 text-[16px]">
-              <small>
+              <p className="text-lg">
                 Don't have an account?{" "}
-                <span className="link" onClick={() => setStatus("signup")}>
+                <span
+                  className="link link-primary"
+                  onClick={() => setStatus("signup")}
+                >
                   Enroll here
                 </span>
-              </small>
+              </p>
             </div>
             <div
               className={
@@ -293,7 +299,7 @@ const EnrollFormModal = () => {
               </button>
             </form>
             <div className="text-center text-gray-500 text-[16px]">
-              <p className="mb-6">or login with:</p>
+              <p className="mb-6 text-lg">or login with:</p>
             </div>
             <div className="flex justify-center">
               <a
