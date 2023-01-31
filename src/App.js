@@ -60,7 +60,10 @@ function App() {
         "createdAt": null,
         "expendedEffort": null,
         "proUser": null,
-        "proExpiry": null
+        "proExpiry": null,
+        "earnings": null,
+        "target": null,
+        "watchlist": null
       });
     }
 
