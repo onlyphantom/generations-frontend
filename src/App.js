@@ -31,7 +31,7 @@ function App() {
           console.log("userData", userData)
           // check that the user's proExpiry date is not in the past, if it is, 
           // set proUser to False through an API call
-          if (userData.proExpiry < new Date()) {
+          if (new Date(userData.proExpiry) < new Date()) {
             userData.proUser = false;
             userData.proExpiry = null;
             // make API CALL to update user's proUser and proExpiry
@@ -41,18 +41,29 @@ function App() {
                 Authorization: `Bearer ${token}`,
               }
             })
-          }
 
-          setUser({
-            "token": token,
-            "createdAt": userData?.createdAt,
-            "expendedEffort": userData?.expendedEffort,
-            "proUser": userData?.proUser,
-            "proExpiry": userData?.proExpiry,
-            "earnings": userData?.earnings,
-            "target": userData?.target,
-            "watchlist": userData?.watchlist
-          });
+            setUser({
+              "token": token,
+              "createdAt": userData?.createdAt,
+              "expendedEffort": userData?.expendedEffort,
+              "proUser": userData?.proUser,
+              "proExpiry": userData?.proExpiry,
+              "earnings": userData?.earnings,
+              "target": userData?.target,
+              "watchlist": userData?.watchlist
+            });
+          } else {
+            setUser({
+              "token": token,
+              "createdAt": userData?.createdAt,
+              "expendedEffort": userData?.expendedEffort,
+              "proUser": userData?.proUser,
+              "proExpiry": userData?.proExpiry,
+              "earnings": userData?.earnings,
+              "target": userData?.target,
+              "watchlist": userData?.watchlist
+            });
+          }
         })
     } else {
       setUser({
