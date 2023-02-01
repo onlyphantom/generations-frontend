@@ -34,7 +34,7 @@ const SetTarget = ({ totalEffortEarned }) => {
   const [user, setUser] = u;
 
   const [showSlider, setShowSlider] = useState(false);
-  const [target, setTarget] = useState(30);
+  const [target, setTarget] = useState(user.target ? user.target : 30);
 
   useEffect(() => {
     if (!user.target > 0) {
@@ -101,7 +101,7 @@ const SetTarget = ({ totalEffortEarned }) => {
                 "--thickness": "2rem",
               }}
             >
-              {(totalEffortEarned / user.target) * 100} %
+              { Math.round((totalEffortEarned / user.target) * 10000) / 100 } %
             </div>
           </div>
 
@@ -114,9 +114,9 @@ const SetTarget = ({ totalEffortEarned }) => {
               <div className="stat">
                 <div className="stat-title">Current Progress</div>
                 <div className="stat-value">{totalEffortEarned}</div>
-                <div className="stat-desc">Your target is {user.target}.</div>
+                <div className="stat-desc">Your target is {user.target} effort points.</div>
                 <div className="stat-actions">
-                  <button className="btn btn-sm btn-success">
+                  <button className="btn btn-sm btn-success" onClick={() => setShowSlider(true)}>
                     Change Target
                   </button>
                 </div>
