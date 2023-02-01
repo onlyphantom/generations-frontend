@@ -69,7 +69,7 @@ const Scoreboard = () => {
         </h3>
         {!user.proUser ? (
           <NoProMembership />
-        ) : u.earnings.length > 0 ? (
+        ) : user.earnings.length > 0 ? (
           earningBoard(user)
         ) : (
           `You are not eligible for the learn to earn program yet.
