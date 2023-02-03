@@ -83,6 +83,27 @@ const SetTarget = ({ totalEffortEarned }) => {
             >
               Set Target
             </button>
+            {user.target && user.target > 0 && (
+              <button
+                className="btn btn-square btn-outline ml-4"
+                onClick={() => setShowSlider(false)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -101,22 +122,23 @@ const SetTarget = ({ totalEffortEarned }) => {
                 "--thickness": "2rem",
               }}
             >
-              { Math.round((totalEffortEarned / user.target) * 10000) / 100 } %
+              {Math.round((totalEffortEarned / user.target) * 1000) / 10} %
             </div>
           </div>
 
           <div className="basis-3/5 text-left">
-            {/* <p>
-              {`Your target is ${user.target} effort points, and you have
-        ${totalEffortEarned} effort points.`}
-            </p> */}
             <div className="stats shadow text-center">
               <div className="stat">
                 <div className="stat-title">Current Progress</div>
                 <div className="stat-value">{totalEffortEarned}</div>
-                <div className="stat-desc">Your target is {user.target} effort points.</div>
+                <div className="stat-desc">
+                  Your target is {user.target} effort points.
+                </div>
                 <div className="stat-actions">
-                  <button className="btn btn-sm btn-success" onClick={() => setShowSlider(true)}>
+                  <button
+                    className="btn btn-sm btn-success"
+                    onClick={() => setShowSlider(true)}
+                  >
                     Change Target
                   </button>
                 </div>
