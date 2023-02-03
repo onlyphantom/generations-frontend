@@ -21,6 +21,48 @@ const eventType = (s, mentorinfo) => {
   }
 };
 
+const TimelineIcon = ({ eventType }) => {
+  switch (eventType) {
+    case "bookmarked":
+      return (
+        <span className="absolute flex items-center justify-center w-8 h-8 bg-primary rounded-full -left-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="evenodd"
+            className="w-5 h-5"
+          >
+            <path
+              fillRule="evenodd"
+              d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </span>
+      );
+
+    default:
+      return (
+        <span className="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-4 h-4"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
+            />
+          </svg>
+        </span>
+      );
+  }
+};
+
 const Fellowship = () => {
   const { u, ta, bc } = useContext(UserContext);
   const [user] = u;
@@ -167,24 +209,15 @@ const Fellowship = () => {
         <ol className="relative border-l border-gray-200 dark:border-gray-700">
           {timelineEvents.map((event, index) => {
             return (
-              <li className="mb-10 ml-6" key={index}>
-                <span className="absolute flex items-center justify-center w-8 h-8 bg-black rounded-full -left-3">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-4 h-4"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5"
-                    />
-                  </svg>
-                </span>
-                <div className="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
+              <li className="mb-10 ml-7 even:bg-gray-600" key={index}>
+                <TimelineIcon eventType={event[1]} />
+
+                <div
+                  className={`items-center justify-between p-4 border border-gray-200 rounded-lg shadow-sm sm:flex ${
+                    event[1] === "completed" &&
+                    "dark:bg-gray-700 dark:border-gray-600"
+                  }`}
+                >
                   <time className="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">
                     {event[6]}
                   </time>
@@ -192,7 +225,7 @@ const Fellowship = () => {
                     {eventType(event[1], event[5])} {event[2]} on{" "}
                     <span className="font-semibold text-white">{event[0]}</span>{" "}
                     {event[1] === "completed" && (
-                      <div class="p-3 mt-2 text-left text-xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">
+                      <div class="p-3 mt-2 text-left text-xs italic font-normal border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 text-success">
                         You earned{" "}
                         <span className="font-semibold text-primary hover:underline">
                           {event[4]}
@@ -206,19 +239,17 @@ const Fellowship = () => {
             );
           })}
           <li class="mb-10 ml-6">
-            <span class="absolute flex items-center justify-center w-8 h-8 bg-success rounded-full -left-3">
+            <span class="absolute flex items-center justify-center w-8 h-8 bg-success rounded-full -left-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
                 viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="black"
+                fill="black"
                 className="w-6 h-6"
               >
                 <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+                  fillRule="evenodd"
+                  d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                  clipRule="evenodd"
                 />
               </svg>
             </span>
