@@ -3,7 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import CardTags from "../CollectionCard/CardTags";
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
-import { earningBoard } from "./earningBoard";
+import { EarningBoard } from "./EarningBoard";
 import SetTarget from "./SetTarget";
 
 import NoProMembership from "./NoProMembership";
@@ -70,7 +70,7 @@ const Scoreboard = () => {
         {!user.proUser ? (
           <NoProMembership />
         ) : user.earnings.length > 0 ? (
-          earningBoard(user)
+          EarningBoard(user)
         ) : (
           `You are not eligible for the learn to earn program yet.
           Complete a few lessons and check back soon.`

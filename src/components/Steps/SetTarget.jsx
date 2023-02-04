@@ -115,7 +115,7 @@ const SetTarget = ({ totalEffortEarned }) => {
         <div className="flex flex-row mt-4">
           <div className="basis-2/5 mr-3 gap-3">
             <div
-              className="radial-progress text-primary"
+              className="radial-progress text-success"
               style={{
                 "--value": (totalEffortEarned / user.target) * 100,
                 "--size": "12rem",
