@@ -1,40 +1,30 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f2b74ea9-bc41-40dc-8914-17cc6b3f885c/deploy-status)](https://app.netlify.com/sites/peaceful-madeleine-0f7399/deploys)
 
-# Getting Started with Create React App
+![](assets/supertype_fellowship_process.png)
+
+# Supertype Fellowship
+[Supertype Fellowship](https://fellowship.supertype.ai) is a development program for aspiring analytics developers, data scientists and software engineers looking to build a fulfilling career in these domains. The program features a combination of expert mentoring, peer-to-peer learning, and plenty of self-directed learning from a collection of curated learning resources.
+
+Participants are expected to spend 10-15 hours per week on the program, and will be expected to complete a series of projects and assignments. The program is largely self-paced, and participants will be able to choose from a variety of learning paths in a buffet-style format. All members of this valued community will receive plenty of mentoring, from real professionals in the field, to help them acclimate to production-level data science and software engineering.
+
+This is a program by [Supertype (Data Science Consultancy)](https://supertype.ai) and is run in adherence to our [Philosophy](https://supertype.ai/about-us/).
+
+## Development (for contributors)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Install the dependencies for this project with `yarn install`.
-
-## Available Scripts
-
-In the project directory, you can run:
+Install the dependencies for this project with `yarn install`. In the project directory, you can run:
 
 ### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The page will reload when you make changes.
 
 ### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
+The build is minified and the filenames include the hashes.
