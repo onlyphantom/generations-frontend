@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import BookmarkCardCached from "../BookmarkCardCached";
 
-const CollectionModal = ({ collectionId }) => {
+const CollectionModal = ({ collectionId, showSubmitButton }) => {
   const [loading, setLoading] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
 
@@ -23,7 +23,9 @@ const CollectionModal = ({ collectionId }) => {
         setBookmarks(data.data);
         setLoading(false);
       });
-  }, [collectionId]);
+
+    console.log("showSubmitButton", showSubmitButton);
+  }, [collectionId, showSubmitButton]);
 
   if (loading) {
     return <progress className="progress w-56"></progress>;
@@ -79,7 +81,15 @@ const CollectionModal = ({ collectionId }) => {
               </>
             )}
             <div className="modal-action">
-              <label className="btn">Mark Challenge as Completed</label>
+              {showSubmitButton ? (
+                <button className="btn btn-outline btn-success">
+                  Mark Challenge as Completed
+                </button>
+              ) : (
+                <label className="btn btn-disabled hover:cursor-default">
+                  Mark Challenge as Completed
+                </label>
+              )}
 
               <label htmlFor={collectionId} className="btn btn-outline">
                 <svg

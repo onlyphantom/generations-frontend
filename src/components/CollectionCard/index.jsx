@@ -50,6 +50,8 @@ const CollectionCard = ({ attributes, id }) => {
     );
     setBookmarkIcon(trayCollections.includes(id));
 
+    console.log("bookmarkedCollections", bookmarkedCollections);
+
     // handle dates
     const isoDate = new Date(attributes.publishedAt).toISOString();
     dateRef.current = isoDate.substring(0, isoDate.indexOf("T"));
@@ -92,7 +94,10 @@ const CollectionCard = ({ attributes, id }) => {
         </div>
       </div>
 
-      <CollectionModal collectionId={id} />
+      <CollectionModal
+        collectionId={id}
+        showSubmitButton={selectedTray?.status === "ongoing" ? true : false}
+      />
     </div>
   );
 };
