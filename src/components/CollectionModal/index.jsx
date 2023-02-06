@@ -23,8 +23,6 @@ const CollectionModal = ({ collectionId, showSubmitButton }) => {
         setBookmarks(data.data);
         setLoading(false);
       });
-
-    console.log("showSubmitButton", showSubmitButton);
   }, [collectionId, showSubmitButton]);
 
   if (loading) {

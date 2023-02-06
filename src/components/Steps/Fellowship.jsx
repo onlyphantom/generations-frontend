@@ -238,7 +238,7 @@ const Fellowship = () => {
                     {eventType(event[1], event[5])} {event[2]} on{" "}
                     <span className="font-semibold text-white">{event[0]}</span>{" "}
                     {event[1] === "completed" && (
-                      <div class="p-3 mt-2 text-left text-xs italic font-normal border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 text-success">
+                      <div className="p-3 mt-2 text-left text-xs italic font-normal border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 text-success">
                         You earned{" "}
                         <span className="font-semibold text-primary hover:underline">
                           {event[4]}
@@ -251,8 +251,8 @@ const Fellowship = () => {
               </li>
             );
           })}
-          <li class="mb-10 ml-6">
-            <span class="absolute flex items-center justify-center w-8 h-8 bg-success rounded-full -left-4">
+          <li className="mb-10 ml-6">
+            <span className="absolute flex items-center justify-center w-8 h-8 bg-success rounded-full -left-4">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"

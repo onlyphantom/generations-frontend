@@ -32,7 +32,7 @@ const EarningHistory = ({ sortedEarning }) => {
                 <tbody>
                   {sortedEarning.map((earning) => (
                     <tr key={earning.id}>
-                      <td>{earning.createdAt.slice(0, 10)}</td>
+                      <td>{earning.earnedAt.slice(0, 10)}</td>
                       <td>{Number(earning.amount).toLocaleString()}</td>
                       <td>{earning.type}</td>
                     </tr>
@@ -53,7 +53,7 @@ export function EarningBoard(user) {
   useEffect(() => {
     setSortedEarning(
       user.earnings.sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
+        return new Date(b.earnedAt) - new Date(a.earnedAt);
       })
     );
   }, [user.earnings]);
