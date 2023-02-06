@@ -6,7 +6,7 @@ export default function Header() {
     <section className="mb-0 background-radial-gradient overflow-hidden">
       <Navbar />
       <div className="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
-        <div className="container mx-auto xl:px-24 text-gray-200">
+        <div className="container mx-auto xl:px-12 text-gray-200">
           <div className="grid lg:grid-cols-2 gap-12 flex items-center">
             <div className="mt-12 lg:mt-0" style={{ zIndex: 10 }}>
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">

@@ -2,6 +2,7 @@ import { useState } from "react";
 import selectMentor from "./selectMentor";
 
 import CardEffortPoints from "../CollectionCard/CardEffortPoints";
+import CollectionModal from "../CollectionModal";
 
 const MentorProfile = ({ mentor }) => {
   return (
@@ -101,7 +102,14 @@ export const LessonCardFrame = ({ children, lesson, wide }) => {
             }`}
           >
             <div className={`text-left ${!wide && "md:col-span-2 col-span-3"}`}>
-              <h2 className="card-title">{lesson.attributes?.title}</h2>
+              <h2 className="card-title">
+                <label
+                  htmlFor={lesson.id}
+                  className="text-secondary text-2xl hover:text-success hover:animate-pulse hover:cursor-pointer"
+                >
+                  {lesson.attributes?.title}
+                </label>
+              </h2>
               {lesson.status === "ongoing" ||
               lesson.status === "preaccept" ||
               lesson.status === "completed" ? (
@@ -170,6 +178,10 @@ const MentorAssignmentCard = ({
           />
         )}
       </div>
+      <CollectionModal
+        collectionId={lesson.id}
+        showSubmitButton={lesson.status === "ongoing" ? true : false}
+      />
     </LessonCardFrame>
   );
 };

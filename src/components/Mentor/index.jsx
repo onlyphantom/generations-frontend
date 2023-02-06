@@ -16,7 +16,7 @@ const Mentor = () => {
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
       <h2 className="text-3xl font-bold mb-12 text-center">
-        Meet the <span className="text-secondary">experts.</span>
+        Meet the <span className="text-info">experts.</span>
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
@@ -45,7 +45,7 @@ const Mentor = () => {
                     href={expert.attributes.website}
                     target="_blank"
                     rel="noreferrer"
-                    className="first:pl-0 px-2 lg:pl-0 lg:pr-2 hover:text-sky-500"
+                    className="first:pl-0 px-2 lg:pl-0 lg:pr-2 hover:text-info"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import CardTags from "../CollectionCard/CardTags";
 import { LessonCardFrame } from "./MentorAssignmentCard";
+import { AddIcon, CompleteIcon } from "../CollectionCard/CardActions";
 
 import timeAgo from "./timeAgo";
 
@@ -25,25 +26,14 @@ const TimelineIcon = ({ eventType }) => {
   switch (eventType) {
     case "bookmarked":
       return (
-        <span className="absolute flex items-center justify-center w-8 h-8  rounded-full -left-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="cyan"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z"
-              clipRule="evenodd"
-            />
-          </svg>
+        <span className="absolute flex items-center justify-center w-8 h-8 text-secondary rounded-full rounded-full -left-4">
+          <AddIcon />
         </span>
       );
 
     case "ongoing":
       return (
-        <span className="absolute flex items-center justify-center w-8 h-8 rounded-full -left-4">
+        <span className="absolute flex items-center justify-center w-8 h-8 text-info rounded-full -left-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -59,25 +49,14 @@ const TimelineIcon = ({ eventType }) => {
 
     case "completed":
       return (
-        <span className="absolute flex items-center justify-center w-8 h-8 bg-success rounded-full -left-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="black"
-            className="w-5 h-5"
-          >
-            <path
-              fillRule="evenodd"
-              d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
-              clipRule="evenodd"
-            />
-          </svg>
+        <span className="absolute flex items-center justify-center w-8 h-8 rounded-full -left-4">
+          <CompleteIcon />
         </span>
       );
 
     default:
       return (
-        <span className="absolute flex items-center justify-center w-8 h-8 bg-info rounded-full -left-4">
+        <span className="absolute flex items-center justify-center w-8 h-8 bg-success rounded-full -left-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -146,8 +125,6 @@ const Fellowship = () => {
     });
 
     setTimelineEvents(val);
-
-    // create a chronological list of completed collections
   }, [bookmarkedCollections]);
 
   useEffect(() => {
