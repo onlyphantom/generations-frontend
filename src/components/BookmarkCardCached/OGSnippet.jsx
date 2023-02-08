@@ -16,14 +16,16 @@ const OGSnippet = ({
   return (
     <div className="card lg:card-side bg-base-100 shadow-xl rounded-xl overflow-hidden">
       <div className="columns-xs md:flex">
-        <figure className="shrink-0">
-          <img
-            src={imgUrl}
-            alt={title}
-            className="h-48 w-full object-cover md:h-full md:w-48"
-            // style={{ width: 420 }}
-          />
-        </figure>
+        {imgUrl && (
+          <figure className="shrink-0">
+            <img
+              src={imgUrl}
+              alt={title}
+              className="h-48 w-full object-cover md:h-full md:w-48"
+              // style={{ width: 420 }}
+            />
+          </figure>
+        )}
       </div>
       <div className="card-body text-sm text-white text-left p-6">
         <div className="uppercase tracking-wide text-sm text-secondary font-semibold">

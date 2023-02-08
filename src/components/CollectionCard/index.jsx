@@ -53,9 +53,10 @@ const CollectionCard = ({ attributes, id }) => {
     console.log("bookmarkedCollections", bookmarkedCollections);
 
     // handle dates
-    const isoDate = new Date(attributes.publishedAt).toISOString();
+    // const isoDate = new Date(attributes.publishedAt).toISOString();
+    const isoDate = new Date(attributes.updatedAt).toISOString();
     dateRef.current = isoDate.substring(0, isoDate.indexOf("T"));
-  }, [id, bookmarkedCollections, attributes.publishedAt]);
+  }, [id, bookmarkedCollections, attributes.updatedAt]);
 
   return (
     <div
