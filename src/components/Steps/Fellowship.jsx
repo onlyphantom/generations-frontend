@@ -84,7 +84,7 @@ const Fellowship = () => {
   const [timelineEvents, setTimelineEvents] = useState([]);
 
   useEffect(() => {
-    console.log(bookmarkedCollections);
+    // console.log(bookmarkedCollections);
     // filter bookmarkedCollections to get where status = completed
 
     setCompletedCollections(
@@ -95,7 +95,7 @@ const Fellowship = () => {
     let val = [];
     bookmarkedCollections.forEach((x) =>
       val.push([
-        x.tray_created_at,
+        x.tray_created_at || x.attributes.createdAt,
         "bookmarked",
         x.attributes.title,
         x.id,
@@ -112,10 +112,11 @@ const Fellowship = () => {
         x.assigned_expert?.attributes.name,
       ])
     );
-    val.sort((a, b) => b[0].localeCompare(a[0]));
+    console.log(bookmarkedCollections);
 
     // drop "requested" events
     val = val.filter((x) => x[1] !== "requested");
+    val.sort((a, b) => b[0].localeCompare(a[0]));
 
     // map first element of each array in val to timeAgo
     val = val.map((x) => {
