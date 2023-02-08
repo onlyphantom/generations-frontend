@@ -95,7 +95,7 @@ const Fellowship = () => {
     let val = [];
     bookmarkedCollections.forEach((x) =>
       val.push([
-        x.tray_created_at || x.attributes.createdAt,
+        x.tray_created_at,
         "bookmarked",
         x.attributes.title,
         x.id,

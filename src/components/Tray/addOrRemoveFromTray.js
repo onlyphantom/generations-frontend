@@ -41,7 +41,13 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
                 .then((data) => {
                     setBookmarkedCollections([
                         ...bookmarkedCollections,
-                        { ...newBookmarkedCollection, status: "requested", assigned_expert: null, trayId: data.data.id }
+                        { ...newBookmarkedCollection, 
+                            status: "requested", 
+                            assigned_expert: null, 
+                            trayId: data.data.id,
+                            tray_updated_at: data.data.attributes.updatedAt,
+                            tray_created_at: data.data.attributes.createdAt
+                        }
                     ]);
                 });
         }
