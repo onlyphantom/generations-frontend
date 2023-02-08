@@ -45,6 +45,7 @@ function App() {
             setUser({
               "token": token,
               "createdAt": userData?.createdAt,
+              "username": userData?.username,
               "expendedEffort": userData?.expendedEffort,
               "proUser": userData?.proUser,
               "proExpiry": userData?.proExpiry,
@@ -56,6 +57,7 @@ function App() {
             setUser({
               "token": token,
               "createdAt": userData?.createdAt,
+              "username": userData?.username,
               "expendedEffort": userData?.expendedEffort,
               "proUser": userData?.proUser,
               "proExpiry": userData?.proExpiry,
@@ -69,6 +71,7 @@ function App() {
       setUser({
         "token": null,
         "createdAt": null,
+        "username": null,
         "expendedEffort": null,
         "proUser": null,
         "proExpiry": null,
