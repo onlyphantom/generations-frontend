@@ -97,7 +97,14 @@ const CollectionCard = ({ attributes, id }) => {
 
       <CollectionModal
         collectionId={id}
-        showSubmitButton={selectedTray?.status === "ongoing" ? true : false}
+        showSubmitButton={
+          selectedTray?.status === "ongoing" ||
+          // Collections title with _ are "special" collections
+          // that can be submitted without a mentor
+          selectedTray?.attributes?.title.startsWith("_")
+            ? true
+            : false
+        }
       />
     </div>
   );

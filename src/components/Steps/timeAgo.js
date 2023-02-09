@@ -13,7 +13,9 @@ const timeAgo = (date) => {
         case diff < hour:
             return Math.round(diff / minute) + ' minutes ago';
         case diff < day:
-            return Math.round(diff / hour) + ' hours ago';
+            // if less than a day, show "today"
+            return "today";
+        // return Math.round(diff / hour) + ' hours ago';
         case diff < 2 * week:
             return Math.round(diff / day) + ' days ago';
         case diff < 3 * month:

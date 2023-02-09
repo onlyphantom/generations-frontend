@@ -26,8 +26,8 @@ const NotLoggedIn = () => {
           ></path>
         </svg>
         <div>
-          <h3 className="font-bold"> You are not signed in 😟.</h3>
-          <div className="text-xs">
+          <h3 className="font-bold text-2xl"> You are not signed in 😟.</h3>
+          <div className="text-sm">
             This functionality is available with an account.
             <br />
             Create an account or sign in with an existing account to access more
