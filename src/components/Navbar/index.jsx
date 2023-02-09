@@ -106,16 +106,58 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {/* <p className="text-xs text-gray-500">
-          {JSON.stringify(user.token)} |{" "}
-          {user.token ? "Logged in" : "Not logged in"}
+          {JSON.stringify(user)} | {user.token ? "Logged in" : "Not logged in"}
         </p> */}
 
         {loggedIn ? (
-          <div
-            className="btn btn-secondary"
-            onClick={(event) => handleLogOut(event)}
-          >
-            Log Out
+          // <div
+          //   className="btn btn-secondary"
+          //   onClick={(event) => handleLogOut(event)}
+          // >
+          //   Log Out
+          // </div>
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost rounded-btn">
+              Account
+            </label>
+            <ul
+              tabIndex={0}
+              className="menu menu-compact dropdown-content p-2 text-sm shadow bg-base-100 rounded-box w-52 mt-4"
+            >
+              <li className="disabled">
+                <span>
+                  <a>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </a>
+                  {user.username}
+                </span>
+              </li>
+
+              {/* separator */}
+              <li className="divider"></li>
+              <li className="menu-title">
+                <span>Account Settings</span>
+              </li>
+              <li>
+                <span>Reset Password</span>
+              </li>
+              <li>
+                <span onClick={(event) => handleLogOut(event)}>Log Out</span>
+              </li>
+            </ul>
           </div>
         ) : (
           <>
