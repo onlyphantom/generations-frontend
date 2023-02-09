@@ -20,7 +20,7 @@ const NoBookmarksYet = () => {
         <div>
           <h3 className="font-bold">Nothing in Learning Tray yet.</h3>
           <div className="text-xs">
-            <b>Log in with an account</b> and bookmark your first lesson in
+            <b>Bookmark your first lesson</b> in
             Curations and it will appear in this section.
           </div>
         </div>

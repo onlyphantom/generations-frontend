@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { scrollToSection } from "../Navbar";
 import NoProMembership from "./NoProMembership";
 import MentorAssignmentCard from "./MentorAssignmentCard";
 
@@ -26,6 +27,43 @@ const MentorAssignmentAlert = () => {
           Please make sure you are <b>ready to commit</b> to the lesson and be
           respectful of your mentor's time.
         </span>
+      </div>
+    </div>
+  );
+};
+
+const NoPendingLesson = () => {
+  return (
+    <div className="alert alert-error shadow-lg mt-4 max-w-2xl">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          className="stroke-black flex-shrink-0 w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          ></path>
+        </svg>
+        <div>
+          <h3 className="font-bold">No Pending Collections yet.</h3>
+          <div className="text-xs">
+            <b>Bookmark a lesson</b> in
+            Curations and it will appear in this section.
+          </div>
+        </div>
+      </div>
+      <div className="flex-none">
+        <button
+          className="btn btn-sm"
+          onClick={(e) => scrollToSection("curations")}
+        >
+          Scroll to Curations
+        </button>
       </div>
     </div>
   );
@@ -63,24 +101,37 @@ const MentorAssignment = () => {
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
       <div className="p-4 rounded-lg px-2 col-span-3 lg:col-span-1">
         <h3 className="text-lg text-left mb-4">Ongoing Lessons</h3>
-
-        {ongoingLessons.current?.length > 0 && (
-          <ul className="list-none">
-            {ongoingLessons.current.map((lesson) => (
-              <MentorAssignmentCard lesson={lesson} key={lesson.id} />
-            ))}
-          </ul>
-        )}
-
-        {preacceptLessons.current?.length > 0 && (
+        
+        {user.proUser ? (
           <>
-            <div className="divider">Waiting for Acceptance</div>
-            <ul className="list-none">
-              {preacceptLessons.current.map((lesson) => (
-                <MentorAssignmentCard lesson={lesson} key={lesson.id} />
-              ))}
-            </ul>
+            <div className="divider"></div>
+            {ongoingLessons.current?.length > 0 && (
+              <ul className="list-none">
+                {ongoingLessons.current.map((lesson) => (
+                  <MentorAssignmentCard lesson={lesson} key={lesson.id} />
+                ))}
+              </ul>
+            )}
+
+            {preacceptLessons.current?.length > 0 && (
+              <>
+                <div className="divider">Waiting for Acceptance</div>
+                <ul className="list-none">
+                  {preacceptLessons.current.map((lesson) => (
+                    <MentorAssignmentCard lesson={lesson} key={lesson.id} />
+                  ))}
+                </ul>
+              </>
+            )}
+
+            {ongoingLessons.current?.length === 0 && preacceptLessons.current?.length === 0 && (
+              <div>
+                No ongoing collections yet.
+              </div>
+            )}
           </>
+        ) : (
+          <></>
         )}
       </div>
       <div className="p-4 rounded-lg shadow-lg col-span-3 md:col-span-2">
@@ -89,7 +140,7 @@ const MentorAssignment = () => {
           <NoProMembership btnDisplay={true} />
         ) : (
           <>
-            {requestedLessons.current?.length > 0 && (
+            {requestedLessons.current?.length > 0 ? (
               <>
                 {/* showing the following only to relatively new users */}
                 {ongoingLessons.current?.length < 2 && (
@@ -108,6 +159,10 @@ const MentorAssignment = () => {
                   ))}
                 </ul>
               </>
+            ) : (
+              <div className="flex items-center justify-center mt-4">
+                <NoPendingLesson />
+              </div>
             )}
           </>
         )}

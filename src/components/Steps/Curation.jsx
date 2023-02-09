@@ -20,7 +20,11 @@ const Curation = ({
       </div>
     );
   } else {
-    return <NoBookmarksYet />;
+    return(
+      <div className="flex items-center justify-center mt-4">
+          <NoBookmarksYet />
+      </div>
+    );
   }
 };
 
