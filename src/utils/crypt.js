@@ -1,6 +1,6 @@
 // Simple but high quality 53-bit hash function
 // courtesy of https://stackoverflow.com/a/52171480/7515530
-const cyrb53 = (str, seed = 0) => {
+export const cyrb53 = (str, seed = 0) => {
 
     let h1 = 0xdeadbeef ^ seed,
         h2 = 0x41c6ce57 ^ seed;
