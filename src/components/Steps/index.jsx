@@ -6,7 +6,6 @@ import StepBar from "./StepBar";
 import Curation from "./Curation";
 import MentorAssignment from "./MentorAssignment";
 import Fellowship from "./Fellowship";
-import NoBookmarksYet from "./NoBookmarksYet";
 import NotLoggedIn from "../Tray/NotLoggedIn";
 import Scoreboard from "./Scoreboard";
 
@@ -17,21 +16,13 @@ const Steps = () => {
   const [user] = u;
 
   const StepContent = () => {
-    if (bookmarkedCollections.length === 0) {
+    if (!user?.token) {
       return (
-        <div className="flex items-center justify-center mt-4">
-          <NoBookmarksYet />
+        <div className="mt-4 flex flex-col justify-center items-center">
+          <NotLoggedIn />
         </div>
       );
     } else {
-      if (!user?.token && currentStep > 0) {
-        return (
-          <div className="mt-4 flex flex-col justify-center items-center">
-            <NotLoggedIn />
-          </div>
-        );
-      }
-
       switch (currentStep) {
         case 0:
           return (
