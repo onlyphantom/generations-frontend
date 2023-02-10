@@ -1,4 +1,10 @@
-const SubmissionForm = ({ collectionId, placeholder, children }) => {
+const SubmissionForm = ({
+  collectionId,
+  placeholder,
+  prefix,
+  children,
+  onSubmit,
+}) => {
   // const onSubmitForm = () => {
   //   setSubmitBtnStatus("submitting");
   //   fetch(
@@ -27,16 +33,16 @@ const SubmissionForm = ({ collectionId, placeholder, children }) => {
           <h3 className="label-text text-xl">Proof of Completion</h3>
         </label>
         <label className="input-group">
-          <span className="text-sm">URL</span>
+          <span className="text-sm">{prefix || "URL"}</span>
           <input
             type="text"
             placeholder={
               placeholder ||
               "https://github.com/<github-username>/Submission-URL"
             }
-            className="input input-bordered w-full input-bordered input-secondary"
+            className="input input-bordered w-3/4 input-bordered input-secondary"
           />
-          <button className="btn">
+          <button className="btn" onClick={onSubmit}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
