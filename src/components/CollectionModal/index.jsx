@@ -1,93 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import ListOfBookmarks from "./ListOfBookmarks";
-
+import GitHubVerify from "./GitHubVerify";
+import SubmissionForm from "./SubmissionForm";
 import { specialCollections } from "../../utils/constants";
-import { cyrb53 } from "../../utils/crypt";
-
-const SubmissionForm = ({ collectionId }) => {
-  return (
-    <div>
-      <div className="form-control mt-4">
-        <label className="label">
-          <h3 className="label-text text-l">Proof of Completion</h3>
-        </label>
-        <label className="input-group">
-          <span className="text-sm">URL</span>
-          <input
-            type="text"
-            placeholder="https://github.com/onlyphantom/Submission-URL"
-            className="input input-bordered w-full"
-          />
-          <button className="btn">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6"
-            >
-              <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
-            </svg>{" "}
-            Submit
-          </button>
-        </label>
-      </div>
-    </div>
-  );
-};
-
-const GitHubVerify = ({ user }) => {
-  return (
-    // create a split 1/2 grid
-    <div className="grid grid-cols-3 gap-4 mt-4">
-      <div className="col-span-1 items-center justify-center">
-        <div className="mockup-code">
-          <pre
-            data-prefix="1"
-            className="bg-success text-warning-content text-sm"
-          >
-            <code>{cyrb53(user.token.slice(-8))}</code>
-          </pre>
-        </div>
-      </div>
-      <div className="col-span-2 text-left">
-        <p className="prose prose-slate text-sm ml-4">
-          You should create a new repository on GitHub following the
-          instructions in the Challenge and in that repository upload a file
-          named{" "}
-          <code className="prose-code">{`verify-${user.username}.txt`}</code>{" "}
-          with the verification code (
-          <code>{cyrb53(user.token.slice(-8))}</code>).
-        </p>
-      </div>
-    </div>
-  );
-};
 
 const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
   const [loading, setLoading] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
   const [submitBtnStatus, setSubmitBtnStatus] = useState("premark");
-
-  // const onSubmitForm = () => {
-  //   setSubmitBtnStatus("submitting");
-  //   fetch(
-  //     `https://generationsapi.herokuapp.com/api/collections/${collectionId}/submit`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       setSubmitBtnStatus("submitted");
-  //       console.log(data);
-  //     });
-  // };
 
   useEffect(() => {
     setLoading(true);
@@ -120,7 +41,7 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
       <>
         <input type="checkbox" id={collectionId} className="modal-toggle" />
         <div className="modal modal-bottom m:modal-middle">
-          <div className="modal-box w-11/12 max-w-4xl">
+          <div className="modal-box w-11/12 max-w-4xl py-8">
             <label
               htmlFor={collectionId}
               className="btn btn-sm btn-circle absolute right-2 top-2"
@@ -130,7 +51,7 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
             <ListOfBookmarks bookmarks={bookmarks} />
 
             {submitBtnStatus === "shownform" ? (
-              <SubmissionForm />
+              <SubmissionForm collectionId={collectionId}></SubmissionForm>
             ) : submitBtnStatus === "github_verify" ? (
               <GitHubVerify user={user} />
             ) : (
