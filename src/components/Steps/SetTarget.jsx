@@ -3,16 +3,14 @@ import { useState, useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 const postNewTarget = async (target, token, setUser, setShowSlider) => {
-  await fetch(`https://generationsapi.herokuapp.com/api/users/me/target`, {
-    method: "POST",
+  await fetch(`https://generationsapi.herokuapp.com/api/users/me/info`, {
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      data: {
-        target: target,
-      },
+      target: target
     }),
   }).then((res) => {
     //   if successful, use setUser to update the target attribute

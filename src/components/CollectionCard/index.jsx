@@ -12,7 +12,7 @@ import CardActions from "./CardActions";
 
 const CollectionCard = ({ attributes, id }) => {
   const { u, c, bc } = useContext(UserContext);
-  const [user] = u;
+  const [user, setUser] = u;
   const [collection] = c;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
@@ -50,7 +50,7 @@ const CollectionCard = ({ attributes, id }) => {
     );
     setBookmarkIcon(trayCollections.includes(id));
 
-    console.log("bookmarkedCollections", bookmarkedCollections);
+    // console.log("bookmarkedCollections", bookmarkedCollections);
 
     // handle dates
     // const isoDate = new Date(attributes.publishedAt).toISOString();
@@ -100,12 +100,14 @@ const CollectionCard = ({ attributes, id }) => {
         showSubmitButton={
           // Collections title with _ are "special" collections
           // that can be submitted without a mentor
-          attributes?.title.startsWith("_") ||
+          (attributes?.title.startsWith("_") &&
+            selectedTray?.status !== "completed") ||
           selectedTray?.status === "ongoing"
             ? true
             : false
         }
         user={attributes?.title.startsWith("_") ? user : null}
+        setUser={attributes?.title.startsWith("_") ? setUser : null}
       />
     </div>
   );
