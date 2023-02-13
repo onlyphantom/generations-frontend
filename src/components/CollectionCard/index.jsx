@@ -12,7 +12,7 @@ import CardActions from "./CardActions";
 
 const CollectionCard = ({ attributes, id }) => {
   const { u, c, bc } = useContext(UserContext);
-  const [user, setUser] = u;
+  const [user] = u;
   const [collection] = c;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
@@ -101,13 +101,12 @@ const CollectionCard = ({ attributes, id }) => {
           // Collections title with _ are "special" collections
           // that can be submitted without a mentor
           (attributes?.title.startsWith("_") &&
-            selectedTray?.status !== "completed") ||
+            selectedTray?.status !== "completed" && user?.token) ||
           selectedTray?.status === "ongoing"
             ? true
             : false
         }
         user={attributes?.title.startsWith("_") ? user : null}
-        setUser={attributes?.title.startsWith("_") ? setUser : null}
       />
     </div>
   );

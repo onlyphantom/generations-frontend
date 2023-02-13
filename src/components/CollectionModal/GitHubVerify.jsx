@@ -76,7 +76,7 @@ const setStateInDB = async (u, github_username, collectionId, c, bc) => {
     .then((data) => {
       const updatedData = {
         status: "completed",
-        tray_updated_at: data.data.attributes.updatedAt,
+        tray_updated_at: data.data?.attributes?.updatedAt,
       };
       setBookmarkedCollections((prev) => [
         ...prev.splice(
@@ -142,9 +142,10 @@ const GitHubVerify = ({ user, collectionId }) => {
           <input
             type="text"
             placeholder="onlyphantom"
-            className="input input-bordered w-3/4 input-bordered input-secondary"
+            className="input input-bordered w-3/4 input-secondary"
             value={github_username}
             onChange={(e) => setGithub_username(e.target.value)}
+            disabled={verifySuccess ? true : false}
           />
           {verifySuccess !== true ? (
             <button
