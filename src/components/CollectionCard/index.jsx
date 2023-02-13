@@ -12,7 +12,7 @@ import CardActions from "./CardActions";
 
 const CollectionCard = ({ attributes, id }) => {
   const { u, c, bc } = useContext(UserContext);
-  const [user] = u;
+  const [user, setUser] = u;
   const [collection] = c;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
@@ -106,6 +106,7 @@ const CollectionCard = ({ attributes, id }) => {
             : false
         }
         user={attributes?.title.startsWith("_") ? user : null}
+        setUser={attributes?.title.startsWith("_") ? setUser : null}
       />
     </div>
   );

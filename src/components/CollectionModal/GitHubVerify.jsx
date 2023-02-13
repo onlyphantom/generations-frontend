@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import { cyrb53 } from "../../utils/crypt";
+
+import { UserContext } from "../../contexts/UserContext";
+import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
 
 const readTxtFromGithub = async (github_username, fellowship_username) => {
   const response = await fetch(
@@ -16,23 +19,73 @@ const readTxtFromGithub = async (github_username, fellowship_username) => {
   return response.text();
 };
 
-// const setStateInDB = async (user, github_username, collectionId) => {
-//   const response = await fetch(
-//     `https://generationsapi.herokuapp.com/api/users/${user.username}`,
+// const setStateInDB = async (user, setUser, github_username, collectionId, c, bc) => {
+//   const [collection] = c;
+//   const [bookmarkedCollections, setBookmarkedCollections] = bc;
+  
+//   await fetch(
+//     `https://generationsapi.herokuapp.com/api/users/me/info`,
 //     {
 //       method: "PUT",
 //       headers: {
 //         "Content-Type": "application/json",
+//         Authorization: `Bearer ${user?.token}`,
 //       },
 //       body: JSON.stringify({
-//         github_username: github_username,
+//         githubUsername: github_username,
 //       }),
 //     }
-//   );
+//   )
+//   .then(res => setUser((prev) => {
+//     return {
+//       ...prev,
+//       githubUsername: github_username
+//     };
+//   }));
+  
 //   // also need to add a Tray to user in DB with status being 'completed'
+//   const trayIndex = bookmarkedCollections.findIndex(t => t.id === collectionId);
+
+//   if(trayIndex === -1){
+//     addOrRemoveFromTray(
+//       bookmarkedCollections,
+//       collectionId,
+//       setBookmarkedCollections,
+//       user,
+//       collection
+//     );
+//   }
+
+//   await fetch(
+//     `https://generationsapi.herokuapp.com/api/trays/collections/${collectionId}`,
+//     {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${user?.token}`,
+//       },
+//       body: JSON.stringify({
+//         data: {
+//           status: "completed",
+//         }
+//       }),
+//     }
+//   )
+//   .then(res => res.json())
+//   .then(data => {
+//     const updatedData = { 
+//       status: "completed",
+//       tray_updated_at: data.data.attributes.updatedAt 
+//     };
+//     setBookmarkedCollections((prev) => [
+//       ...prev.splice(trayIndex === -1 ? (bookmarkedCollections.length - 1) : trayIndex, 1),
+//       Object.assign({}, prev[trayIndex === -1 ? (bookmarkedCollections.length - 1) : trayIndex], updatedData)
+//     ])
+//   });
 // };
 
-const GitHubVerify = ({ user }) => {
+const GitHubVerify = ({ user, setUser }) => {
+  const { c, bc } = useContext(UserContext);
   const [github_username, setGithub_username] = useState("");
   const [verifySuccess, setVerifySuccess] = useState(null);
 

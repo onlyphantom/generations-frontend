@@ -51,7 +51,8 @@ function App() {
               "proExpiry": userData?.proExpiry,
               "earnings": userData?.earnings,
               "target": userData?.target,
-              "watchlist": userData?.watchlist
+              "watchlist": userData?.watchlist,
+              "githubUsername": userData?.githubUsername
             });
           } else {
             setUser({
@@ -63,7 +64,8 @@ function App() {
               "proExpiry": userData?.proExpiry,
               "earnings": userData?.earnings,
               "target": userData?.target,
-              "watchlist": userData?.watchlist
+              "watchlist": userData?.watchlist,
+              "githubUsername": userData?.githubUsername
             });
           }
         })
@@ -77,7 +79,8 @@ function App() {
         "proExpiry": null,
         "earnings": null,
         "target": null,
-        "watchlist": null
+        "watchlist": null,
+        "githubUsername": null
       });
     }
 
