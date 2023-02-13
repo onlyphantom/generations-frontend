@@ -53,7 +53,7 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
             {submitBtnStatus === "shownform" ? (
               <SubmissionForm collectionId={collectionId}></SubmissionForm>
             ) : submitBtnStatus === "github_verify" ? (
-              <GitHubVerify user={user} />
+              <GitHubVerify user={user} collectionId={collectionId} />
             ) : (
               <div className="modal-action">
                 {showSubmitButton ? (

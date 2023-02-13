@@ -50,7 +50,7 @@ const CollectionCard = ({ attributes, id }) => {
     );
     setBookmarkIcon(trayCollections.includes(id));
 
-    console.log("bookmarkedCollections", bookmarkedCollections);
+    // console.log("bookmarkedCollections", bookmarkedCollections);
 
     // handle dates
     // const isoDate = new Date(attributes.publishedAt).toISOString();
@@ -100,7 +100,8 @@ const CollectionCard = ({ attributes, id }) => {
         showSubmitButton={
           // Collections title with _ are "special" collections
           // that can be submitted without a mentor
-          attributes?.title.startsWith("_") ||
+          (attributes?.title.startsWith("_") &&
+            selectedTray?.status !== "completed") ||
           selectedTray?.status === "ongoing"
             ? true
             : false

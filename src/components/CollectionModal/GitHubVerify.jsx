@@ -19,73 +19,81 @@ const readTxtFromGithub = async (github_username, fellowship_username) => {
   return response.text();
 };
 
-// const setStateInDB = async (user, setUser, github_username, collectionId, c, bc) => {
-//   const [collection] = c;
-//   const [bookmarkedCollections, setBookmarkedCollections] = bc;
-  
-//   await fetch(
-//     `https://generationsapi.herokuapp.com/api/users/me/info`,
-//     {
-//       method: "PUT",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${user?.token}`,
-//       },
-//       body: JSON.stringify({
-//         githubUsername: github_username,
-//       }),
-//     }
-//   )
-//   .then(res => setUser((prev) => {
-//     return {
-//       ...prev,
-//       githubUsername: github_username
-//     };
-//   }));
-  
-//   // also need to add a Tray to user in DB with status being 'completed'
-//   const trayIndex = bookmarkedCollections.findIndex(t => t.id === collectionId);
+const setStateInDB = async (u, github_username, collectionId, c, bc) => {
+  const [collection] = c;
+  const [user, setUser] = u;
+  const [bookmarkedCollections, setBookmarkedCollections] = bc;
 
-//   if(trayIndex === -1){
-//     addOrRemoveFromTray(
-//       bookmarkedCollections,
-//       collectionId,
-//       setBookmarkedCollections,
-//       user,
-//       collection
-//     );
-//   }
+  await fetch(`https://generationsapi.herokuapp.com/api/users/me/info`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${user?.token}`,
+    },
+    body: JSON.stringify({
+      githubUsername: github_username,
+    }),
+  }).then((res) =>
+    setUser((prev) => {
+      return {
+        ...prev,
+        githubUsername: github_username,
+      };
+    })
+  );
 
-//   await fetch(
-//     `https://generationsapi.herokuapp.com/api/trays/collections/${collectionId}`,
-//     {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//         Authorization: `Bearer ${user?.token}`,
-//       },
-//       body: JSON.stringify({
-//         data: {
-//           status: "completed",
-//         }
-//       }),
-//     }
-//   )
-//   .then(res => res.json())
-//   .then(data => {
-//     const updatedData = { 
-//       status: "completed",
-//       tray_updated_at: data.data.attributes.updatedAt 
-//     };
-//     setBookmarkedCollections((prev) => [
-//       ...prev.splice(trayIndex === -1 ? (bookmarkedCollections.length - 1) : trayIndex, 1),
-//       Object.assign({}, prev[trayIndex === -1 ? (bookmarkedCollections.length - 1) : trayIndex], updatedData)
-//     ])
-//   });
-// };
+  // also need to add a Tray to user in DB with status being 'completed'
+  const trayIndex = bookmarkedCollections.findIndex(
+    (t) => t.id === collectionId
+  );
 
-const GitHubVerify = ({ user, setUser }) => {
-  const { c, bc } = useContext(UserContext);
+  if (trayIndex === -1) {
+    addOrRemoveFromTray(
+      bookmarkedCollections,
+      collectionId,
+      setBookmarkedCollections,
+      user,
+      collection
+    );
+  }
+
+  await fetch(
+    `https://generationsapi.herokuapp.com/api/trays/collections/${collectionId}`,
+    {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user?.token}`,
+      },
+      body: JSON.stringify({
+        data: {
+          status: "completed",
+        },
+      }),
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      const updatedData = {
+        status: "completed",
+        tray_updated_at: data.data.attributes.updatedAt,
+      };
+      setBookmarkedCollections((prev) => [
+        ...prev.splice(
+          trayIndex === -1 ? bookmarkedCollections.length - 1 : trayIndex,
+          1
+        ),
+        Object.assign(
+          {},
+          prev[trayIndex === -1 ? bookmarkedCollections.length - 1 : trayIndex],
+          updatedData
+        ),
+      ]);
+    });
+};
+
+const GitHubVerify = ({ user, collectionId }) => {
+  const { u, c, bc } = useContext(UserContext);
   const [github_username, setGithub_username] = useState("");
   const [verifySuccess, setVerifySuccess] = useState(null);
 
@@ -138,35 +146,40 @@ const GitHubVerify = ({ user, setUser }) => {
             value={github_username}
             onChange={(e) => setGithub_username(e.target.value)}
           />
-          <button
-            className="btn"
-            onClick={async () => {
-              const response = await readTxtFromGithub(
-                github_username,
-                user.username
-              );
+          {verifySuccess !== true ? (
+            <button
+              className="btn"
+              onClick={async () => {
+                const response = await readTxtFromGithub(
+                  github_username,
+                  user.username
+                );
 
-              if (Number(response) === cyrb53(user.username.slice(-8))) {
-                setVerifySuccess(true);
-              } else {
-                // console.log("response received is");
-                // console.log(Number(response));
-                // console.log(cyrb53(user.username.slice(-8)));
-                setVerifySuccess(false);
-              }
-              console.log("response", response);
-            }}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6"
+                if (Number(response) === cyrb53(user.username.slice(-8))) {
+                  setVerifySuccess(true);
+                  setStateInDB(u, github_username, collectionId, c, bc);
+                } else {
+                  // console.log("response received is");
+                  // console.log(Number(response));
+                  // console.log(cyrb53(user.username.slice(-8)));
+                  setVerifySuccess(false);
+                }
+                console.log("response", response);
+              }}
             >
-              <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
-            </svg>{" "}
-            Submit
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+              </svg>{" "}
+              Submit
+            </button>
+          ) : (
+            <span className="text-xs">🎉 All done!</span>
+          )}
         </label>
         {verifySuccess ? (
           <div className="toast toast-end mt-4">
