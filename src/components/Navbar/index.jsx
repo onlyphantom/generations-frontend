@@ -3,6 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../contexts/UserContext";
 
 import EnrollFormModal from "../EnrollFormModal";
+import ResetPasswordModal from "./ResetPasswordModal";
 
 export const scrollToSection = (sectionName) => {
   const section = document.querySelector(`#${sectionName}`);
@@ -163,51 +164,54 @@ const Navbar = () => {
           // >
           //   Log Out
           // </div>
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost rounded-btn">
-              Account
-            </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content p-2 text-sm shadow bg-base-100 rounded-box w-52 mt-4"
-            >
-              <li className="menu-title">
-                <span>Account Information</span>
-              </li>
-              <li className="text-slate-400">
-                <span className="hover:cursor-default">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  {user.username}
-                </span>
-              </li>
-              <ProMembershipStatus user={user} />
+          <>
+            <div className="dropdown dropdown-end">
+              <label tabIndex={0} className="btn btn-ghost rounded-btn">
+                Account
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content p-2 text-sm shadow bg-base-100 rounded-box w-52 mt-4"
+              >
+                <li className="menu-title">
+                  <span>Account Information</span>
+                </li>
+                <li className="text-slate-400">
+                  <span className="hover:cursor-default">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                    {user.username}
+                  </span>
+                </li>
+                <ProMembershipStatus user={user} />
 
-              {/* separator */}
-              <li className="divider"></li>
-              <li className="menu-title">
-                <span>Account Settings</span>
-              </li>
-              <li>
-                <span>Reset Password</span>
-              </li>
-              <li>
-                <span onClick={(event) => handleLogOut(event)}>Log Out</span>
-              </li>
-            </ul>
-          </div>
+                {/* separator */}
+                <li className="divider"></li>
+                <li className="menu-title">
+                  <span>Account Settings</span>
+                </li>
+                <li>
+                  <label htmlFor="reset">Reset Password</label>
+                </li>
+                <li>
+                  <span onClick={(event) => handleLogOut(event)}>Log Out</span>
+                </li>
+              </ul>
+            </div>
+            <ResetPasswordModal user={user}/>
+          </>
         ) : (
           <>
             <label className="btn btn-secondary" htmlFor="enroll">

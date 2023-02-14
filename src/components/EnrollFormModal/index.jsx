@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import MessageAlert from "./MessageAlert";
 
 const EnrollFormModal = () => {
   const [status, setStatus] = useState("signup");
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Sign up
   const [username, setUsername] = useState("");
@@ -14,8 +16,17 @@ const EnrollFormModal = () => {
   const [identifier, setIdentifier] = useState("");
   const [pass, setPass] = useState("");
 
+  // Forgot Password
+  const [emailForgot, setEmailForgot] = useState("");
+
+  // Reset Password
+  const [code, setCode] = useState("");
+  const [newPass, setNewPass] = useState("");
+  const [confirmPass, setConfirmPass] = useState("");
+
   const handleSignupSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
 
     let data = {
       username: username,
@@ -44,13 +55,15 @@ const EnrollFormModal = () => {
       })
       .catch((err) => {
         setMessage(err.message.toString());
-        setError(true);
+        setError("error");
         event.target.reset();
+        setLoading(false);
       });
   };
 
   const handleLoginSubmit = (event) => {
     event.preventDefault();
+    setLoading(true);
 
     let data = {
       identifier: identifier,
@@ -78,8 +91,83 @@ const EnrollFormModal = () => {
       })
       .catch((err) => {
         setMessage(err.message.toString());
-        setError(true);
+        setError("error");
         event.target.reset();
+        setLoading(false);
+      });
+  };
+
+  const handleForgotSubmit = (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    let data = {
+      email: emailForgot
+    };
+
+    fetch(`https://generationsapi.herokuapp.com/api/auth/forgot-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.data === null) {
+          throw new Error(`${data.error.message}`);
+        }
+        setStatus("reset");
+        setError("success");
+        setMessage("Email sent! Please check your email inbox or spam, and enter the credentials below.");
+        event.target.reset();
+        setLoading(false);
+      })
+      .catch((err) => {
+        setMessage(err.message.toString());
+        setError("error");
+        event.target.reset();
+        setLoading(false);
+      });
+  };
+
+  const handleResetSubmit = (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+    let data = {
+      code: code,
+      password: newPass,
+      passwordConfirmation: confirmPass
+    };
+
+    fetch(`https://generationsapi.herokuapp.com/api/auth/reset-password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.data === null) {
+          throw new Error(`Invalid data provided. Please try again.`);
+        }
+        setStatus("login");
+        setError("success");
+        setMessage("You have successfully reset your password!");
+        event.target.reset();
+        setLoading(false);
+      })
+      .catch((err) => {
+        setMessage(err.message.toString());
+        setError("error");
+        event.target.reset();
+        setLoading(false);
       });
   };
 
@@ -99,27 +187,22 @@ const EnrollFormModal = () => {
             <h2 className="text-4xl font-bold mb-4 text-center">
               Enroll in <span className="text-secondary">Fellowship</span>
             </h2>
-            <div className="text-center mb-6 text-gray-500 text-[16px]">
+            <div className="text-center mb-6 text-gray-500">
               <p className="text-lg">
                 Already have an account?{" "}
                 <span
-                  className="link link-secondary"
+                  className={`${loading ? "" : "link link-secondary"}`}
                   onClick={() => setStatus("login")}
                 >
                   Login here
                 </span>
               </p>
             </div>
-            <div
-              className={
-                error
-                  ? "bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative mb-6 text-xs"
-                  : "hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6 text-xs"
-              }
-              role="alert"
-            >
-              <span className="block sm:inline">{message}</span>
-            </div>
+            <MessageAlert 
+              error={error} 
+              setError={setError} 
+              message={message} 
+            />
             <form
               name="signup"
               method="post"
@@ -134,6 +217,8 @@ const EnrollFormModal = () => {
                     className="input w-full max-w-xs input-bordered"
                     placeholder="Username"
                     onChange={(event) => setUsername(event.target.value)}
+                    datacy= "signup-username"
+                    disabled={loading ? true : false}
                     required
                   />
                 </div>
@@ -145,6 +230,8 @@ const EnrollFormModal = () => {
                     className="input w-full input-bordered"
                     placeholder="Email address"
                     onChange={(event) => setEmail(event.target.value)}
+                    datacy= "signup-email"
+                    disabled={loading ? true : false}
                     required
                   />
                 </div>
@@ -156,23 +243,42 @@ const EnrollFormModal = () => {
                 className="input w-full  input-bordered mb-6"
                 placeholder="Password"
                 onChange={(event) => setPassword(event.target.value)}
+                datacy= "signup-password"
+                disabled={loading ? true : false}
                 required
               />
-              <label htmlFor="enroll">
-                <button
-                  type="submit"
-                  // data-mdb-ripple="true"
-                  // data-mdb-ripple-color="light"
-                  className="mb-6 w-full btn btn-secondary"
-                >
-                  Submit
-                </button>
-              </label>
+              <button
+                type="submit"
+                // data-mdb-ripple="true"
+                // data-mdb-ripple-color="light"
+                className="mb-3 w-full btn btn-secondary"
+                disabled={loading ? true : false}
+              >
+                Submit
+              </button>
+              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
             </form>
-            <div className="text-center text-gray-500 ">
-              <p className="mb-6 text-lg">or enroll with:</p>
-            </div>
-            <div className="flex justify-center">
+            <div className="divider text-lg text-center text-gray-500 mb-6">or</div>
+            <a
+              href="https://generationsapi.herokuapp.com/api/connect/google"
+              role="button"
+              className="w-full btn link-accent action:text-blue-800 transition duration-200 ease-in-out"
+              disabled={loading ? true : false}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 488 512"
+                className="w-4 h-4 mx-4"
+              >
+                <path
+                  fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                />
+              </svg>
+              <span>Enroll with Google</span>
+            </a>
+            
+            {/* <div className="flex justify-center">
               <a
                 href="#!"
                 role="button"
@@ -221,12 +327,12 @@ const EnrollFormModal = () => {
                   />
                 </svg>
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </>
     );
-  } else {
+  } else if (status === "login") {
     return (
       <>
         <input type="checkbox" id="enroll" className="modal-toggle" />
@@ -245,27 +351,22 @@ const EnrollFormModal = () => {
             <h2 className="text-3xl font-bold mb-4 text-center">
               Welcome back to <span className="text-secondary">Fellowship</span>
             </h2>
-            <div className="text-center mb-6 text-gray-500 text-[16px]">
+            <div className="text-center mb-6 text-gray-500">
               <p className="text-lg">
                 Don't have an account?{" "}
                 <span
-                  className="link link-primary"
+                  className={`${loading ? "" : "link link-primary"}`}
                   onClick={() => setStatus("signup")}
                 >
                   Enroll here
                 </span>
               </p>
             </div>
-            <div
-              className={
-                error
-                  ? "bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded relative mb-6 text-xs"
-                  : "hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6 text-xs"
-              }
-              role="alert"
-            >
-              <span className="block sm:inline">{message}</span>
-            </div>
+            <MessageAlert 
+              error={error} 
+              setError={setError} 
+              message={message} 
+            />
             <form
               name="login"
               method="post"
@@ -278,30 +379,65 @@ const EnrollFormModal = () => {
                 className="input w-full max-w input-bordered mb-6"
                 placeholder="Username or Email Address"
                 onChange={(event) => setIdentifier(event.target.value)}
+                datacy= "login-id"
+                disabled={loading ? true : false}
                 required
               />
               <input
                 type="password"
                 name="pass"
                 autoComplete="current-password"
-                className="input w-full max-w input-bordered mb-6"
+                className="input w-full max-w input-bordered"
                 placeholder="Password"
                 onChange={(event) => setPass(event.target.value)}
+                datacy= "login-password"
+                disabled={loading ? true : false}
                 required
               />
+              <div className="text-right text-gray-500 text-lg mb-6">
+                <p
+                  className={`${loading ? "" : "link"}`}
+                  onClick={() => setStatus("forgot")}
+                >
+                  Forgot Password?
+                </p>
+              </div>
               <button
                 type="submit"
                 // data-mdb-ripple="true"
                 // data-mdb-ripple-color="light"
-                className="mb-6 w-full btn btn-secondary"
+                className="mb-3 w-full btn btn-secondary"
+                disabled={loading ? true : false}
               >
                 Login to your account
               </button>
+              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
             </form>
-            <div className="text-center text-gray-500 text-[16px]">
+            <div className="divider text-lg text-center text-gray-500 mb-6">or</div>
+            <a
+              href="https://generationsapi.herokuapp.com/api/connect/google"
+              role="button"
+              className="w-full btn link-accent action:text-blue-800 transition duration-200 ease-in-out"
+              disabled={loading ? true : false}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 488 512"
+                className="w-4 h-4 mx-4"
+              >
+                <path
+                  fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+                />
+              </svg>
+              <span>Login with Google</span>
+            </a>
+
+            {/* <div className="text-center text-gray-500 text-[16px]">
               <p className="mb-6 text-lg">or login with:</p>
-            </div>
-            <div className="flex justify-center">
+            </div> */}
+
+            {/* <div className="flex justify-center">
               <a
                 href="#!"
                 role="button"
@@ -350,7 +486,157 @@ const EnrollFormModal = () => {
                   />
                 </svg>
               </a>
+            </div> */}
+          </div>
+        </div>
+      </>
+    );
+  } else if (status === "forgot") {
+    return (
+      <>
+        <input type="checkbox" id="enroll" className="modal-toggle" />
+        <div className="modal modal-center m:modal-middle">
+          <div className="modal-box w-10/12 md:w-6/12 max-w-4xl">
+            <label
+              htmlFor="enroll"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+              onClick={() => {
+                setStatus("signup");
+                setError(false);
+              }}
+            >
+              ✕
+            </label>
+            <h2 className="text-3xl font-bold mb-4 text-center">
+              Forgot <span className="text-secondary">Password</span>
+            </h2>
+            <div className="text-center mb-6 text-gray-500">
+              <p className="text-lg">
+                <span
+                  className={`${loading ? "" : "link link-secondary"}`}
+                  onClick={() => setStatus("login")}
+                >
+                  Back to login
+                </span>
+              </p>
             </div>
+            <MessageAlert 
+              error={error} 
+              setError={setError} 
+              message={message} 
+            />
+            <form
+              name="forgot"
+              method="post"
+              onSubmit={(event) => handleForgotSubmit(event)}
+            >
+              <input type="hidden" name="form-name" value="forgot" />
+              <input
+                type="email"
+                name="emailForgot"
+                className="input w-full input-bordered mb-6"
+                placeholder="Email address"
+                onChange={(event) => setEmailForgot(event.target.value)}
+                disabled={loading ? true : false}
+                required
+              />
+              <button
+                type="submit"
+                // data-mdb-ripple="true"
+                // data-mdb-ripple-color="light"
+                className="mb-3 w-full btn btn-secondary"
+                disabled={loading ? true : false}
+              >
+                Send Me An Email for Password Reset
+              </button>
+              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
+            </form>
+          </div>
+        </div>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <input type="checkbox" id="enroll" className="modal-toggle" />
+        <div className="modal modal-center m:modal-middle">
+          <div className="modal-box w-10/12 md:w-6/12 max-w-4xl">
+            <label
+              htmlFor="enroll"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+              onClick={() => setError(false)}
+            >
+              ✕
+            </label>
+            <h2 className="text-4xl font-bold mb-4 text-center">
+              Reset <span className="text-secondary">Password</span>
+            </h2>
+            <div className="text-center mb-6 text-gray-500">
+              <p className="text-lg">
+                Haven't got any email? {" "}
+                <span
+                  className={`${loading ? "" : "link link-secondary"}`}
+                  onClick={() => setStatus("forgot")}
+                >
+                   Re-enter email address
+                </span>
+              </p>
+            </div>
+            <MessageAlert 
+              error={error} 
+              setError={setError} 
+              message={message} 
+            />
+            <form
+              name="reset"
+              method="post"
+              onSubmit={(event) => handleResetSubmit(event)}
+            >
+              <input type="hidden" name="form-name" value="reset" />
+              <div className="grid md:grid-cols-2 md:gap-6">
+                <div className="mb-6">
+                  <input
+                    type="password"
+                    name="newpass"
+                    className="input w-full max-w-xs input-bordered"
+                    placeholder="New Password"
+                    onChange={(event) => setNewPass(event.target.value)}
+                    disabled={loading ? true : false}
+                    required
+                  />
+                </div>
+                <div className="mb-6">
+                  <input
+                    type="password"
+                    name="confirmpass"
+                    className="input w-full input-bordered"
+                    placeholder="Confirm Password"
+                    onChange={(event) => setConfirmPass(event.target.value)}
+                    disabled={loading ? true : false}
+                    required
+                  />
+                </div>
+              </div>
+              <input
+                type="password"
+                name="code"
+                className="input w-full  input-bordered mb-6"
+                placeholder="Code from the email"
+                onChange={(event) => setCode(event.target.value)}
+                disabled={loading ? true : false}
+                required
+              />
+              <button
+                type="submit"
+                // data-mdb-ripple="true"
+                // data-mdb-ripple-color="light"
+                className="mb-3 w-full btn btn-secondary"
+                disabled={loading ? true : false}
+              >
+                Reset Password
+              </button>
+              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
+            </form>
           </div>
         </div>
       </>
