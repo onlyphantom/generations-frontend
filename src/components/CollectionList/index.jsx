@@ -32,7 +32,7 @@ export const getBookmarkedCollections = (
           status: t.attributes.status,
           assigned_expert: t.attributes.expert.data,
           trayId: t.id,
-          completed_on: t.attributes.completedOn,
+          completed_on: t.attributes.completedOn || t.completed_on,
           tray_updated_at: t.attributes.updatedAt,
           tray_created_at: t.attributes.createdAt,
         };
