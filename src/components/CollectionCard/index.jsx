@@ -17,7 +17,7 @@ const CollectionCard = ({ attributes, id }) => {
   const [collection] = c;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
-
+  console.log(user)
   const dateRef = useRef(attributes.publishedAt);
 
   const { numArticles, numChallenges, numCourses, numVideos, tagsCount } =
@@ -115,7 +115,7 @@ const CollectionCard = ({ attributes, id }) => {
     );
   };
 
-  if (specialCollections[id] === "_onboarding" && !user.githubUsername) {
+  if (specialCollections[id] === "_onboarding" && !user?.githubUsername) {
     return (
       <div className="indicator">
         <span className="indicator-item badge bg-sky-500 text-black left-0">
