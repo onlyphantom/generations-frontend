@@ -17,7 +17,7 @@ const CollectionCard = ({ attributes, id }) => {
   const [collection] = c;
   const [bookmarkedCollections, setBookmarkedCollections] = bc;
   const [bookmarkIcon, setBookmarkIcon] = useState(false);
-  console.log(user)
+
   const dateRef = useRef(attributes.publishedAt);
 
   const { numArticles, numChallenges, numCourses, numVideos, tagsCount } =
