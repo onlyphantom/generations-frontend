@@ -115,7 +115,7 @@ const CollectionCard = ({ attributes, id }) => {
     );
   };
 
-  if (specialCollections[id] === "_onboarding" && !user.githubUsername) {
+  if (specialCollections[id] === "_onboarding" && !user?.githubUsername) {
     return (
       <div className="indicator">
         <span className="indicator-item badge bg-sky-500 text-black left-0">
