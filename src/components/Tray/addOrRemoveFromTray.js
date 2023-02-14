@@ -45,6 +45,7 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
                             status: "requested", 
                             assigned_expert: null, 
                             trayId: data.data.id,
+                            completed_on: data.data.attributes.completedOn,
                             tray_updated_at: data.data.attributes.updatedAt,
                             tray_created_at: data.data.attributes.createdAt
                         }
