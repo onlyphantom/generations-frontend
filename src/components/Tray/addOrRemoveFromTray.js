@@ -39,7 +39,6 @@ const addOrRemoveFromTray = (bookmarkedCollections, id, setBookmarkedCollections
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data)
                     setBookmarkedCollections([
                         ...bookmarkedCollections,
                         { ...newBookmarkedCollection, 
