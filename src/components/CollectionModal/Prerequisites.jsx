@@ -8,7 +8,6 @@ const Prerequisites = ({ prerequisites }) => {
           Pre-requisites
         </h3>
       </div>
-      {/* nice row of cards */}
       <ul className="grid grid-cols-3 gap-4">
         {prerequisites.map((prerequisite, i) => (
           <li key={i}>
@@ -25,15 +24,17 @@ const Prerequisites = ({ prerequisites }) => {
               </h2>
 
               <div className="grid grid-cols-3 gap-4 mt-2">
-                <div className="col-span-1 overflow-hidden">
-                  <div className="w-24 flex items-center">
-                    <img
-                      src={prerequisite.opengraph.imageSecureUrl}
-                      alt={prerequisite.title}
-                      className="h-auto"
-                    />
+                {prerequisite.opengraph.imageSecureUrl && (
+                  <div className="col-span-1 overflow-hidden">
+                    <div className="w-24 flex items-center">
+                      <img
+                        src={prerequisite.opengraph.imageSecureUrl}
+                        alt={prerequisite.title}
+                        className="h-auto"
+                      />
+                    </div>
                   </div>
-                </div>
+                )}
 
                 <div className="col-span-2 text-sm text-white text-left">
                   <a href={prerequisite.url} target="_blank" rel="noreferrer">

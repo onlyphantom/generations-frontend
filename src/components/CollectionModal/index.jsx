@@ -49,7 +49,7 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
             >
               ✕
             </label>
-            <ListOfBookmarks bookmarks={bookmarks} />
+            <ListOfBookmarks allbookmarks={bookmarks} />
 
             {submitBtnStatus === "shownform" ? (
               <SubmissionForm collectionId={collectionId}></SubmissionForm>

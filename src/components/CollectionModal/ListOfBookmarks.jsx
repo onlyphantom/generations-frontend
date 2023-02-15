@@ -1,8 +1,22 @@
+import { useState, useEffect } from "react";
+
 import BookmarkCardCached from "../BookmarkCardCached";
 import Empty from "../../icons/Empty";
 import Prerequisites from "./Prerequisites";
 
-const ListOfBookmarks = ({ bookmarks }) => {
+const ListOfBookmarks = ({ allbookmarks }) => {
+  const [bookmarks, setBookmarks] = useState(allbookmarks);
+  const [challenge, setChallenge] = useState([]);
+
+  useEffect(() => {
+    setBookmarks(
+      allbookmarks.filter((x) => x.attributes.medium !== "challenge")
+    );
+    setChallenge(
+      allbookmarks.filter((x) => x.attributes.medium === "challenge")
+    );
+  }, [allbookmarks]);
+
   if (bookmarks.length === 0) {
     return (
       <>
@@ -23,15 +37,26 @@ const ListOfBookmarks = ({ bookmarks }) => {
       .map((bookmark, i) => (
         <div
           key={i}
-          className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-2 
-                    border-secondary odd:text-sky-300 even:text-accent"
+          className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-2 border-secondary"
         >
           <BookmarkCardCached data={bookmark} key={i} />
           {bookmark.attributes.dependsOn.length > 0 && (
             <Prerequisites prerequisites={bookmark.attributes.dependsOn} />
           )}
         </div>
-      ));
+      ))
+      .concat(
+        <>
+          {challenge.length > 0 && (
+            <div className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-2 border-secondary">
+              <BookmarkCardCached data={challenge[0]} />
+              <Prerequisites
+                prerequisites={challenge[0].attributes.dependsOn}
+              />
+            </div>
+          )}
+        </>
+      );
   }
 };
 
