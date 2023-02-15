@@ -14,20 +14,20 @@ const OGSnippet = ({
   tagsCount,
 }) => {
   return (
-    <div className="card lg:card-side bg-base-100 shadow-xl rounded-xl overflow-hidden">
-      <div className="columns-xs md:flex">
+    <div className="card lg:card-side bg-base-100 shadow-xl rounded-xl overflow-hidden w-full">
+      <div className="columns-xs md:flex w-1/2">
         {imgUrl && (
-          <figure className="shrink-0">
+          <div className="w-80 flex items-center">
             <img
               src={imgUrl}
               alt={title}
-              className="h-48 w-full object-cover md:h-full md:w-48"
-              // style={{ width: 420 }}
+              // className="h-48 w-full object-cover"
+              className="rounded-r-2xl shadow-lg h-auto"
             />
-          </figure>
+          </div>
         )}
       </div>
-      <div className="card-body text-sm text-white text-left p-6">
+      <div className="w-full card-body text-sm text-white text-left p-6">
         <div className="uppercase tracking-wide text-sm text-secondary font-semibold">
           {medium}
         </div>
@@ -47,7 +47,7 @@ const OGSnippet = ({
           ))}
         </div> */}
         <div className="flex flex-row">
-          <div className="basis-2/5">
+          <div className="basis-3/5">
             <div className="tooltip" data-tip="Effort Points">
               <CardEffortPoints
                 effort={effort}

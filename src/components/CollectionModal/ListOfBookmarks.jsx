@@ -1,5 +1,6 @@
 import BookmarkCardCached from "../BookmarkCardCached";
 import Empty from "../../icons/Empty";
+import Prerequisites from "./Prerequisites";
 
 const ListOfBookmarks = ({ bookmarks }) => {
   if (bookmarks.length === 0) {
@@ -26,6 +27,9 @@ const ListOfBookmarks = ({ bookmarks }) => {
                     border-secondary odd:text-sky-300 even:text-accent"
         >
           <BookmarkCardCached data={bookmark} key={i} />
+          {bookmark.attributes.dependsOn.length > 0 && (
+            <Prerequisites prerequisites={bookmark.attributes.dependsOn} />
+          )}
         </div>
       ));
   }
