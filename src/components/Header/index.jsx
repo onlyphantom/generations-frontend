@@ -15,8 +15,8 @@ export default function Header() {
                   purposefully curated.
                 </span>
               </h1>
-              <article className="prose">
-                Supertype Fellowship is a paid, peer-to-peer community for data
+              <article className="prose font-medium">
+                Supertype Fellowship is a peer-to-peer community for data
                 science practitioners and software engineers who want to develop
                 product development skills by immersing themselves with other
                 industry-minded developers. <br />

@@ -25,6 +25,7 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
         return response.json();
       })
       .then((data) => {
+        console.log(data.data);
         setBookmarks(data.data);
         setLoading(false);
       });
@@ -59,7 +60,6 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
                 {showSubmitButton ? (
                   <button
                     className="btn btn-outline btn-success"
-                    // onClick={() => setSubmitBtnStatus()}
                     onClick={() => {
                       if (
                         user &&
