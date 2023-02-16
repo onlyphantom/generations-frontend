@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import IntentRow from "./IntentRow";
 import RespondFromIntent from "./RespondFromIntent";
 

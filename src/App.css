@@ -34,4 +34,5 @@
 
 .maintitle {
   font-size: 5rem;
+  white-space: nowrap;
 }

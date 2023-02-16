@@ -48,7 +48,13 @@ const HomepageForm = () => {
             Subscribe to our newsletter 💌
           </label>
         </div>
-        <button type="submit" className="w-full btn btn-info hover:bg-sky-500">
+        <button
+          type="submit"
+          className="w-full btn btn-info hover:bg-sky-500 border-4
+          bg-gradient-to-r from-purple-400 to-pink-200 text-transparent bg-clip-text
+          hover:from-purple-500 hover:to-pink-300 hover:border-success transition duration-200
+          "
+        >
           Enquire about upcoming cohort
         </button>
       </form>

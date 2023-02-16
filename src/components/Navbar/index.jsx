@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
+import Info from "../../icons/Info";
 
 import EnrollFormModal from "../EnrollFormModal";
 import ResetPasswordModal from "./ResetPasswordModal";
@@ -32,6 +33,16 @@ const ProMembershipStatus = ({ user }) => {
           Fellowship+ <br />
           Expires: {user.proExpiry}
         </span>
+        <div className="menu-title">
+          <button
+            className="btn btn-outline btn-success btn-sm border-success"
+            onClick={() => {
+              scrollToSection("fellowship-plus");
+            }}
+          >
+            Renew Fellowship+
+          </button>
+        </div>
       </li>
     );
   } else {
@@ -50,7 +61,7 @@ const ProMembershipStatus = ({ user }) => {
               clipRule="evenodd"
             />
           </svg>
-          <span>Upgrade to Pro</span>
+          <span>Upgrade to Fellowship+</span>
         </button>
       </li>
     );
@@ -77,7 +88,7 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-base-100">
-      <div className="navbar-start text-sm">
+      <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg
@@ -112,8 +123,11 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost normal-case text-xl">
-            Fellowship
+          <label tabIndex={0} className="btn btn-ghost normal-case text-3xl">
+            {/* <span className="bg-gradient-to-r from-purple-400 to-pink-60 text-transparent bg-clip-text"> */}
+            <span className="bg-gradient-to-r from-purple-400 to-pink-200 text-transparent bg-clip-text">
+              fellowship
+            </span>
           </label>
           <ul
             tabIndex={0}
@@ -153,10 +167,6 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {/* <p className="text-xs text-gray-500">
-          {JSON.stringify(user)} | {user.token ? "Logged in" : "Not logged in"}
-        </p> */}
-
         {loggedIn ? (
           // <div
           //   className="btn btn-secondary"
@@ -178,21 +188,7 @@ const Navbar = () => {
                 </li>
                 <li className="text-slate-400">
                   <span className="hover:cursor-default">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                      />
-                    </svg>
-                    {user.username}
+                    <Info /> {user.username}
                   </span>
                 </li>
                 <ProMembershipStatus user={user} />
@@ -210,7 +206,7 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-            <ResetPasswordModal user={user}/>
+            <ResetPasswordModal user={user} />
           </>
         ) : (
           <>

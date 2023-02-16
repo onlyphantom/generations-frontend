@@ -4,6 +4,7 @@ import Mentor from "../components/Mentor";
 import Question from "../components/Question";
 import Tray from "../components/Tray";
 import Steps from "../components/Steps";
+import FellowshipPlus from "../components/FellowshipPlus";
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <Mentor />
       <Question />
       <Tray />
+      <FellowshipPlus />
     </>
   );
 }

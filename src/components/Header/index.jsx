@@ -5,12 +5,13 @@ export default function Header() {
   return (
     <section className="mb-0 background-radial-gradient overflow-hidden">
       <Navbar />
-      <div className="px-6 py-12 lg:py-24 md:px-12 text-center lg:text-left">
-        <div className="container mx-auto xl:px-12 text-gray-200">
+      <div className="px-6 py-12 lg:py-24 text-center lg:text-left">
+        <div className="container mx-auto xl:px-4 text-gray-200">
           <div className="grid lg:grid-cols-2 gap-12 flex items-center">
             <div className="mt-12 lg:mt-0" style={{ zIndex: 10 }}>
-              <h1 className="maintitle font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                Direct Paths <br />
+              <h1 className="font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                <span className="maintitle">Direct Paths </span>
+                <br />
                 <span
                   className="text-4xl underline font-semibold"
                   style={{ display: "table-cell" }}
@@ -18,7 +19,7 @@ export default function Header() {
                   to Employable Engineering Skills
                 </span>
               </h1>
-              <article className="prose font-medium">
+              <article className="prose font-medium text-lg">
                 Supertype Fellowship is a peer-to-peer community for data
                 science practitioners and software engineers who want to develop
                 product development skills by immersing themselves with other
@@ -43,7 +44,7 @@ export default function Header() {
                 className="absolute rounded-full shadow-lg"
               ></div>
               <div id="radius-shape-2" className="absolute shadow-lg"></div>
-              <div className="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-8 border-solid border-2 border-secondary">
+              <div className="block rounded-lg shadow-lg bg-glass px-6 py-12 md:px-8 border-solid border-4 border-secondary">
                 <HomepageForm />
               </div>
             </div>
