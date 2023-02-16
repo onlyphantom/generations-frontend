@@ -26,7 +26,7 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
     } else if (collectionStatus === "completed") {
       setSubmitBtnStatus("completed");
     }
-  }, [collectionStatus, user]);
+  }, [collectionStatus, user, collectionId]);
 
   useEffect(() => {
     setLoading(true);
