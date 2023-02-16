@@ -25,6 +25,7 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
       setShowSubmitBtn(true);
     } else if (collectionStatus === "completed") {
       setSubmitBtnStatus("completed");
+      setShowSubmitBtn(false);
     }
   }, [collectionStatus, user, collectionId]);
 
