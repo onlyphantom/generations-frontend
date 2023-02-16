@@ -5,10 +5,28 @@ import GitHubVerify from "./GitHubVerify";
 import SubmissionForm from "./SubmissionForm";
 import { specialCollections } from "../../utils/constants";
 
-const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
+const CollectionModal = ({ collectionId, user, collectionStatus }) => {
   const [loading, setLoading] = useState(false);
   const [bookmarks, setBookmarks] = useState([]);
+  const [showSubmitBtn, setShowSubmitBtn] = useState(false);
   const [submitBtnStatus, setSubmitBtnStatus] = useState("premark");
+
+  useEffect(() => {
+    // Special collections can be submitted wtihout a mentor
+    if (
+      collectionId in specialCollections &&
+      user?.token &&
+      collectionStatus !== "completed"
+    ) {
+      // setSubmitBtnStatus("github_verify");
+      setShowSubmitBtn(true);
+    } else if (collectionStatus === "ongoing") {
+      setSubmitBtnStatus("submit");
+      setShowSubmitBtn(true);
+    } else if (collectionStatus === "completed") {
+      setSubmitBtnStatus("completed");
+    }
+  }, [collectionStatus, user]);
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +43,6 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data.data);
         setBookmarks(data.data);
         setLoading(false);
       });
@@ -57,7 +74,7 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
               <GitHubVerify user={user} collectionId={collectionId} />
             ) : (
               <div className="modal-action">
-                {showSubmitButton ? (
+                {showSubmitBtn ? (
                   <button
                     className="btn btn-outline btn-success"
                     onClick={() => {
@@ -71,11 +88,15 @@ const CollectionModal = ({ collectionId, showSubmitButton, user }) => {
                       }
                     }}
                   >
-                    Mark Challenge as Completed
+                    Proof of Completion
+                  </button>
+                ) : submitBtnStatus === "completed" ? (
+                  <button className="btn text-success btn-success btn-disabled">
+                    Completed 🎉
                   </button>
                 ) : (
                   <label className="btn btn-disabled hover:cursor-default">
-                    Mark Challenge as Completed
+                    Proof of Completion
                   </label>
                 )}
 

@@ -99,16 +99,7 @@ const CollectionCard = ({ attributes, id }) => {
 
         <CollectionModal
           collectionId={id}
-          showSubmitButton={
-            // Collections title with _ are "special" collections
-            // that can be submitted without a mentor
-            (attributes?.title.startsWith("_") &&
-              selectedTray?.status !== "completed" &&
-              user?.token) ||
-            selectedTray?.status === "ongoing"
-              ? true
-              : false
-          }
+          collectionStatus={selectedTray?.status}
           user={attributes?.title.startsWith("_") ? user : null}
         />
       </div>
@@ -118,7 +109,7 @@ const CollectionCard = ({ attributes, id }) => {
   if (specialCollections[id] === "_onboarding" && !user?.githubUsername) {
     return (
       <div className="indicator w-full">
-        <span className="indicator-item badge bg-sky-500 text-black left-0">
+        <span className="indicator-item badge bg-sky-700  left-0 uppercase p-3">
           🛫 start here
         </span>
         {/* main card block */}

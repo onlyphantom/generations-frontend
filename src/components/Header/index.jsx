@@ -9,10 +9,13 @@ export default function Header() {
         <div className="container mx-auto xl:px-12 text-gray-200">
           <div className="grid lg:grid-cols-2 gap-12 flex items-center">
             <div className="mt-12 lg:mt-0" style={{ zIndex: 10 }}>
-              <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                Learning Paths <br />
-                <span className="underline font-semibold">
-                  purposefully curated.
+              <h1 className="maintitle font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+                Direct Paths <br />
+                <span
+                  className="text-4xl underline font-semibold"
+                  style={{ display: "table-cell" }}
+                >
+                  to Employable Engineering Skills
                 </span>
               </h1>
               <article className="prose font-medium">
