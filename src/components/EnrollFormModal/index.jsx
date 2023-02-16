@@ -102,7 +102,7 @@ const EnrollFormModal = () => {
     setLoading(true);
 
     let data = {
-      email: emailForgot
+      email: emailForgot,
     };
 
     fetch(`https://generationsapi.herokuapp.com/api/auth/forgot-password`, {
@@ -121,7 +121,9 @@ const EnrollFormModal = () => {
         }
         setStatus("reset");
         setError("success");
-        setMessage("Email sent! Please check your email inbox or spam, and enter the credentials below.");
+        setMessage(
+          "Email sent! Please check your email inbox or spam, and enter the credentials below."
+        );
         event.target.reset();
         setLoading(false);
       })
@@ -140,7 +142,7 @@ const EnrollFormModal = () => {
     let data = {
       code: code,
       password: newPass,
-      passwordConfirmation: confirmPass
+      passwordConfirmation: confirmPass,
     };
 
     fetch(`https://generationsapi.herokuapp.com/api/auth/reset-password`, {
@@ -198,11 +200,7 @@ const EnrollFormModal = () => {
                 </span>
               </p>
             </div>
-            <MessageAlert 
-              error={error} 
-              setError={setError} 
-              message={message} 
-            />
+            <MessageAlert error={error} setError={setError} message={message} />
             <form
               name="signup"
               method="post"
@@ -217,7 +215,7 @@ const EnrollFormModal = () => {
                     className="input w-full max-w-xs input-bordered"
                     placeholder="Username"
                     onChange={(event) => setUsername(event.target.value)}
-                    datacy= "signup-username"
+                    datacy="signup-username"
                     disabled={loading ? true : false}
                     required
                   />
@@ -230,7 +228,7 @@ const EnrollFormModal = () => {
                     className="input w-full input-bordered"
                     placeholder="Email address"
                     onChange={(event) => setEmail(event.target.value)}
-                    datacy= "signup-email"
+                    datacy="signup-email"
                     disabled={loading ? true : false}
                     required
                   />
@@ -243,7 +241,7 @@ const EnrollFormModal = () => {
                 className="input w-full  input-bordered mb-6"
                 placeholder="Password"
                 onChange={(event) => setPassword(event.target.value)}
-                datacy= "signup-password"
+                datacy="signup-password"
                 disabled={loading ? true : false}
                 required
               />
@@ -256,9 +254,17 @@ const EnrollFormModal = () => {
               >
                 Submit
               </button>
-              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
+              <progress
+                className={`${
+                  loading
+                    ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    : "hidden"
+                } progress w-48`}
+              ></progress>
             </form>
-            <div className="divider text-lg text-center text-gray-500 mb-6">or</div>
+            <div className="divider text-lg text-center text-gray-500 mb-6">
+              or
+            </div>
             <a
               href="https://generationsapi.herokuapp.com/api/connect/google"
               role="button"
@@ -277,7 +283,7 @@ const EnrollFormModal = () => {
               </svg>
               <span>Enroll with Google</span>
             </a>
-            
+
             {/* <div className="flex justify-center">
               <a
                 href="#!"
@@ -362,11 +368,7 @@ const EnrollFormModal = () => {
                 </span>
               </p>
             </div>
-            <MessageAlert 
-              error={error} 
-              setError={setError} 
-              message={message} 
-            />
+            <MessageAlert error={error} setError={setError} message={message} />
             <form
               name="login"
               method="post"
@@ -379,7 +381,7 @@ const EnrollFormModal = () => {
                 className="input w-full max-w input-bordered mb-6"
                 placeholder="Username or Email Address"
                 onChange={(event) => setIdentifier(event.target.value)}
-                datacy= "login-id"
+                datacy="login-id"
                 disabled={loading ? true : false}
                 required
               />
@@ -390,7 +392,7 @@ const EnrollFormModal = () => {
                 className="input w-full max-w input-bordered"
                 placeholder="Password"
                 onChange={(event) => setPass(event.target.value)}
-                datacy= "login-password"
+                datacy="login-password"
                 disabled={loading ? true : false}
                 required
               />
@@ -411,9 +413,17 @@ const EnrollFormModal = () => {
               >
                 Login to your account
               </button>
-              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
+              <progress
+                className={`${
+                  loading
+                    ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    : "hidden"
+                } progress w-48`}
+              ></progress>
             </form>
-            <div className="divider text-lg text-center text-gray-500 mb-6">or</div>
+            <div className="divider text-lg text-center text-gray-500 mb-6">
+              or
+            </div>
             <a
               href="https://generationsapi.herokuapp.com/api/connect/google"
               role="button"
@@ -520,11 +530,7 @@ const EnrollFormModal = () => {
                 </span>
               </p>
             </div>
-            <MessageAlert 
-              error={error} 
-              setError={setError} 
-              message={message} 
-            />
+            <MessageAlert error={error} setError={setError} message={message} />
             <form
               name="forgot"
               method="post"
@@ -547,9 +553,15 @@ const EnrollFormModal = () => {
                 className="mb-3 w-full btn btn-secondary"
                 disabled={loading ? true : false}
               >
-                Send Me An Email for Password Reset
+                Email me a password reset link
               </button>
-              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
+              <progress
+                className={`${
+                  loading
+                    ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    : "hidden"
+                } progress w-48`}
+              ></progress>
             </form>
           </div>
         </div>
@@ -573,20 +585,16 @@ const EnrollFormModal = () => {
             </h2>
             <div className="text-center mb-6 text-gray-500">
               <p className="text-lg">
-                Haven't got any email? {" "}
+                Haven't got any email?{" "}
                 <span
                   className={`${loading ? "" : "link link-secondary"}`}
                   onClick={() => setStatus("forgot")}
                 >
-                   Re-enter email address
+                  Re-enter email address
                 </span>
               </p>
             </div>
-            <MessageAlert 
-              error={error} 
-              setError={setError} 
-              message={message} 
-            />
+            <MessageAlert error={error} setError={setError} message={message} />
             <form
               name="reset"
               method="post"
@@ -635,7 +643,13 @@ const EnrollFormModal = () => {
               >
                 Reset Password
               </button>
-              <progress className={`${loading ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" : "hidden"} progress w-48`}></progress>
+              <progress
+                className={`${
+                  loading
+                    ? "absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                    : "hidden"
+                } progress w-48`}
+              ></progress>
             </form>
           </div>
         </div>

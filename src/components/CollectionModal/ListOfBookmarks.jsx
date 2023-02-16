@@ -17,7 +17,7 @@ const ListOfBookmarks = ({ allbookmarks }) => {
     );
   }, [allbookmarks]);
 
-  if (bookmarks.length === 0) {
+  if ((bookmarks.length === 0) & (challenge.length === 0)) {
     return (
       <>
         <Empty />
@@ -50,9 +50,11 @@ const ListOfBookmarks = ({ allbookmarks }) => {
           {challenge.length > 0 && (
             <div className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-2 border-secondary">
               <BookmarkCardCached data={challenge[0]} />
-              <Prerequisites
-                prerequisites={challenge[0].attributes.dependsOn}
-              />
+              {challenge[0].attributes.dependsOn.length > 0 && (
+                <Prerequisites
+                  prerequisites={challenge[0].attributes.dependsOn}
+                />
+              )}
             </div>
           )}
         </>
