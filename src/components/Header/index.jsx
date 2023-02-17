@@ -10,7 +10,7 @@ export default function Header() {
           <div className="grid lg:grid-cols-2 gap-12 flex items-center">
             <div className="mt-12 lg:mt-0" style={{ zIndex: 10 }}>
               <h1 className="font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                <span className="maintitle">Direct Paths </span>
+                <span className="lg:maintitle text-4xl">Direct Paths </span>
                 <br />
                 <span
                   className="text-4xl underline font-semibold"

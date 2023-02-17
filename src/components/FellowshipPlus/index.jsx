@@ -15,7 +15,7 @@ const index = () => {
       <section className="relative overflow-hidden w-full">
         <div className="relative z-10 container mx-auto">
           <div className="flex flex-wrap lg:items-center -m-8">
-            <div className="w-full md:w-1/2 p-4">
+            <div className="w-full md:w-1/2 p-8">
               <div>
                 <h2 className="my-4 text-4xl font-bold font-heading tracking-px-n leading-none">
                   Fellowship+
@@ -45,9 +45,9 @@ const index = () => {
               </div>
             </div>
             <div className="w-full md:w-1/2 py-8">
-              <div className="border md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
+              <div className="border border-secondary md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
                 <div className="p-9">
-                  <span className="mb-7 inline-block text-sm text-gray-500 font-semibold uppercase tracking-px">
+                  <span className="mb-7 inline-block text-sm text-gray-400 font-semibold uppercase tracking-px">
                     Features included:
                   </span>
                   <ul>
@@ -83,28 +83,29 @@ const index = () => {
                     </li>
                   </ul>
                 </div>
-                <div className="p-9 bg-white">
-                  <div className="flex flex-wrap -m-8 items-center">
-                    <div className="sm:w-2/3 p-4">
-                      <span className="mb-2 inline-block text-sm text-gray-500 font-semibold uppercase tracking-px">
-                        Fellowship Pro
+                <div className="p-9">
+                  <div className="flex flex-wrap -m-8 items-center mx-auto">
+                    <div className="sm:w-1/2 p-4 text-sm md:text-md">
+                      <span className="mb-2 inline-block text-sm text-gray-400 font-semibold uppercase tracking-px">
+                        Fellowship Plus
                       </span>
-                      <p className="text-gray-900 font-semibold leading-normal">
+                      <br />
+                      <span className="text-white font-semibold leading-normal">
                         Unlock all features
-                      </p>
+                      </span>
                     </div>
                     {/* <div className="w-full sm:w-1/2 p-8"> */}
-                    <div className="sm:w-1/3 p-4">
+                    <div className="w-1/2 p-4 ">
                       <div className="sm:max-w-max ml-auto">
                         <p className="font-bold">
                           <span className="text-5xl leading-tight tracking-px-n text-secondary">
                             $12
                           </span>
-                          <span className="text-lg text-gray-500 leading-snug tracking-px-n">
+                          <span className="text-lg text-gray-400 leading-snug tracking-px-n">
                             /mo
                           </span>
                         </p>
-                        <p className="font-medium text-gray-500 leading-relaxed text-sm">
+                        <p className="font-medium text-gray-400 leading-relaxed text-sm">
                           Billed anually
                         </p>
                       </div>
@@ -112,7 +113,7 @@ const index = () => {
                   </div>
                   <div className="mt-9">
                     <button
-                      className="py-4 px-5 w-full text-white font-semibold rounded-xl focus:ring btn-secondary hover:bg-indigo-700 transition ease-in-out duration-200"
+                      className="py-4 px-5 w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
                       type="button"
                     >
                       Upgrade to Fellowship+

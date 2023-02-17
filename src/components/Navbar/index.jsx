@@ -123,7 +123,10 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost normal-case text-3xl">
+          <label
+            tabIndex={0}
+            className="btn btn-ghost normal-case text-lg md:text-3xl invisible lg:visible"
+          >
             {/* <span className="bg-gradient-to-r from-purple-400 to-pink-60 text-transparent bg-clip-text"> */}
             <span className="bg-gradient-to-r from-purple-400 to-pink-200 text-transparent bg-clip-text">
               fellowship
