@@ -27,12 +27,7 @@ const Scoreboard = () => {
   }, [bookmarkedCollections]);
 
   useEffect(() => {
-    // when user signs up, they get 1 point for signing up
-    let totalEffort = 1;
-    completedCollections.forEach((collection) => {
-      totalEffort += collection.attributes.totalEffort;
-    });
-    setTotalEffortEarned(totalEffort);
+    setTotalEffortEarned(user.expendedEffort);
 
     // calculate points per week
     const today = new Date();
@@ -43,9 +38,9 @@ const Scoreboard = () => {
     );
     setWeekSinceCreated(weeksSinceUserCreated);
 
-    const pointsPerWeek = (totalEffort / weeksSinceUserCreated).toFixed(2);
+    const pointsPerWeek = (user.expendedEffort / weeksSinceUserCreated).toFixed(2);
     setPointsPerWeek(pointsPerWeek);
-  }, [completedCollections, user.createdAt]);
+  }, [completedCollections, user.createdAt, user.expendedEffort]);
 
   return (
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
