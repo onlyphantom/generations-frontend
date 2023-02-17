@@ -92,7 +92,7 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
                     Proof of Completion
                   </button>
                 ) : submitBtnStatus === "completed" ? (
-                  <button className="btn text-success btn-success btn-disabled">
+                  <button className="btn text-success btn-success btn-disabled btn-sm md:btn-lg">
                     Completed 🎉
                   </button>
                 ) : (
