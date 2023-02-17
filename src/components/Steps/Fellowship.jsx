@@ -97,7 +97,7 @@ const Fellowship = () => {
       val.push([
         x.tray_created_at,
         "bookmarked",
-        x.attributes.title,
+        x.attributes?.title,
         x.id,
         null,
       ])
@@ -106,9 +106,9 @@ const Fellowship = () => {
       val.push([
         x.tray_updated_at,
         x.status,
-        x.attributes.title,
+        x.attributes?.title,
         x.id,
-        x.attributes.totalEffort,
+        x.attributes?.totalEffort,
         x.assigned_expert?.attributes.name,
       ])
     );
@@ -116,7 +116,7 @@ const Fellowship = () => {
 
     // drop "requested" events
     val = val.filter((x) => x[1] !== "requested");
-    val.sort((a, b) => b[0].localeCompare(a[0]));
+    val.sort((a, b) => b[0]?.localeCompare(a[0]));
 
     // map first element of each array in val to timeAgo
     val = val.map((x) => {
@@ -134,7 +134,7 @@ const Fellowship = () => {
     // when user signs up, they get 1 point automatically
     let totalEffort = 1;
     completedCollections.forEach((collection) => {
-      totalEffort += collection.attributes.totalEffort;
+      totalEffort += collection.attributes?.totalEffort;
     });
     setTotalEffortEarned(totalEffort);
   }, [completedCollections]);

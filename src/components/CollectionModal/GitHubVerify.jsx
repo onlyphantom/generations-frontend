@@ -3,7 +3,8 @@ import { useState, useContext } from "react";
 import { cyrb53 } from "../../utils/crypt";
 
 import { UserContext } from "../../contexts/UserContext";
-import addOrRemoveFromTray from "../Tray/addOrRemoveFromTray";
+
+import completeTray from "../Tray/completeTray";
 
 const readTxtFromGithub = async (github_username, fellowship_username) => {
   const response = await fetch(
@@ -19,83 +20,12 @@ const readTxtFromGithub = async (github_username, fellowship_username) => {
   return response.text();
 };
 
-const setStateInDB = async (u, github_username, collectionId, c, bc) => {
-  const [collection] = c;
-  const [user, setUser] = u;
-  const [bookmarkedCollections, setBookmarkedCollections] = bc;
-
-  await fetch(`https://generationsapi.herokuapp.com/api/users/me/info`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${user?.token}`,
-    },
-    body: JSON.stringify({
-      githubUsername: github_username,
-    }),
-  }).then((res) =>
-    setUser((prev) => {
-      return {
-        ...prev,
-        githubUsername: github_username,
-      };
-    })
-  );
-
-  // also need to add a Tray to user in DB with status being 'completed'
-  const trayIndex = bookmarkedCollections.findIndex(
-    (t) => t.id === collectionId
-  );
-
-  if (trayIndex === -1) {
-    addOrRemoveFromTray(
-      bookmarkedCollections,
-      collectionId,
-      setBookmarkedCollections,
-      user,
-      collection
-    );
-  }
-
-  await fetch(
-    `https://generationsapi.herokuapp.com/api/trays/collections/${collectionId}`,
-    {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${user?.token}`,
-      },
-      body: JSON.stringify({
-        data: {
-          status: "completed",
-        },
-      }),
-    }
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      const updatedData = {
-        status: "completed",
-        tray_updated_at: data.data?.attributes?.updatedAt,
-      };
-      setBookmarkedCollections((prev) => [
-        ...prev.splice(
-          trayIndex === -1 ? bookmarkedCollections.length - 1 : trayIndex,
-          1
-        ),
-        Object.assign(
-          {},
-          prev[trayIndex === -1 ? bookmarkedCollections.length - 1 : trayIndex],
-          updatedData
-        ),
-      ]);
-    });
-};
 
 const GitHubVerify = ({ user, collectionId }) => {
-  const { u, c, bc } = useContext(UserContext);
+  const { u, c, bc, ta } = useContext(UserContext);
   const [github_username, setGithub_username] = useState("");
   const [verifySuccess, setVerifySuccess] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   return (
     <div>
@@ -145,12 +75,14 @@ const GitHubVerify = ({ user, collectionId }) => {
             className="input input-bordered w-3/4 input-secondary"
             value={github_username}
             onChange={(e) => setGithub_username(e.target.value)}
-            disabled={verifySuccess ? true : false}
+            disabled={verifySuccess || loading ? true : false}
           />
           {verifySuccess !== true ? (
             <button
               className="btn btn-success"
-              onClick={async () => {
+              onClick={async (e) => {
+                e.preventDefault();
+                setLoading(true);
                 const response = await readTxtFromGithub(
                   github_username,
                   user.username
@@ -158,15 +90,17 @@ const GitHubVerify = ({ user, collectionId }) => {
 
                 if (Number(response) === cyrb53(user.username.slice(-8))) {
                   setVerifySuccess(true);
-                  setStateInDB(u, github_username, collectionId, c, bc);
+                  completeTray(bc, c, ta, u, collectionId, github_username);
                 } else {
                   // console.log("response received is");
                   // console.log(Number(response));
                   // console.log(cyrb53(user.username.slice(-8)));
                   setVerifySuccess(false);
                 }
+                setLoading(false);
                 console.log("response", response);
               }}
+              disabled={loading ? true : false}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
