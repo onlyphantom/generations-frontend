@@ -9,7 +9,7 @@ const Curation = ({
 }) => {
   if (bookmarkedCollections.length > 0) {
     return (
-      <div className="grid grid-cols-2 gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         {/* <div className="my-4 w-3/4 max-w-2xl"> */}
         <TrayCourses
           bookmarkedCollections={bookmarkedCollections}
@@ -20,9 +20,9 @@ const Curation = ({
       </div>
     );
   } else {
-    return(
+    return (
       <div className="flex items-center justify-center mt-4">
-          <NoBookmarksYet />
+        <NoBookmarksYet />
       </div>
     );
   }

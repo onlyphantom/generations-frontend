@@ -17,7 +17,7 @@ const CardEffortPoints = ({ effort, extraClass }) => {
 
     elemToBeRendered.push(
       <>
-        <div className="flex mt-4 max-w-4xl flex-wrap items-center gap-2 overflow-x-hidden">
+        <div className="flex my-4 max-w-4xl flex-wrap items-center gap-2 overflow-x-hidden">
           {Array.from({ length: n }, (_, i) => (
             // <span key={i} className={`badge badge-xs mx-1 ${color}`}></span>
             <div key={i} className={`badge badge-xs ${extraClass}`}></div>

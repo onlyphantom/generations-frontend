@@ -98,7 +98,7 @@ export const LessonCardFrame = ({ children, lesson, wide }) => {
         <div className="gap-1">
           <div
             className={`grid gap-1 items-center ${
-              wide ? "grid-cols-2" : "grid-cols-3"
+              wide ? "grid-cols-1 md:grid-cols-2" : "grid-cols-3"
             }`}
           >
             <div className={`text-left ${!wide && "md:col-span-2 col-span-3"}`}>

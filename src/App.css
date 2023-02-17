@@ -36,3 +36,10 @@
   font-size: 5rem;
   white-space: nowrap;
 }
+
+/* handle small screens */
+@media (max-width: 600px) {
+  .maintitle {
+    font-size: 3rem;
+  }
+}
