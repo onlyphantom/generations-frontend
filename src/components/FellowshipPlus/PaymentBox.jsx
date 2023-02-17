@@ -99,7 +99,7 @@ const PaymentBox = () => {
                 type="button"
               >
                 {/* proExpiry + 365 days */}
-                Extend Fellowship+ to {date365FromExpiry.current}
+                Extend Fellowship+ to {date365FromExpiry.current.toString()}
               </button>
               <span className="block text-center text-gray-400 text-sm mt-4">
                 Your current Fellowship+ expires in{" "}
