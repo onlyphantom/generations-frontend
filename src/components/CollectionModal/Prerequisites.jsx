@@ -8,7 +8,7 @@ const Prerequisites = ({ prerequisites }) => {
           Pre-requisites
         </h3>
       </div>
-      <ul className="grid grid-cols-3 gap-4">
+      <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {prerequisites.map((prerequisite, i) => (
           <li key={i}>
             <div className="card-side shadow-lg bg-base-100 w-full p-2">

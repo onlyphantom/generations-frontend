@@ -96,12 +96,15 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
                     Completed 🎉
                   </button>
                 ) : (
-                  <label className="btn btn-disabled hover:cursor-default">
+                  <button className="btn btn-disabled hover:cursor-default btn-sm md:btn-lg">
                     Proof of Completion
-                  </label>
+                  </button>
                 )}
 
-                <label htmlFor={collectionId} className="btn btn-outline">
+                <label
+                  htmlFor={collectionId}
+                  className="btn btn-outline btn-sm md:btn-lg"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6"
