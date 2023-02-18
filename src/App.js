@@ -44,43 +44,33 @@ function App() {
 
             setUser({
               "token": token,
-              "createdAt": userData?.createdAt,
-              "username": userData?.username,
-              "expendedEffort": userData?.expendedEffort,
-              "proUser": userData?.proUser,
-              "proExpiry": userData?.proExpiry,
-              "earnings": userData?.earnings,
-              "target": userData?.target,
-              "watchlist": userData?.watchlist,
-              "githubUsername": userData?.githubUsername
+              ...userData
             });
           } else {
             setUser({
               "token": token,
-              "createdAt": userData?.createdAt,
-              "username": userData?.username,
-              "expendedEffort": userData?.expendedEffort,
-              "proUser": userData?.proUser,
-              "proExpiry": userData?.proExpiry,
-              "earnings": userData?.earnings,
-              "target": userData?.target,
-              "watchlist": userData?.watchlist,
-              "githubUsername": userData?.githubUsername
+              ...userData
             });
           }
         })
     } else {
       setUser({
-        "token": null,
-        "createdAt": null,
-        "username": null,
-        "expendedEffort": null,
-        "proUser": null,
-        "proExpiry": null,
-        "earnings": null,
-        "target": null,
-        "watchlist": null,
-        "githubUsername": null
+        token: null,
+        blocked: null,
+        confirmed: null,
+        createdAt: null,
+        earnings: null,
+        email: null,
+        expendedEffort: null,
+        githubUsername: null,
+        id: null,
+        proExpiry: null,
+        proUser: null,
+        provider: null,
+        target: null,
+        updatedAt: null,
+        username: null,
+        watchlist: null
       });
     }
 

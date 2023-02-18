@@ -116,8 +116,7 @@ const Fellowship = () => {
 
     // drop "requested" events
     val = val.filter((x) => x[1] !== "requested");
-    val.sort((a, b) => b[0]?.localeCompare(a[0]));
-
+    val.sort((a, b) => new Date(b[0]) - new Date(a[0]) || b[1]?.localeCompare(a[1]));
     // map first element of each array in val to timeAgo
     val = val.map((x) => {
       x[0] = new Date(x[0]).toDateString().replace(/\s+/, ", ");
