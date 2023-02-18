@@ -1,8 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
-// import { Elements } from "@stripe/react-stripe-js";
-// import { loadStripe } from "@stripe/stripe-js";
+import { getStripe } from "../../utils/getStripe";
 
 import Checkmark from "../../icons/Checkmark";
 
@@ -21,12 +20,31 @@ const PaymentBox = () => {
       );
 
       date365FromExpiry.current = date365FromNow.toISOString().substring(0, 10);
-      console.log(date365FromExpiry.current);
     }
     return () => {
       date365FromExpiry.current = new Date();
     };
   }, [user]);
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+    const { error } = await stripe.redirectToCheckout({
+      mode: "subscription",
+      lineItems: [
+        {
+          price: process.env.REACT_APP_PUBLIC_STRIPE_PRICE_ID,
+          quantity: 1,
+        },
+      ],
+      successUrl: `${window.location.origin}/success`,
+      cancelUrl: `${window.location.origin}/cancel`,
+      // if user is logged in, take email from user
+      customerEmail: user && user?.email ? user.email : null,
+    });
+    if (error) {
+      console.warn("Error:", error);
+    }
+  };
 
   return (
     <div className="border border-secondary md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
@@ -47,7 +65,9 @@ const PaymentBox = () => {
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
-            <p className="font-semibold leading-normal">Learn to Earn</p>
+            <p className="font-semibold leading-normal">
+              Paid Project Opportunities
+            </p>
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
@@ -79,7 +99,7 @@ const PaymentBox = () => {
             <div className="sm:max-w-max ml-auto">
               <p className="font-bold">
                 <span className="text-5xl leading-tight tracking-px-n text-secondary">
-                  $12
+                  $13
                 </span>
                 <span className="text-lg text-gray-400 leading-snug tracking-px-n">
                   /mo
@@ -97,8 +117,8 @@ const PaymentBox = () => {
               <button
                 className="py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
                 type="button"
+                onClick={handleCheckout}
               >
-                {/* proExpiry + 365 days */}
                 Extend Fellowship+ to {date365FromExpiry.current.toString()}
               </button>
               <span className="block text-center text-gray-400 text-sm mt-4">

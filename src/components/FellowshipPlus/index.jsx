@@ -30,10 +30,10 @@ const index = () => {
                   <br />
                   <h4>Additional Support</h4>
                   We offer a Fellowship+ membership to pair you with a team of
-                  mentor and a community of peers to help you navigate this
-                  journey. This membership fee is collected to compensate for
-                  the time and effort of all the mentors who are contributing to
-                  your development goals.
+                  mentors and a community of peers to help you navigate this
+                  journey. The subscription fee compensates for the time and
+                  effort of all the mentors who are contributing to your
+                  development goals.
                   <br />
                   We also use the funds to cover the costs of running the
                   platform and to provide you with the best experience possible.

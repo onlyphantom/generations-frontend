@@ -38,7 +38,9 @@ const Scoreboard = () => {
     );
     setWeekSinceCreated(weeksSinceUserCreated);
 
-    const pointsPerWeek = (user.expendedEffort / weeksSinceUserCreated).toFixed(2);
+    const pointsPerWeek = (user.expendedEffort / weeksSinceUserCreated).toFixed(
+      2
+    );
     setPointsPerWeek(pointsPerWeek);
   }, [completedCollections, user.createdAt, user.expendedEffort]);
 
@@ -67,7 +69,7 @@ const Scoreboard = () => {
         ) : user.earnings.length > 0 ? (
           EarningBoard(user)
         ) : (
-          `You are not eligible for the learn to earn program yet.
+          `You are not eligible for paid project opportunities yet.
           Complete a few lessons and check back soon.`
         )}
       </div>
