@@ -168,7 +168,7 @@ const CardActions = ({
           <CompleteIcon />
         </button>
       ) : trayStatus === "ongoing" || trayStatus === "preaccept" ? (
-        <div className="tooltip" data-tip="Already enrolled in this lesson.">
+        <div className="tooltip" data-tip="Already enrolled in this elective.">
           <button className="btn btn-square btn-disabled">
             <svg
               xmlns="http://www.w3.org/2000/svg"

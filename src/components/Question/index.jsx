@@ -36,8 +36,11 @@ const Question = () => {
 
   return (
     <section className="mb-32 mx-4 text-center lg:text-left justify-center items-center flex flex-col">
-      <h2 className="text-3xl font-bold mb-12 text-center">
-        Ask <span className="text-info">FellowshipBot</span>
+      <h2 className="text-4xl font-bold mb-12 text-center">
+        Ask{" "}
+        <span className="font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+          FellowshipBot
+        </span>
       </h2>
       <div className="form-control w-full">
         <label className="label flex flex-col justify-center items-center">

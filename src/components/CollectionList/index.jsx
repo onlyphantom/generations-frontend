@@ -85,8 +85,11 @@ export default function BookmarkList() {
         id="curations"
         className="relative flex min-h-screen flex-col justify-center py-6 px-4 sm:py-12"
       >
-        <h2 className="text-3xl font-bold mb-12 text-center">
-          Practical electives, <span className="text-info">curated.</span>
+        <h2 className="text-4xl font-bold mb-12 text-center">
+          Practical electives,{" "}
+          <span className="font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+            curated.
+          </span>
         </h2>
         <ul className="columns-1 xl:columns-3 gap-6 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit text-center">
           {!loading ? (

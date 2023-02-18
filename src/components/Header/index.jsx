@@ -21,9 +21,11 @@ export default function Header() {
               </h1>
               <article className="prose font-medium text-lg">
                 Supertype Fellowship is a peer-to-peer community for data
-                science practitioners and software engineers who want to develop
-                product development skills by immersing themselves with other
-                industry-minded developers. <br />
+                science practitioners and software engineers looking to develop
+                product development skills — by immersing themselves with other
+                industry practitioners in a self-directed, elective-based
+                learning environment.
+                <br />
                 <br />
                 We're currently invite-only, and admissions are subjected to a
                 quick screening process by the awesome team at{" "}

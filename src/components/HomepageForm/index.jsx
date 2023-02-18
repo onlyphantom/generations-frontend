@@ -33,19 +33,16 @@ const HomepageForm = () => {
           required
         />
         <div className="form-check flex justify-center mb-6 text-[16px]">
-          <label
-            className="form-check-label inline-block"
-            htmlFor="newsletterChecked"
-          >
+          <label className="cursor-pointer label" htmlFor="newsletterChecked">
             <input
-              className="form-check-input h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+              className="form-check-input checkbox checkbox-secondary rounded-sm focus:outline-none transition duration-200 align-top mr-2"
               type="checkbox"
               value="newsletter"
               id="newsletterChecked"
               name="newsletterChecked"
               // checked
             />
-            Subscribe to our newsletter 💌
+            <span className="label-text">Subscribe to our newsletter 💌</span>
           </label>
         </div>
         <button

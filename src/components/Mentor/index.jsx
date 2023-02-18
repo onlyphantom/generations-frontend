@@ -15,8 +15,11 @@ const Mentor = () => {
 
   return (
     <section className="mb-32 mx-4 text-center lg:text-left">
-      <h2 className="text-3xl font-bold mb-12 text-center">
-        Meet the <span className="text-info">experts.</span>
+      <h2 className="text-4xl font-bold mb-12 text-center">
+        Meet the{" "}
+        <span className="font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
+          experts.
+        </span>
       </h2>
 
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">

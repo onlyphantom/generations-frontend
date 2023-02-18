@@ -22,9 +22,9 @@ const MentorAssignmentAlert = () => {
           />
         </svg>
         <span className="text-left font-light">
-          Confirming a mentor assignment will queue the lesson and represents an
-          actual time investment between you and your mentor. <br />
-          Please make sure you are <b>ready to commit</b> to the lesson and be
+          Confirming a mentor assignment will queue the elective and represents
+          an actual time investment between you and your mentor. <br />
+          Please make sure you are <b>ready to commit</b> to the elective and be
           respectful of your mentor's time.
         </span>
       </div>
@@ -52,8 +52,8 @@ const NoPendingLesson = () => {
         <div>
           <h3 className="font-bold">No Pending Collections yet.</h3>
           <div className="text-xs">
-            <b>Bookmark a lesson</b> in
-            Curations and it will appear in this section.
+            <b>Bookmark a lesson</b> in Curations and it will appear in this
+            section.
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@ const MentorAssignment = () => {
     <div className="grid grid-cols-3 gap-4 text-white text-sm text-center font-bold leading-6 mt-4">
       <div className="p-4 rounded-lg px-2 col-span-3 lg:col-span-1">
         <h3 className="text-lg text-left mb-4">Ongoing Lessons</h3>
-        
+
         {user.proUser ? (
           <>
             <div className="divider"></div>
@@ -124,11 +124,10 @@ const MentorAssignment = () => {
               </>
             )}
 
-            {ongoingLessons.current?.length === 0 && preacceptLessons.current?.length === 0 && (
-              <div>
-                No ongoing collections yet.
-              </div>
-            )}
+            {ongoingLessons.current?.length === 0 &&
+              preacceptLessons.current?.length === 0 && (
+                <div>No ongoing collections yet.</div>
+              )}
           </>
         ) : (
           <></>

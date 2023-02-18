@@ -20,7 +20,7 @@ const MentorProfile = ({ mentor }) => {
 
 const AlreadyAssignedBtn = () => {
   return (
-    <div className="tooltip" data-tip="You have a mentor for this lesson.">
+    <div className="tooltip" data-tip="You have a mentor for this elective.">
       <button disabled className="btn gap-2 btn-disabled btn-block">
         <span className="flex items-center">
           <svg

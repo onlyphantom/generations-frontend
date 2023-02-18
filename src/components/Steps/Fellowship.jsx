@@ -116,7 +116,9 @@ const Fellowship = () => {
 
     // drop "requested" events
     val = val.filter((x) => x[1] !== "requested");
-    val.sort((a, b) => new Date(b[0]) - new Date(a[0]) || b[1]?.localeCompare(a[1]));
+    val.sort(
+      (a, b) => new Date(b[0]) - new Date(a[0]) || b[1]?.localeCompare(a[1])
+    );
     // map first element of each array in val to timeAgo
     val = val.map((x) => {
       x[0] = new Date(x[0]).toDateString().replace(/\s+/, ", ");
@@ -161,7 +163,7 @@ const Fellowship = () => {
             {tagAwards && Object.keys(tagAwards).length > 0
               ? `You have earned ${
                   Object.keys(tagAwards).length
-                } badge(s) 🥇 from ${completedCollections.length} lessons.`
+                } badge(s) 🥇 from ${completedCollections.length} electives.`
               : `You have not earned any badges yet.`}
             <br />
             You have earned {totalEffortEarned} effort points up to date.
