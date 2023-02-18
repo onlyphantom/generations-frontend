@@ -39,7 +39,7 @@ const PaymentBox = () => {
       successUrl: `${window.location.origin}/success`,
       cancelUrl: `${window.location.origin}/cancel`,
       // if user is logged in, take email from user
-      customerEmail: user && user?.email ? user.email : null,
+      // customerEmail: user && user?.email ? user.email : "",
     });
     if (error) {
       console.warn("Error:", error);
@@ -135,6 +135,7 @@ const PaymentBox = () => {
             <button
               className="py-4 px-5 w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
               type="button"
+              onClick={handleCheckout}
             >
               Upgrade to Fellowship+
             </button>
