@@ -100,8 +100,7 @@ export default function BookmarkList() {
               .map((collection, i) => (
                 <li
                   key={i}
-                  className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-2 
-                    odd:border-sky-500 even:border-accent odd:text-sky-300 even:text-accent"
+                  className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-4 odd:border-sky-500 even:border-accent odd:text-sky-300 even:text-accent"
                 >
                   <CollectionCard
                     attributes={collection.attributes}

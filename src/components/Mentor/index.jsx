@@ -25,7 +25,7 @@ const Mentor = () => {
       <div className="grid md:grid-cols-3 gap-6 xl:gap-x-12">
         {experts.map((expert) => (
           <div
-            className="mb-6 bg-glass lg:mb-0 p-6 rounded-lg rounded-box rounded-lg border-solid border-2 odd:border-sky-500 even:border-accent odd:text-sky-300 even:text-white"
+            className="mb-6 bg-glass lg:mb-0 p-6 rounded-lg rounded-box rounded-lg border-4 odd:border-sky-500 even:border-accent odd:text-sky-300 even:text-white"
             key={expert.id}
           >
             <div className="flex flex-row items-center">

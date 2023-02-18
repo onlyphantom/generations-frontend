@@ -54,7 +54,7 @@ const Question = () => {
           ref={promptRef}
           type="text"
           placeholder="Tell me about Supertype?"
-          className="input input-bordered input-accent"
+          className="input input-bordered input-accent border-4"
           onKeyDown={handleKeyDown}
         />
       </div>

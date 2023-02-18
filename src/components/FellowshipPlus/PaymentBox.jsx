@@ -47,7 +47,7 @@ const PaymentBox = () => {
   };
 
   return (
-    <div className="border border-secondary md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
+    <div className="border-4 border-secondary md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
       <div className="p-9">
         <span className="mb-7 inline-block text-sm text-gray-400 font-semibold uppercase tracking-px">
           Features included:

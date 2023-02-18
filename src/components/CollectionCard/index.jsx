@@ -61,10 +61,7 @@ const CollectionCard = ({ attributes, id }) => {
 
   const mainCardBlock = () => {
     return (
-      <div
-        className="block rounded-lg shadow-lg bg-base-200 p-6 bookmark-card  
-      "
-      >
+      <div className="rounded-lg bg-base-200 p-6 bookmark-card">
         <h5 className="text-2xl font-bold mb-2">
           <label htmlFor={id} className="link">
             {attributes.title}
@@ -109,7 +106,7 @@ const CollectionCard = ({ attributes, id }) => {
   if (specialCollections[id] === "_onboarding" && !user?.githubUsername) {
     return (
       <div className="indicator w-full">
-        <span className="indicator-item badge bg-sky-700  left-0 uppercase p-3">
+        <span className="indicator-item badge indicator-item badge left-0 uppercase p-3 font-extrabold tracking-tight mb-12 bg-gradient-to-r from-purple-600 to-pink-800 left-0 uppercase p-3">
           🛫 start here
         </span>
         {/* main card block */}
