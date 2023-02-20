@@ -22,10 +22,10 @@ function Home() {
           content="Peer-to-peer learning community for data science practitioners and software engineers."
         />
         <link rel="canonical" href="https://fellowship.supertype.ai" />
-        <script
+        {/* <script
           type="text/javascript"
           src="https://generationsapi.herokuapp.com/plugins/strapi-stripe/static/stripe.js"
-        ></script>
+        ></script> */}
       </Helmet>
       <Header />
       <CollectionList />
