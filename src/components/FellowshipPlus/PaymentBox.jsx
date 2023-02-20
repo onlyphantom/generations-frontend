@@ -26,6 +26,23 @@ const PaymentBox = () => {
     };
   }, [user]);
 
+  const handleCheckout2 = async () => {
+    // get the following endpoint
+    // " https://generationsapi.herokuapp.com/strapi-stripe/getProduct/1"
+    // from the strapi-stripe plugin
+    const response = await fetch(
+      "https://generationsapi.herokuapp.com/strapi-stripe/getProduct/1",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const data = await response.json();
+    console.log("data", data);
+  };
+
   const handleCheckout = async () => {
     const stripe = await getStripe();
     const { error } = await stripe.redirectToCheckout({
@@ -99,14 +116,14 @@ const PaymentBox = () => {
             <div className="sm:max-w-max ml-auto">
               <p className="font-bold">
                 <span className="text-5xl leading-tight tracking-px-n text-secondary">
-                  $13
+                  $156
                 </span>
                 <span className="text-lg text-gray-400 leading-snug tracking-px-n">
-                  /mo
+                  /yr
                 </span>
               </p>
               <p className="font-medium text-gray-400 leading-relaxed text-sm">
-                Billed anually
+                ~$13 per month
               </p>
             </div>
           </div>
@@ -135,7 +152,7 @@ const PaymentBox = () => {
             <button
               className="py-4 px-5 w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
               type="button"
-              onClick={handleCheckout}
+              onClick={handleCheckout2}
             >
               Upgrade to Fellowship+
             </button>
