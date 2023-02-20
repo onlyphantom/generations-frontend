@@ -82,7 +82,7 @@ const EnrollFormModal = () => {
       })
       .then((data) => {
         if (data.data === null) {
-          throw new Error(`${data.error.message}. Please try again.`);
+          throw new Error(`Invalid credentials. Please try again.`);
         }
         sessionStorage.setItem("userSession", data.jwt);
         event.target.reset();
