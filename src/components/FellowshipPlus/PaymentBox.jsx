@@ -165,7 +165,7 @@ const PaymentBox = () => {
               data-email={user?.email ? user?.email : ""} 
               data-url="https://generationsapi.herokuapp.com"
             > 
-              Extend Fellowship+ to {date365FromExpiry.current.toString()}
+              Upgrade to Fellowship+
             </button>
             // <button
             //   className="py-4 px-5 w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
