@@ -11,7 +11,7 @@ const BookmarkCardCached = ({ data }) => {
         subtitle={data.attributes?.opengraph?.title}
         description={
           data.attributes.details ||
-          truncate(data.attributes.opengraph.description, 360)
+          truncate(data.attributes.opengraph?.description, 360)
         }
         url={data.attributes?.opengraph?.url || data.attributes.url}
         imgUrl={

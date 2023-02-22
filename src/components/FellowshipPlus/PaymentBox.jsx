@@ -26,43 +26,6 @@ const PaymentBox = () => {
     };
   }, [user]);
 
-  // const handleCheckout2 = async () => {
-  //   // get the following endpoint
-  //   // " https://generationsapi.herokuapp.com/strapi-stripe/getProduct/1"
-  //   // from the strapi-stripe plugin
-  //   const response = await fetch(
-  //     "https://generationsapi.herokuapp.com/strapi-stripe/getProduct/2",
-  //     {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   console.log("data", data);
-  // };
-
-  // const handleCheckout = async () => {
-  //   const stripe = await getStripe();
-  //   const { error } = await stripe.redirectToCheckout({
-  //     mode: "subscription",
-  //     lineItems: [
-  //       {
-  //         price: process.env.REACT_APP_PUBLIC_STRIPE_PRICE_ID,
-  //         quantity: 1,
-  //       },
-  //     ],
-  //     successUrl: `${window.location.origin}/payments/success`,
-  //     cancelUrl: `${window.location.origin}`,
-  //     // if user is logged in, take email from user
-  //     customerEmail: user && user?.email ? user.email : "",
-  //   });
-  //   if (error) {
-  //     console.warn("Error:", error);
-  //   }
-  // };
-
   return (
     <div className="border-4 border-secondary md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
       <div className="p-9">
@@ -140,13 +103,6 @@ const PaymentBox = () => {
               > 
                 Extend Fellowship+ to {date365FromExpiry.current.toString()}
               </button>
-              {/* <button
-                className="py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
-                type="button"
-                onClick={handleCheckout}
-              >
-                Extend Fellowship+ to {date365FromExpiry.current.toString()}
-              </button> */}
               <span className="block text-center text-gray-400 text-sm mt-4">
                 Your current Fellowship+ expires in{" "}
                 {JSON.stringify(
@@ -157,23 +113,26 @@ const PaymentBox = () => {
                 days
               </span>
             </>
+          ) : (user?.token && !user.proUser ? (
+            <button 
+              className="SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200" 
+              type="button"  
+              data-id="2" 
+              data-email={user?.email} 
+              data-url="https://generationsapi.herokuapp.com/"
+            > 
+              Upgrade to Fellowship+
+            </button>
           ) : (
             <button 
               className="SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200" 
               type="button"  
               data-id="2" 
-              data-url="https://generationsapi.herokuapp.com"
+              data-url="https://generationsapi.herokuapp.com/"
             > 
-              Upgrade to Fellowship+
+              Enroll in Fellowship+
             </button>
-            // <button
-            //   className="py-4 px-5 w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200"
-            //   type="button"
-            //   onClick={handleCheckout}
-            // >
-            //   Upgrade to Fellowship+
-            // </button>
-          )}
+          ))}
         </div>
       </div>
     </div>
