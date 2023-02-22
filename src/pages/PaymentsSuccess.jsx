@@ -9,16 +9,16 @@ function PaymentsSuccess() {
     const navigate = useNavigate();
     const params = useParams();
     const { u } = useContext(UserContext);
-    const [user, setUser] = u;
+    const [,setUser] = u;
 
     useEffect(() => {
-
+        const token = sessionStorage.getItem("userSession");
         const today = new Date();
         fetch(`${backendURL}/users/add-subscription`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${user?.token}`,
+                Authorization: `Bearer ${token}`,
             },
             body: JSON.stringify({
                 sessionId: params?.sessionId,
@@ -37,7 +37,7 @@ function PaymentsSuccess() {
                     });
                 }
             });
-    }, [params.sessionId, user?.token, setUser])
+    }, [params.sessionId, setUser])
         
 
     return (
