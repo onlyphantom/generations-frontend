@@ -30,15 +30,14 @@ function PaymentsSuccess() {
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.status === 200) {
-                    setUser((prev) => {
-                        return {
-                            ...prev,
-                            proUser: data.proUser,
-                            proExpiry: data.proExpiry
-                        };
-                    });
-                }
+                setUser((prev) => {
+                    return {
+                        ...prev,
+                        proUser: data.proUser,
+                        proExpiry: data.proExpiry
+                    };
+                });
+
                 setLoading(false);
             });
     }, [params, setUser])
