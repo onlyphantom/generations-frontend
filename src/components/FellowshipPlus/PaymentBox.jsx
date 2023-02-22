@@ -124,14 +124,12 @@ const PaymentBox = () => {
               Upgrade to Fellowship+
             </button>
           ) : (
-            <button 
-              className="SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200" 
-              type="button"  
-              data-id="2" 
-              data-url="https://generationsapi.herokuapp.com"
+            <label
+              className="py-3 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn btn-secondary transition ease-in-out duration-200" 
+              htmlFor="enroll"
             > 
               Enroll in Fellowship+
-            </button>
+            </label>     
           ))}
         </div>
       </div>
