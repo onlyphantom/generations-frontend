@@ -15,6 +15,8 @@ function App() {
   const [bookmarkedCollections, setBookmarkedCollections] = useState([]);
   const [tagAwards, setTagAwards] = useState({});
   const [experts, setExperts] = useState([]);
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get("sessionId");
 
   useEffect(() => {
     if (token) {
@@ -31,7 +33,7 @@ function App() {
           console.log("userData", userData)
           // check that the user's proExpiry date is not in the past, if it is, 
           // set proUser to False through an API call
-          if (new Date(userData.proExpiry) < new Date()) {
+          if (new Date(userData.proExpiry) < new Date() && !sessionId) {
             userData.proUser = false;
             userData.proExpiry = null;
             // make API CALL to update user's proUser and proExpiry
@@ -78,7 +80,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => setExperts(data.data));
 
-  }, [token, setUser]);
+  }, [token, setUser, sessionId]);
 
   return (
     <UserContext.Provider
