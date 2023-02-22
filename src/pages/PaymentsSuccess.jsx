@@ -14,29 +14,32 @@ function PaymentsSuccess() {
     useEffect(() => {
         const token = sessionStorage.getItem("userSession");
         const today = new Date();
-        fetch(`${backendURL}/users/add-subscription`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-            body: JSON.stringify({
-                sessionId: params?.sessionId,
-                paymentDate: today.toISOString().slice(0,10)
-            }),
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.status === 200) {
-                    setUser((prev) => {
-                        return {
-                            ...prev,
-                            proUser: data.proUser,
-                            proExpiry: data.proExpiry
-                        };
-                    });
-                }
-            });
+
+        if(params?.sessionId){
+            fetch(`${backendURL}/users/add-subscription`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    sessionId: params?.sessionId,
+                    paymentDate: today.toISOString().slice(0,10)
+                }),
+            })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.status === 200) {
+                        setUser((prev) => {
+                            return {
+                                ...prev,
+                                proUser: data.proUser,
+                                proExpiry: data.proExpiry
+                            };
+                        });
+                    }
+                });
+        }
     }, [params.sessionId, setUser])
         
 
