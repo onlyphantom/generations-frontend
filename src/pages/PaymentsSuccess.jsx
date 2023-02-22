@@ -1,9 +1,44 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
+
+const backendURL = "https://generationsapi.herokuapp.com/api";
 
 function PaymentsSuccess() {
 
-  const navigate = useNavigate();
+    const navigate = useNavigate();
+    const params = useParams();
+    const { u } = useContext(UserContext);
+    const [user, setUser] = u;
+
+    useEffect(() => {
+
+        const today = new Date();
+        fetch(`${backendURL}/users/add-subscription`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${user?.token}`,
+            },
+            body: JSON.stringify({
+                sessionId: params?.sessionId,
+                paymentDate: today.toISOString().slice(0,10)
+            }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.status === 200) {
+                    setUser((prev) => {
+                        return {
+                            ...prev,
+                            proUser: data.proUser,
+                            proExpiry: data.proExpiry
+                        };
+                    });
+                }
+            });
+    }, [params.sessionId, user?.token, setUser])
+        
 
     return (
         <div className="w-3/12 mx-auto">
