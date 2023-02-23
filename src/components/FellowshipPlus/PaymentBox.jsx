@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 
 import { UserContext } from "../../contexts/UserContext";
 // import { getStripe } from "../../utils/getStripe";
@@ -9,22 +9,22 @@ const PaymentBox = () => {
   const { u } = useContext(UserContext);
   const [user] = u;
 
-  const date365FromExpiry = useRef(new Date());
-  const oneDay = 24 * 60 * 60 * 1000;
+  // const date365FromExpiry = useRef(new Date());
+  // const oneDay = 24 * 60 * 60 * 1000;
 
-  useEffect(() => {
-    if (user?.proExpiry) {
-      let currentDate = new Date(user.proExpiry);
-      let date365FromNow = new Date(
-        currentDate.setFullYear(currentDate.getFullYear() + 1)
-      );
+  // useEffect(() => {
+  //   if (user?.proExpiry) {
+  //     let currentDate = new Date(user.proExpiry);
+  //     let date365FromNow = new Date(
+  //       currentDate.setFullYear(currentDate.getFullYear() + 1)
+  //     );
 
-      date365FromExpiry.current = date365FromNow.toISOString().substring(0, 10);
-    }
-    return () => {
-      date365FromExpiry.current = new Date();
-    };
-  }, [user]);
+  //     date365FromExpiry.current = date365FromNow.toISOString().substring(0, 10);
+  //   }
+  //   return () => {
+  //     date365FromExpiry.current = new Date();
+  //   };
+  // }, [user]);
 
   return (
     <div className="border-4 border-secondary md:max-w-md mx-auto overflow-hidden rounded-3xl shadow-8xl">
@@ -92,7 +92,22 @@ const PaymentBox = () => {
           </div>
         </div>
         <div className="mt-9">
-          {user?.proExpiry && new Date(user.proExpiry) > Date.now() ? (
+          <button 
+            className={`${user?.token && !user?.proUser ? "" : "hidden "}SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200`} 
+            type="button"  
+            data-id="2" 
+            data-email={user?.email} 
+            data-url="https://generationsapi.herokuapp.com"
+          > 
+            Upgrade to Fellowship+
+          </button>
+          <label
+            className={`${!user?.token ? "" : "hidden "}py-3 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn btn-secondary transition ease-in-out duration-200`} 
+            htmlFor="enroll"
+          > 
+            Enroll in Fellowship+
+          </label>  
+          {/* {user?.proExpiry && new Date(user.proExpiry) > Date.now() ? (
             <>
               <button 
                 className="SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200" 
@@ -113,24 +128,7 @@ const PaymentBox = () => {
                 days
               </span>
             </>
-          ) : (user?.token && !user.proUser ? (
-            <button 
-              className="SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200" 
-              type="button"  
-              data-id="2" 
-              data-email={user?.email} 
-              data-url="https://generationsapi.herokuapp.com"
-            > 
-              Upgrade to Fellowship+
-            </button>
-          ) : (
-            <label
-              className="py-3 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn btn-secondary transition ease-in-out duration-200" 
-              htmlFor="enroll"
-            > 
-              Enroll in Fellowship+
-            </label>     
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
