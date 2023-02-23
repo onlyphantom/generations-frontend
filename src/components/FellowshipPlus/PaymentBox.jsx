@@ -1,14 +1,6 @@
-import { useContext } from "react";
-
-import { UserContext } from "../../contexts/UserContext";
-// import { getStripe } from "../../utils/getStripe";
-
 import Checkmark from "../../icons/Checkmark";
 
-const PaymentBox = () => {
-  const { u } = useContext(UserContext);
-  const [user] = u;
-
+const PaymentBox = ({ user }) => {
   // const date365FromExpiry = useRef(new Date());
   // const oneDay = 24 * 60 * 60 * 1000;
 

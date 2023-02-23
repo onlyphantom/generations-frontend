@@ -33,7 +33,7 @@ const ProMembershipStatus = ({ user }) => {
           Fellowship+ <br />
           Expires: {user.proExpiry}
         </span>
-        <div className="menu-title">
+        {/* <div className="menu-title">
           <button
             className="btn btn-outline btn-success btn-sm border-success"
             onClick={() => {
@@ -42,7 +42,7 @@ const ProMembershipStatus = ({ user }) => {
           >
             Renew Fellowship+
           </button>
-        </div>
+        </div> */}
       </li>
     );
   } else {
