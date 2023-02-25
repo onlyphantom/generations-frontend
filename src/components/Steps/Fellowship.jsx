@@ -288,7 +288,7 @@ const Fellowship = () => {
             </div>
           </li>
         </ol>
-        {JSON.stringify(timelineEvents)}
+        {/* {JSON.stringify(timelineEvents)} */}
       </div>
     </div>
   );

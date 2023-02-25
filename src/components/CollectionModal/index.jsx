@@ -4,6 +4,7 @@ import ListOfBookmarks from "./ListOfBookmarks";
 import GitHubVerify from "./GitHubVerify";
 import SubmissionForm from "./SubmissionForm";
 import { specialCollections } from "../../utils/constants";
+import Alert from "../../icons/Alert";
 
 const CollectionModal = ({ collectionId, user, collectionStatus }) => {
   const [loading, setLoading] = useState(false);
@@ -11,6 +12,41 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
   const [showSubmitBtn, setShowSubmitBtn] = useState(false);
   const [submitBtnStatus, setSubmitBtnStatus] = useState("premark");
   const [challenge, setChallenge] = useState(false);
+
+  const ProofOfCompletionBtn = () => {
+    if (
+      !user.githubUsername &&
+      specialCollections[collectionId] !== "_onboarding"
+    ) {
+      return (
+        <div className="alert alert-warning shadow-lg text-sm text-left">
+          <div>
+            <Alert />
+            <span>
+              Please first complete proof of identity by following the
+              Onboarding collection to unlock all submission buttons on
+              Fellowship.
+            </span>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <button
+        className="btn btn-outline btn-success btn-sm md:btn-lg"
+        onClick={() => {
+          if (user && specialCollections[collectionId] === "_onboarding") {
+            setSubmitBtnStatus("github_verify");
+          } else {
+            setSubmitBtnStatus("shownform");
+          }
+        }}
+      >
+        Proof of Completion
+      </button>
+    );
+  };
 
   useEffect(() => {
     // Special collections can be submitted wtihout a mentor
@@ -27,6 +63,11 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
       setSubmitBtnStatus("completed");
       setShowSubmitBtn(false);
     }
+
+    return () => {
+      setSubmitBtnStatus("premark");
+      setShowSubmitBtn(false);
+    };
   }, [collectionStatus, user, collectionId]);
 
   useEffect(() => {
@@ -85,21 +126,7 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
             ) : (
               <div className="modal-action">
                 {showSubmitBtn ? (
-                  <button
-                    className="btn btn-outline btn-success btn-sm md:btn-lg"
-                    onClick={() => {
-                      if (
-                        user &&
-                        specialCollections[collectionId] === "_onboarding"
-                      ) {
-                        setSubmitBtnStatus("github_verify");
-                      } else {
-                        setSubmitBtnStatus("shownform");
-                      }
-                    }}
-                  >
-                    Proof of Completion
-                  </button>
+                  <ProofOfCompletionBtn />
                 ) : submitBtnStatus === "completed" ? (
                   <button className="btn text-success btn-success btn-disabled btn-sm md:btn-lg">
                     Completed 🎉

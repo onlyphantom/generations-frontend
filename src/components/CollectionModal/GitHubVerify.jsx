@@ -72,7 +72,7 @@ const GitHubVerify = ({ user, collectionId }) => {
           <input
             type="text"
             placeholder="onlyphantom"
-            className="input input-bordered w-3/4 input-secondary"
+            className="input input-bordered w-3/5 input-secondary"
             value={github_username}
             onChange={(e) => setGithub_username(e.target.value)}
             disabled={verifySuccess || loading ? true : false}
