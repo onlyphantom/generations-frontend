@@ -1,57 +1,80 @@
-const SubmissionForm = ({
-  collectionId,
-  placeholder,
-  prefix,
-  children,
-  onSubmit,
-}) => {
-  // const onSubmitForm = () => {
-  //   setSubmitBtnStatus("submitting");
-  //   fetch(
-  //     `https://generationsapi.herokuapp.com/api/collections/${collectionId}/submit`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     }
-  //   )
-  //     .then((response) => {
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       setSubmitBtnStatus("submitted");
-  //       console.log(data);
-  //     });
-  // };
+import { useState, useEffect } from "react";
+
+import ExternalLink from "../../icons/ExternalLink";
+import Send from "../../icons/Send";
+
+function removeGitHubRoot(url) {
+  return url.replace(/^https?:\/\/github.com\//, "");
+}
+
+const ProtipPreview = ({ prUrl }) => {
+  return (
+    <span className="label-text text-xs text-left prose-slate">
+      <h5 className="font-semibold uppercase my-1">💡 Pro tip:</h5>
+      Verify your PR submission at &nbsp;
+      <a
+        href={prUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="font-semibold link hover:link-secondary"
+      >
+        {prUrl}
+        <ExternalLink />
+      </a>
+      &nbsp; before submitting your proof of completion.
+    </span>
+  );
+};
+
+const SubmissionForm = ({ user, collectionId, challenge }) => {
+  // collectionId is an integer, like 8
+  const [prUrl, setPrUrl] = useState(false);
+  const [fieldValue, setFieldValue] = useState("");
+  const [submitStatus, setSubmitStatus] = useState("idle");
+  const repo = removeGitHubRoot(challenge.attributes.url);
+
+  useEffect(() => {
+    const endpointURL = `https://api.github.com/repos/${repo}/pulls/${fieldValue}`;
+    setPrUrl(endpointURL);
+  }, [fieldValue, repo]);
+
+  const onSubmit = async () => {
+    setSubmitStatus("submitting");
+    console.log("Trying to submit check to", prUrl);
+
+    const response = await fetch(prUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+  };
 
   return (
     <div>
-      <div className="form-control my-4">
-        {children}
-        <label className="label">
-          <h3 className="label-text text-xl">Proof of Completion</h3>
-        </label>
+      <div className="form-control">
+        <span className="label">
+          {fieldValue && <ProtipPreview prUrl={prUrl} />}
+        </span>
         <label className="input-group">
-          <span className="text-sm">{prefix || "URL"}</span>
+          <span className="text-sm text-secondary">Pull Request ID</span>
+
           <input
-            type="text"
-            placeholder={
-              placeholder ||
-              "https://github.com/<github-username>/Submission-URL"
-            }
-            className="input input-bordered w-3/4 input-bordered input-secondary"
+            type="number"
+            placeholder="e.g 12"
+            className="input input-bordered"
+            value={fieldValue}
+            onChange={(e) => setFieldValue(e.target.value)}
+            disabled={submitStatus !== "idle"}
           />
-          <button className="btn" onClick={onSubmit}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              className="w-6 h-6"
-            >
-              <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
-            </svg>{" "}
-            Submit
+          <button
+            className="btn btn-secondary"
+            onClick={onSubmit}
+            disabled={submitStatus !== "idle"}
+          >
+            <Send /> {submitStatus === "submitting" ? "Verifying" : "Submit"}
           </button>
         </label>
       </div>

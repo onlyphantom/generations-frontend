@@ -5,6 +5,7 @@ import { cyrb53 } from "../../utils/crypt";
 import { UserContext } from "../../contexts/UserContext";
 
 import completeTray from "../Tray/completeTray";
+import Send from "../../icons/Send";
 
 const readTxtFromGithub = async (github_username, fellowship_username) => {
   const response = await fetch(
@@ -19,7 +20,6 @@ const readTxtFromGithub = async (github_username, fellowship_username) => {
   console.log("read from github", response);
   return response.text();
 };
-
 
 const GitHubVerify = ({ user, collectionId }) => {
   const { u, c, bc, ta } = useContext(UserContext);
@@ -92,9 +92,6 @@ const GitHubVerify = ({ user, collectionId }) => {
                   setVerifySuccess(true);
                   completeTray(bc, c, ta, u, collectionId, github_username);
                 } else {
-                  // console.log("response received is");
-                  // console.log(Number(response));
-                  // console.log(cyrb53(user.username.slice(-8)));
                   setVerifySuccess(false);
                 }
                 setLoading(false);
@@ -102,15 +99,7 @@ const GitHubVerify = ({ user, collectionId }) => {
               }}
               disabled={loading ? true : false}
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-6 h-6 mr-2"
-              >
-                <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
-              </svg>{" "}
-              Submit
+              <Send /> Submit
             </button>
           ) : (
             <span className="text-xs">🎉 All done!</span>

@@ -1,5 +1,6 @@
 export const specialCollections = {
     7: '_onboarding',
+    8: '_collectiveReact'
 }
 
 export const tagClass = {
@@ -10,5 +11,6 @@ export const tagClass = {
     react: "badge-ghost",
     django: "badge-error",
     github: "badge-success",
-    other: "badge-warning",
+    frontend: "badge-info",
+    other: "badge-ghost",
 }

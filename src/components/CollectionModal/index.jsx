@@ -10,6 +10,7 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
   const [bookmarks, setBookmarks] = useState([]);
   const [showSubmitBtn, setShowSubmitBtn] = useState(false);
   const [submitBtnStatus, setSubmitBtnStatus] = useState("premark");
+  const [challenge, setChallenge] = useState(false);
 
   useEffect(() => {
     // Special collections can be submitted wtihout a mentor
@@ -18,7 +19,6 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
       user?.token &&
       collectionStatus !== "completed"
     ) {
-      // setSubmitBtnStatus("github_verify");
       setShowSubmitBtn(true);
     } else if (collectionStatus === "ongoing") {
       setSubmitBtnStatus("submit");
@@ -45,6 +45,11 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
       })
       .then((data) => {
         setBookmarks(data.data);
+        setChallenge(
+          data.data.find(
+            (bookmark) => bookmark.attributes.medium === "challenge"
+          )
+        );
         setLoading(false);
       });
 
@@ -70,14 +75,18 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
             <ListOfBookmarks allbookmarks={bookmarks} />
 
             {submitBtnStatus === "shownform" ? (
-              <SubmissionForm collectionId={collectionId}></SubmissionForm>
+              <SubmissionForm
+                user={user}
+                collectionId={collectionId}
+                challenge={challenge}
+              ></SubmissionForm>
             ) : submitBtnStatus === "github_verify" ? (
               <GitHubVerify user={user} collectionId={collectionId} />
             ) : (
               <div className="modal-action">
                 {showSubmitBtn ? (
                   <button
-                    className="btn btn-outline btn-success"
+                    className="btn btn-outline btn-success btn-sm md:btn-lg"
                     onClick={() => {
                       if (
                         user &&
