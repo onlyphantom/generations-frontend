@@ -39,7 +39,7 @@ const Prerequisites = ({ prerequisites }) => {
                 <div className="col-span-2 text-sm text-white text-left">
                   <a href={prerequisite.url} target="_blank" rel="noreferrer">
                     <p className="mt-1 text-xs text-gray-500">
-                      {prerequisite.details ||
+                      {truncate(prerequisite.details, 100) ||
                         truncate(prerequisite.opengraph.description, 100)}
                     </p>
                   </a>
