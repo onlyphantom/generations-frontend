@@ -89,8 +89,8 @@ const GitHubVerify = ({ user, collectionId }) => {
                 );
 
                 if (Number(response) === cyrb53(user.username.slice(-8))) {
-                  setVerifySuccess(true);
                   completeTray(bc, c, ta, u, collectionId, github_username);
+                  setVerifySuccess(true);
                 } else {
                   setVerifySuccess(false);
                 }
