@@ -16,7 +16,7 @@ const CollectionModal = ({ collectionId, user, collectionStatus }) => {
   const ProofOfCompletionBtn = () => {
     if (
       user &&
-      !user.githubUsername &&
+      !user?.githubUsername &&
       specialCollections[collectionId] !== "_onboarding"
     ) {
       return (
