@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/f2b74ea9-bc41-40dc-8914-17cc6b3f885c/deploy-status)](https://app.netlify.com/sites/peaceful-madeleine-0f7399/deploys) &nbsp; &nbsp; [![Supertype](https://img.shields.io/badge/supertype.ai-incubate-b1976b)](https://supertype.ai)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f2b74ea9-bc41-40dc-8914-17cc6b3f885c/deploy-status)](https://app.netlify.com/sites/peaceful-madeleine-0f7399/deploys) &nbsp; &nbsp; [![Supertype](https://img.shields.io/badge/supertype.ai-incubate-b1976b)](https://supertype.ai/incubate)
 
 ![](assets/supertype_fellowship_process.png)
 
