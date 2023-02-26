@@ -38,6 +38,12 @@ const PaymentBox = ({ user }) => {
           <li className="mb-4 flex items-center">
             <Checkmark />
             <p className="font-semibold leading-normal">
+              Guided onboarding to Supertype Collective
+            </p>
+          </li>
+          <li className="mb-4 flex items-center">
+            <Checkmark />
+            <p className="font-semibold leading-normal">
               Paid Project Opportunities
             </p>
           </li>
@@ -84,21 +90,25 @@ const PaymentBox = ({ user }) => {
           </div>
         </div>
         <div className="mt-9">
-          <button 
-            className={`${user?.token && !user?.proUser ? "" : "hidden "}SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200`} 
-            type="button"  
-            data-id="3" 
-            data-email={user?.email} 
+          <button
+            className={`${
+              user?.token && !user?.proUser ? "" : "hidden "
+            }SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200`}
+            type="button"
+            data-id="3"
+            data-email={user?.email}
             data-url="https://generationsapi.herokuapp.com"
-          > 
+          >
             Upgrade to Fellowship+
           </button>
           <label
-            className={`${!user?.token ? "" : "hidden "}py-3 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn btn-secondary transition ease-in-out duration-200`} 
+            className={`${
+              !user?.token ? "" : "hidden "
+            }py-3 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn btn-secondary transition ease-in-out duration-200`}
             htmlFor="enroll"
-          > 
+          >
             Enroll in Fellowship+
-          </label>  
+          </label>
           {/* {user?.proExpiry && new Date(user.proExpiry) > Date.now() ? (
             <>
               <button 
