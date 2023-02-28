@@ -14,3 +14,11 @@ export const tagClass = {
     frontend: "badge-info",
     other: "badge-ghost",
 }
+
+export const statusOptions = [
+    { value: "available", label: "Available" },
+    { value: "requested", label: "Bookmarked" },
+    { value: "preaccept", label: "Waiting for Confirmation" },
+    { value: "ongoing", label: "Ongoing" },
+    { value: "completed", label: "Completed" }
+]

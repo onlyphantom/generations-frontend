@@ -15,6 +15,7 @@ function App() {
   const [bookmarkedCollections, setBookmarkedCollections] = useState([]);
   const [tagAwards, setTagAwards] = useState({});
   const [experts, setExperts] = useState([]);
+  const [tags, setTags] = useState([]);
   const params = new URLSearchParams(window.location.search);
   const sessionId = params.get("sessionId");
 
@@ -80,6 +81,10 @@ function App() {
       .then((res) => res.json())
       .then((data) => setExperts(data.data));
 
+    fetch("https://generationsapi.herokuapp.com/api/tags/")
+      .then((res) => res.json())
+      .then((data) => setTags(data.data));
+
   }, [token, setUser, sessionId]);
 
   return (
@@ -91,6 +96,7 @@ function App() {
         e: [experts],
         // all collections that were bookmarked by user
         bc: [bookmarkedCollections, setBookmarkedCollections],
+        t: [tags, setTags],
         ta: [tagAwards, setTagAwards],
       }}
     >
