@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
-import CollectionCard from "../CollectionCard";
 import Select from "react-select";
+import CollectionCard from "../CollectionCard";
+import EffortPointOfTen from "../CollectionCard/EffortPointOfTen";
 
 import { UserContext } from "../../contexts/UserContext";
 import { statusOptions } from "../../utils/constants";
@@ -8,53 +9,77 @@ import { statusOptions } from "../../utils/constants";
 // React Select
 const selectStyles = {
   menu: (base) => ({
-    ...base, 
+    ...base,
     backgroundColor: "#282c34",
-    borderRadius: "0.5rem"
+    borderRadius: "0.5rem",
   }),
   option: (base, state) => ({
     ...base,
-    color: state.isFocused ? "#282c34" : (state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7"),
-    backgroundColor: !state.isFocused ? "##282c34" : (state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7")
+    color: state.isFocused
+      ? "#282c34"
+      : state.selectProps.className?.includes("odds")
+      ? "#0ea5e9"
+      : "#f29ea7",
+    backgroundColor: !state.isFocused
+      ? "##282c34"
+      : state.selectProps.className?.includes("odds")
+      ? "#0ea5e9"
+      : "#f29ea7",
   }),
   control: (base, state) => ({
     ...base,
     backgroundColor: "#282c34",
-    borderColor: state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7",
+    borderColor: state.selectProps.className?.includes("odds")
+      ? "#0ea5e9"
+      : "#f29ea7",
     borderRadius: "0.5rem",
-    boxShadow: state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7",
+    boxShadow: state.selectProps.className?.includes("odds")
+      ? "#0ea5e9"
+      : "#f29ea7",
     "&:hover": {
-      boxShadow: state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7"
-    }
+      boxShadow: state.selectProps.className?.includes("odds")
+        ? "#0ea5e9"
+        : "#f29ea7",
+    },
   }),
   input: (base) => ({
     ...base,
-    color: "#7a7a7b"
+    color: "#7a7a7b",
   }),
   multiValue: (base, state) => {
     return {
       ...base,
-      backgroundColor: (state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7"),
+      backgroundColor: state.selectProps.className?.includes("odds")
+        ? "#0ea5e9"
+        : "#f29ea7",
     };
   },
   multiValueLabel: (base, state) => ({
     ...base,
     color: "#282c34",
-    backgroundColor: (state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7"),
+    backgroundColor: state.selectProps.className?.includes("odds")
+      ? "#0ea5e9"
+      : "#f29ea7",
   }),
   multiValueRemove: (base, state) => ({
     ...base,
-    backgroundColor: (state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7"),
+    backgroundColor: state.selectProps.className?.includes("odds")
+      ? "#0ea5e9"
+      : "#f29ea7",
     color: "#282c34",
-    ':hover': {
-      backgroundColor: (state.selectProps.className?.includes("odds") ? "#0ea5e9" : "#f29ea7"),
-      color: (state.selectProps.className?.includes("odds") ? "#bae6fd" : "#e8614d"),
+    ":hover": {
+      backgroundColor: state.selectProps.className?.includes("odds")
+        ? "#0ea5e9"
+        : "#f29ea7",
+      color: state.selectProps.className?.includes("odds")
+        ? "#bae6fd"
+        : "#e8614d",
     },
-  })
+  }),
 };
 
-const Menu = props => {
-  const shadow = "hsla(218, 50%, 10%, 0.1)"
+const Menu = (props) => {
+  const shadow = "hsla(218, 50%, 10%, 0.1)";
   return (
     <div
       style={{
@@ -63,14 +88,14 @@ const Menu = props => {
         boxShadow: `0 0 0 1px ${shadow}, 0 4px 11px ${shadow}`,
         marginTop: 8,
         position: "absolute",
-        zIndex: 2
+        zIndex: 2,
       }}
       {...props}
     />
-  )
+  );
 };
 
-const Blanket = props => (
+const Blanket = (props) => (
   <div
     style={{
       bottom: 0,
@@ -78,7 +103,7 @@ const Blanket = props => (
       top: 0,
       right: 0,
       position: "fixed",
-      zIndex: 1
+      zIndex: 1,
     }}
     {...props}
   />
@@ -92,7 +117,7 @@ const Dropdown = ({ children, isOpen, target, onClose }) => (
   </div>
 );
 
-const Svg = p => (
+const Svg = (p) => (
   <svg
     width="24"
     height="24"
@@ -170,16 +195,17 @@ export default function BookmarkList() {
   const [loading, setLoading] = useState(true);
   const [expertSelect, setExpertSelect] = useState({
     isOpen: false,
-    value: []
+    value: [],
   });
   const [statusSelect, setStatusSelect] = useState({
     isOpen: false,
-    value: []
+    value: [],
   });
   const [tagSelect, setTagSelect] = useState({
     isOpen: false,
-    value: []
+    value: [],
   });
+  const [effortSelect, setEffortSelect] = useState(0);
 
   const { u, c, bc, e, t } = useContext(UserContext);
   const [user] = u;
@@ -193,47 +219,59 @@ export default function BookmarkList() {
   const handleFilter = (e) => {
     e.preventDefault();
     setLoading(true);
-    
-    const selectedExperts = expertSelect.value.length > 0 ? (
-      expertSelect.value.map(v => v.value)
-    ) : (
-      experts.map(expert => expert.attributes.name)
-    );
 
-    const selectedStatus = statusSelect.value.length > 0 ? (
-      statusSelect.value.map(v => v.value)
-    ) : (
-      statusOptions.map(status => status.value)
-    );
+    const selectedExperts =
+      expertSelect.value.length > 0
+        ? expertSelect.value.map((v) => v.value)
+        : experts.map((expert) => expert.attributes.name);
 
-    const selectedTags = tagSelect.value.length > 0 ? (
-      tagSelect.value.map(v => v.value)
-    ) : (
-      tags.map(tag => tag.attributes.title)
-    );
+    const selectedStatus =
+      statusSelect.value.length > 0
+        ? statusSelect.value.map((v) => v.value)
+        : statusOptions.map((status) => status.value);
+
+    const selectedTags =
+      tagSelect.value.length > 0
+        ? tagSelect.value.map((v) => v.value)
+        : tags.map((tag) => tag.attributes.title);
 
     const unselectedTrayIDs = bookmarkedCollections.reduce((filtered, bc) => {
-      if(!selectedStatus.includes(bc.status)){
+      if (!selectedStatus.includes(bc.status)) {
         filtered.push(bc.id);
       }
       return filtered;
     }, []);
 
     const availableTrayIDs = collection.reduce((filtered, c) => {
-      if(!bookmarkedCollections?.map(bc => bc.id).includes(c.id)){
+      if (!bookmarkedCollections?.map((bc) => bc.id).includes(c.id)) {
         filtered.push(c.id);
       }
       return filtered;
     }, []);
-    
-    setFilteredCollections(collection.filter(c => {
-      return (
-        ((statusSelect.value.length > 0  && selectedStatus.includes("available")) ? (!unselectedTrayIDs.includes(c.id) || availableTrayIDs.includes(c.id)) : (
-            statusSelect.value.length > 0 ? (!unselectedTrayIDs.includes(c.id) && !availableTrayIDs.includes(c.id)) : true)) && 
-        (expertSelect.value.length > 0 ? c.attributes.experts.data?.some(expert => selectedExperts.includes(expert.attributes.name)) : true) && 
-        (tagSelect.value.length > 0 ? Object.keys(c.attributes.tagsCount)?.some(tag => selectedTags.includes(tag)) : true)
-      )
-    }));
+
+    setFilteredCollections(
+      collection.filter((c) => {
+        return (
+          (statusSelect.value.length > 0 && selectedStatus.includes("available")
+            ? !unselectedTrayIDs.includes(c.id) ||
+              availableTrayIDs.includes(c.id)
+            : statusSelect.value.length > 0
+            ? !unselectedTrayIDs.includes(c.id) &&
+              !availableTrayIDs.includes(c.id)
+            : true) &&
+          (expertSelect.value.length > 0
+            ? c.attributes.experts.data?.some((expert) =>
+                selectedExperts.includes(expert.attributes.name)
+              )
+            : true) &&
+          (tagSelect.value.length > 0
+            ? Object.keys(c.attributes.tagsCount)?.some((tag) =>
+                selectedTags.includes(tag)
+              )
+            : true)
+        );
+      })
+    );
 
     setLoading(false);
   };
@@ -283,16 +321,28 @@ export default function BookmarkList() {
         <div className="flex gap-2 ml-auto mb-4">
           <Dropdown
             isOpen={expertSelect.isOpen}
-            onClose={() => setExpertSelect(prev => {return {...prev, isOpen: false}})}
+            onClose={() =>
+              setExpertSelect((prev) => {
+                return { ...prev, isOpen: false };
+              })
+            }
             target={
-              <button 
+              <button
                 className="btn btn-outline btn-info text-xs max-w-sm whitespace-nowrap"
-                onClick={() => setExpertSelect(prev => {return {...prev, isOpen: !expertSelect.isOpen}})}
+                onClick={() =>
+                  setExpertSelect((prev) => {
+                    return { ...prev, isOpen: !expertSelect.isOpen };
+                  })
+                }
               >
                 <span className="text-ellipsis overflow-hidden max-w-xs">
-                  {expertSelect.value.length > 0 ? `Expert: ${expertSelect.value.map(v =>  ` ${v.label.split(" ")[0]}`)}` : "Expert: All"}
+                  {expertSelect.value.length > 0
+                    ? `Expert: ${expertSelect.value.map(
+                        (v) => ` ${v.label.split(" ")[0]}`
+                      )}`
+                    : "Expert: All"}
                 </span>
-                <ChevronDown/>
+                <ChevronDown />
               </button>
             }
           >
@@ -301,9 +351,14 @@ export default function BookmarkList() {
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
-              onChange={newValue => setExpertSelect({isOpen: false, value: newValue})}
-              options={experts.map(expert => {
-                return { value: expert.attributes.name, label: expert.attributes.name }
+              onChange={(newValue) =>
+                setExpertSelect({ isOpen: false, value: newValue })
+              }
+              options={experts.map((expert) => {
+                return {
+                  value: expert.attributes.name,
+                  label: expert.attributes.name,
+                };
               })}
               placeholder="Search expert..."
               styles={selectStyles}
@@ -314,16 +369,26 @@ export default function BookmarkList() {
 
           <Dropdown
             isOpen={statusSelect.isOpen}
-            onClose={() => setStatusSelect(prev => {return {...prev, isOpen: false}})}
+            onClose={() =>
+              setStatusSelect((prev) => {
+                return { ...prev, isOpen: false };
+              })
+            }
             target={
-              <button 
+              <button
                 className="btn btn-outline btn-accent text-xs max-w-sm whitespace-nowrap"
-                onClick={() => setStatusSelect(prev => {return {...prev, isOpen: !statusSelect.isOpen}})}
+                onClick={() =>
+                  setStatusSelect((prev) => {
+                    return { ...prev, isOpen: !statusSelect.isOpen };
+                  })
+                }
               >
                 <span className="text-ellipsis overflow-hidden max-w-xs">
-                  {statusSelect.value.length > 0 ? `Status: ${statusSelect.value.map(v =>  ` ${v.label}`)}` : "Status: All"}
+                  {statusSelect.value.length > 0
+                    ? `Status: ${statusSelect.value.map((v) => ` ${v.label}`)}`
+                    : "Status: All"}
                 </span>
-                <ChevronDown/>
+                <ChevronDown />
               </button>
             }
           >
@@ -332,7 +397,9 @@ export default function BookmarkList() {
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
-              onChange={newValue => setStatusSelect({isOpen: false, value: newValue})}
+              onChange={(newValue) =>
+                setStatusSelect({ isOpen: false, value: newValue })
+              }
               options={statusOptions}
               placeholder="Search status..."
               styles={selectStyles}
@@ -343,16 +410,26 @@ export default function BookmarkList() {
 
           <Dropdown
             isOpen={tagSelect.isOpen}
-            onClose={() => setTagSelect(prev => {return {...prev, isOpen: false}})}
+            onClose={() =>
+              setTagSelect((prev) => {
+                return { ...prev, isOpen: false };
+              })
+            }
             target={
-              <button 
+              <button
                 className="btn btn-outline btn-info text-xs max-w-sm whitespace-nowrap"
-                onClick={() => setTagSelect(prev => {return {...prev, isOpen: !tagSelect.isOpen}})}
+                onClick={() =>
+                  setTagSelect((prev) => {
+                    return { ...prev, isOpen: !tagSelect.isOpen };
+                  })
+                }
               >
                 <span className="text-ellipsis overflow-hidden max-w-xs">
-                  {tagSelect.value.length > 0 ? `Tag: ${tagSelect.value.map(v =>  ` ${v.label}`)}` : "Tag: All"}
+                  {tagSelect.value.length > 0
+                    ? `Tag: ${tagSelect.value.map((v) => ` ${v.label}`)}`
+                    : "Tag: All"}
                 </span>
-                <ChevronDown/>
+                <ChevronDown />
               </button>
             }
           >
@@ -361,9 +438,14 @@ export default function BookmarkList() {
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
-              onChange={newValue => setTagSelect({isOpen: false, value: newValue})}
-              options={tags.map(tag => {
-                return { value: tag.attributes.title, label: tag.attributes.title }
+              onChange={(newValue) =>
+                setTagSelect({ isOpen: false, value: newValue })
+              }
+              options={tags.map((tag) => {
+                return {
+                  value: tag.attributes.title,
+                  label: tag.attributes.title,
+                };
               })}
               placeholder="Search tag..."
               styles={selectStyles}
@@ -371,11 +453,18 @@ export default function BookmarkList() {
               isMulti
             />
           </Dropdown>
+          <div className="basis-1/5 text-accent ml-2">
+            <p className="font-semibold uppercase text-xs mb-0">Effort:</p>
+            <EffortPointOfTen
+              effortSelect={effortSelect}
+              setEffortSelect={setEffortSelect}
+            />
+          </div>
 
           <button
             type="button"
-            className="btn btn-success text-xs"
-            onClick={e => handleFilter(e)}
+            className="btn bt n-success text-xs"
+            onClick={(e) => handleFilter(e)}
           >
             Filter
           </button>
