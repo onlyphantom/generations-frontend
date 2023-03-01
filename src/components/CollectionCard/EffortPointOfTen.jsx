@@ -13,7 +13,6 @@ const EffortPointOfTen = ({ effortSelect, setEffortSelect }) => {
         key={remaining}
         onClick={() => {
           setEffortSelect(sel);
-          console.log("settingEffortSelect with", sel);
         }}
       ></div>
     );
