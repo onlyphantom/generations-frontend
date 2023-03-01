@@ -193,17 +193,23 @@ export const getBookmarkedCollections = (
 
 export default function BookmarkList() {
   const [loading, setLoading] = useState(true);
+  const [isFilter, setIsFilter] = useState(false);
   const [expertSelect, setExpertSelect] = useState({
     isOpen: false,
     value: [],
+    selected: [],
   });
   const [statusSelect, setStatusSelect] = useState({
     isOpen: false,
     value: [],
+    selected: [],
+    unselectedTrayIDs: [],
+    availableTrayIDs: [],
   });
   const [tagSelect, setTagSelect] = useState({
     isOpen: false,
     value: [],
+    selected: [],
   });
   const [effortSelect, setEffortSelect] = useState(0);
 
@@ -216,24 +222,102 @@ export default function BookmarkList() {
 
   const [filteredCollections, setFilteredCollections] = useState();
 
-  const handleFilter = (e) => {
-    e.preventDefault();
+  const handleFilter = (current, selectValue) => {
+    setFilteredCollections(
+      collection.filter((c) => {
+        const expertCondition =
+          current === "expert"
+            ? selectValue.value.length > 0
+              ? c.attributes.experts.data?.some((expert) =>
+                  selectValue.selected.includes(expert.attributes.name)
+                )
+              : true
+            : expertSelect.value.length > 0
+            ? c.attributes.experts.data?.some((expert) =>
+                expertSelect.selected.includes(expert.attributes.name)
+              )
+            : true;
+
+        const statusCondition =
+          current === "status"
+            ? selectValue.value.length > 0 &&
+              selectValue.selected.includes("available")
+              ? !selectValue.unselectedTrayIDs.includes(c.id) ||
+                selectValue.availableTrayIDs.includes(c.id)
+              : selectValue.value.length > 0
+              ? !selectValue.unselectedTrayIDs.includes(c.id) &&
+                !selectValue.availableTrayIDs.includes(c.id)
+              : true
+            : statusSelect.value.length > 0 &&
+              statusSelect.selected.includes("available")
+            ? !statusSelect.unselectedTrayIDs.includes(c.id) ||
+              statusSelect.availableTrayIDs.includes(c.id)
+            : statusSelect.value.length > 0
+            ? !statusSelect.unselectedTrayIDs.includes(c.id) &&
+              !statusSelect.availableTrayIDs.includes(c.id)
+            : true;
+
+        const tagCondition =
+          current === "tag"
+            ? selectValue.value.length > 0
+              ? Object.keys(c.attributes.tagsCount)?.some((tag) =>
+                  selectValue.selected.includes(tag)
+                )
+              : true
+            : tagSelect.value.length > 0
+            ? Object.keys(c.attributes.tagsCount)?.some((tag) =>
+                tagSelect.selected.includes(tag)
+              )
+            : true;
+
+        const effortCondition =
+          current === "effort"
+            ? selectValue > 0
+              ? c.attributes.totalEffort <= selectValue
+              : true
+            : effortSelect > 0
+            ? c.attributes.totalEffort <= effortSelect
+            : true;
+
+        return (
+          statusCondition && expertCondition && tagCondition && effortCondition
+        );
+      })
+    );
+
+    setIsFilter(true);
+  };
+
+  const handleExpertChange = (newValue) => {
     setLoading(true);
 
     const selectedExperts =
-      expertSelect.value.length > 0
-        ? expertSelect.value.map((v) => v.value)
+      newValue.length > 0
+        ? newValue.map((v) => v.value)
         : experts.map((expert) => expert.attributes.name);
 
-    const selectedStatus =
-      statusSelect.value.length > 0
-        ? statusSelect.value.map((v) => v.value)
-        : statusOptions.map((status) => status.value);
+    setExpertSelect({
+      isOpen: false,
+      value: newValue,
+      selected: selectedExperts,
+    });
 
-    const selectedTags =
-      tagSelect.value.length > 0
-        ? tagSelect.value.map((v) => v.value)
-        : tags.map((tag) => tag.attributes.title);
+    handleFilter("expert", {
+      isOpen: false,
+      value: newValue,
+      selected: selectedExperts,
+    });
+
+    setLoading(false);
+  };
+
+  const handleStatusChange = (newValue) => {
+    setLoading(true);
+
+    const selectedStatus =
+      newValue.length > 0
+        ? newValue.map((v) => v.value)
+        : statusOptions.map((status) => status.value);
 
     const unselectedTrayIDs = bookmarkedCollections.reduce((filtered, bc) => {
       if (!selectedStatus.includes(bc.status)) {
@@ -249,33 +333,86 @@ export default function BookmarkList() {
       return filtered;
     }, []);
 
-    setFilteredCollections(
-      collection.filter((c) => {
-        return (
-          (statusSelect.value.length > 0 && selectedStatus.includes("available")
-            ? !unselectedTrayIDs.includes(c.id) ||
-              availableTrayIDs.includes(c.id)
-            : statusSelect.value.length > 0
-            ? !unselectedTrayIDs.includes(c.id) &&
-              !availableTrayIDs.includes(c.id)
-            : true) &&
-          (expertSelect.value.length > 0
-            ? c.attributes.experts.data?.some((expert) =>
-                selectedExperts.includes(expert.attributes.name)
-              )
-            : true) &&
-          (tagSelect.value.length > 0
-            ? Object.keys(c.attributes.tagsCount)?.some((tag) =>
-                selectedTags.includes(tag)
-              )
-            : true) &&
-          (effortSelect > 0 ? c.attributes.totalEffort <= effortSelect : true)
-        );
-      })
-    );
+    setStatusSelect({
+      isOpen: false,
+      value: newValue,
+      selected: selectedStatus,
+      unselectedTrayIDs: unselectedTrayIDs,
+      availableTrayIDs: availableTrayIDs,
+    });
+
+    handleFilter("status", {
+      isOpen: false,
+      value: newValue,
+      selected: selectedStatus,
+      unselectedTrayIDs: unselectedTrayIDs,
+      availableTrayIDs: availableTrayIDs,
+    });
 
     setLoading(false);
   };
+
+  const handleTagChange = (newValue) => {
+    setLoading(true);
+
+    const selectedTags =
+      newValue.length > 0
+        ? newValue.map((v) => v.value)
+        : tags.map((tag) => tag.attributes.title);
+
+    setTagSelect({
+      isOpen: false,
+      value: newValue,
+      selected: selectedTags,
+    });
+
+    handleFilter("tag", {
+      isOpen: false,
+      value: newValue,
+      selected: selectedTags,
+    });
+
+    setLoading(false);
+  };
+
+  const handleEffortChange = (newValue) => {
+    setLoading(true);
+
+    setEffortSelect(newValue);
+
+    handleFilter("effort", newValue);
+
+    setLoading(false);
+  };
+
+  const handleReset = (e) => {
+    setLoading(true);
+    setExpertSelect((prev) => {
+      return { ...prev, value: [] };
+    });
+    setStatusSelect((prev) => {
+      return { ...prev, value: [] };
+    });
+    setTagSelect((prev) => {
+      return { ...prev, value: [] };
+    });
+    setEffortSelect(0);
+    setFilteredCollections(collection);
+    setIsFilter(false);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    if (
+      isFilter === true &&
+      expertSelect.value.length === 0 &&
+      statusSelect.value.length === 0 &&
+      tagSelect.value.length === 0 &&
+      effortSelect === 0
+    ) {
+      setIsFilter(false);
+    }
+  }, [isFilter, expertSelect, statusSelect, tagSelect, effortSelect]);
 
   useEffect(() => {
     fetch("https://generationsapi.herokuapp.com/api/collections", {
@@ -352,9 +489,7 @@ export default function BookmarkList() {
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
-              onChange={(newValue) =>
-                setExpertSelect({ isOpen: false, value: newValue })
-              }
+              onChange={(newValue) => handleExpertChange(newValue)}
               options={experts.map((expert) => {
                 return {
                   value: expert.attributes.name,
@@ -398,9 +533,7 @@ export default function BookmarkList() {
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
-              onChange={(newValue) =>
-                setStatusSelect({ isOpen: false, value: newValue })
-              }
+              onChange={(newValue) => handleStatusChange(newValue)}
               options={statusOptions}
               placeholder="Search status..."
               styles={selectStyles}
@@ -439,9 +572,7 @@ export default function BookmarkList() {
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
-              onChange={(newValue) =>
-                setTagSelect({ isOpen: false, value: newValue })
-              }
+              onChange={(newValue) => handleTagChange(newValue)}
               options={tags.map((tag) => {
                 return {
                   value: tag.attributes.title,
@@ -459,16 +590,16 @@ export default function BookmarkList() {
             <p className="font-semibold uppercase text-xs mb-0">Max Effort:</p>
             <EffortPointOfTen
               effortSelect={effortSelect}
-              setEffortSelect={setEffortSelect}
+              handleEffortChange={handleEffortChange}
             />
           </div>
 
           <button
             type="button"
-            className="btn btn-success text-xs"
-            onClick={(e) => handleFilter(e)}
+            className={`btn text-xs ${isFilter ? "" : "hidden"}`}
+            onClick={(e) => handleReset(e)}
           >
-            Filter
+            Reset
           </button>
         </div>
 

@@ -1,4 +1,4 @@
-const EffortPointOfTen = ({ effortSelect, setEffortSelect }) => {
+const EffortPointOfTen = ({ effortSelect, handleEffortChange }) => {
   let elemToBeRendered = [];
   let remaining = 10;
 
@@ -12,7 +12,7 @@ const EffortPointOfTen = ({ effortSelect, setEffortSelect }) => {
         }`}
         key={remaining}
         onClick={() => {
-          setEffortSelect(sel);
+          handleEffortChange(sel);
         }}
       ></div>
     );
