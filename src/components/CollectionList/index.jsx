@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 import CollectionCard from "../CollectionCard";
 import EffortPointOfTen from "../CollectionCard/EffortPointOfTen";
 
@@ -41,6 +42,7 @@ const selectStyles = {
         ? "#0ea5e9"
         : "#f29ea7",
     },
+    height: state.selectProps.name === "search" ? "3rem" : base.height,
   }),
   input: (base) => ({
     ...base,
@@ -194,6 +196,7 @@ export const getBookmarkedCollections = (
 export default function BookmarkList() {
   const [loading, setLoading] = useState(true);
   const [isFilter, setIsFilter] = useState(false);
+  const [wordSelect, setWordSelect] = useState("");
   const [expertSelect, setExpertSelect] = useState({
     isOpen: false,
     value: [],
@@ -220,11 +223,29 @@ export default function BookmarkList() {
   const [experts] = e;
   const [tags] = t;
 
-  const [filteredCollections, setFilteredCollections] = useState();
+  const [filteredCollections, setFilteredCollections] = useState([]);
 
   const handleFilter = (current, selectValue) => {
     setFilteredCollections(
       collection.filter((c) => {
+        const wordCondition =
+          current === "word"
+            ? selectValue
+              ? c.attributes.details
+                  ?.toLowerCase()
+                  .includes(selectValue.toLowerCase()) ||
+                c.attributes.title
+                  .toLowerCase()
+                  .includes(selectValue.toLowerCase())
+              : true
+            : wordSelect
+            ? c.attributes.details
+                ?.toLowerCase()
+                .includes(wordSelect.toLowerCase()) ||
+              c.attributes.title
+                .toLowerCase()
+                .includes(wordSelect.toLowerCase())
+            : true;
         const expertCondition =
           current === "expert"
             ? selectValue.value.length > 0
@@ -280,12 +301,24 @@ export default function BookmarkList() {
             : true;
 
         return (
-          statusCondition && expertCondition && tagCondition && effortCondition
+          wordCondition &&
+          statusCondition &&
+          expertCondition &&
+          tagCondition &&
+          effortCondition
         );
       })
     );
 
     setIsFilter(true);
+  };
+
+  const handleWordChange = (newValue, event) => {
+    if (event.action === "input-change") {
+      setWordSelect(newValue);
+      handleFilter("word", newValue);
+      setIsFilter(true);
+    }
   };
 
   const handleExpertChange = (newValue) => {
@@ -387,6 +420,7 @@ export default function BookmarkList() {
 
   const handleReset = (e) => {
     setLoading(true);
+    setWordSelect("");
     setExpertSelect((prev) => {
       return { ...prev, value: [] };
     });
@@ -405,6 +439,7 @@ export default function BookmarkList() {
   useEffect(() => {
     if (
       isFilter === true &&
+      !wordSelect &&
       expertSelect.value.length === 0 &&
       statusSelect.value.length === 0 &&
       tagSelect.value.length === 0 &&
@@ -412,7 +447,14 @@ export default function BookmarkList() {
     ) {
       setIsFilter(false);
     }
-  }, [isFilter, expertSelect, statusSelect, tagSelect, effortSelect]);
+  }, [
+    isFilter,
+    wordSelect,
+    expertSelect,
+    statusSelect,
+    tagSelect,
+    effortSelect,
+  ]);
 
   useEffect(() => {
     fetch("https://generationsapi.herokuapp.com/api/collections", {
@@ -447,7 +489,7 @@ export default function BookmarkList() {
     return (
       <section
         id="curations"
-        className="relative flex min-h-screen flex-col justify-center py-6 px-4 sm:py-12"
+        className="relative flex flex-col min-h-screen justify-center py-6 px-4 sm:py-12"
       >
         <h2 className="text-4xl font-bold mb-9 text-center">
           Practical electives,{" "}
@@ -456,7 +498,24 @@ export default function BookmarkList() {
           </span>
         </h2>
 
-        <div className="flex flex-wrap gap-2 ml-auto mb-4">
+        <div className="flex flex-wrap gap-2 ml-auto mb-4 items-center">
+          <CreatableSelect
+            className="text-base w-max max-w-xs"
+            components={{
+              DropdownIndicator,
+              IndicatorSeparator: null,
+            }}
+            inputValue={wordSelect}
+            menuIsOpen={false}
+            name="search"
+            onInputChange={(newValue, event) =>
+              handleWordChange(newValue, event)
+            }
+            placeholder="Search..."
+            value={wordSelect}
+            styles={selectStyles}
+            isClearable
+          />
           <Dropdown
             isOpen={expertSelect.isOpen}
             onClose={() =>
@@ -603,28 +662,36 @@ export default function BookmarkList() {
           </button>
         </div>
 
-        <ul className="columns-1 xl:columns-3 gap-6 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit text-center">
-          {!loading ? (
-            filteredCollections
-              .sort((a, b) =>
-                b.attributes.createdAt.localeCompare(a.attributes.createdAt)
-              )
-              .map((collection, i) => (
-                <li
-                  key={i}
-                  className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-4 odd:border-sky-500 even:border-accent odd:text-sky-300 even:text-accent"
-                >
-                  <CollectionCard
-                    attributes={collection.attributes}
-                    id={collection.id}
-                  />
-                  {/* <BookmarkCard url={bookmark.attributes.url} key={i} /> */}
-                </li>
-              ))
+        {!loading ? (
+          filteredCollections.length > 0 ? (
+            <ul className="columns-1 xl:columns-3 gap-6 [column-fill:_balance] box-border mx-auto before:box-inherit after:box-inherit text-center">
+              {filteredCollections
+                .sort((a, b) =>
+                  b.attributes.createdAt.localeCompare(a.attributes.createdAt)
+                )
+                .map((collection, i) => (
+                  <li
+                    key={i}
+                    className="break-inside-avoid rounded-lg mt-4 first:mt-0 border-solid border-4 odd:border-sky-500 even:border-accent odd:text-sky-300 even:text-accent"
+                  >
+                    <CollectionCard
+                      attributes={collection.attributes}
+                      id={collection.id}
+                    />
+                    {/* <BookmarkCard url={bookmark.attributes.url} key={i} /> */}
+                  </li>
+                ))}
+            </ul>
           ) : (
+            <h3 className="text-2xl font-bold text-center mt-6">
+              No collection matched 😟.
+            </h3>
+          )
+        ) : (
+          <div className="text-center mt-6">
             <progress className="progress w-56"></progress>
-          )}
-        </ul>
+          </div>
+        )}
       </section>
     );
   }
