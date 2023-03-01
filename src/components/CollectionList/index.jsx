@@ -193,6 +193,7 @@ export const getBookmarkedCollections = (
 
 export default function BookmarkList() {
   const [loading, setLoading] = useState(true);
+  const [isFilter, setIsFilter] = useState(false);
   const [expertSelect, setExpertSelect] = useState({
     isOpen: false,
     value: [],
@@ -274,6 +275,24 @@ export default function BookmarkList() {
       })
     );
 
+    setIsFilter(true);
+    setLoading(false);
+  };
+
+  const handleReset = (e) => {
+    setLoading(true);
+    setExpertSelect((prev) => {
+      return { ...prev, value: [] };
+    });
+    setStatusSelect((prev) => {
+      return { ...prev, value: [] };
+    });
+    setTagSelect((prev) => {
+      return { ...prev, value: [] };
+    });
+    setEffortSelect(0);
+    setFilteredCollections(collection);
+    setIsFilter(false);
     setLoading(false);
   };
 
@@ -465,10 +484,18 @@ export default function BookmarkList() {
 
           <button
             type="button"
-            className="btn btn-success text-xs"
+            className="btn text-xs"
             onClick={(e) => handleFilter(e)}
           >
             Filter
+          </button>
+
+          <button
+            type="button"
+            className={`btn btn-outline text-xs ${isFilter ? "" : "hidden"}`}
+            onClick={(e) => handleReset(e)}
+          >
+            Reset
           </button>
         </div>
 
