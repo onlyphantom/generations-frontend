@@ -268,7 +268,8 @@ export default function BookmarkList() {
             ? Object.keys(c.attributes.tagsCount)?.some((tag) =>
                 selectedTags.includes(tag)
               )
-            : true)
+            : true) &&
+          (effortSelect > 0 ? c.attributes.totalEffort <= effortSelect : true)
         );
       })
     );
@@ -318,7 +319,7 @@ export default function BookmarkList() {
           </span>
         </h2>
 
-        <div className="flex gap-2 ml-auto mb-4">
+        <div className="flex flex-wrap gap-2 ml-auto mb-4">
           <Dropdown
             isOpen={expertSelect.isOpen}
             onClose={() =>
@@ -453,8 +454,9 @@ export default function BookmarkList() {
               isMulti
             />
           </Dropdown>
-          <div className="basis-1/5 text-accent ml-2">
-            <p className="font-semibold uppercase text-xs mb-0">Effort:</p>
+
+          <div className="text-accent">
+            <p className="font-semibold uppercase text-xs mb-0">Max Effort:</p>
             <EffortPointOfTen
               effortSelect={effortSelect}
               setEffortSelect={setEffortSelect}
@@ -463,7 +465,7 @@ export default function BookmarkList() {
 
           <button
             type="button"
-            className="btn bt n-success text-xs"
+            className="btn btn-success text-xs"
             onClick={(e) => handleFilter(e)}
           >
             Filter
