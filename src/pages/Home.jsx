@@ -7,6 +7,7 @@ import Question from "../components/Question";
 import Tray from "../components/Tray";
 import Steps from "../components/Steps";
 import FellowshipPlus from "../components/FellowshipPlus";
+import BuildReal from "../components/BuildReal";
 
 function Home() {
   return (
@@ -31,6 +32,7 @@ function Home() {
       <CollectionList />
       <Steps />
       <Mentor />
+      <BuildReal />
       <Question />
       <Tray />
       <FellowshipPlus />

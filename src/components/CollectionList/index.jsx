@@ -498,9 +498,9 @@ export default function BookmarkList() {
           </span>
         </h2>
 
-        <div className="flex flex-wrap gap-2 ml-auto mb-4 items-center">
+        <div className="flex flex-wrap gap-2 ml-auto mb-4 items-center justify-end">
           <CreatableSelect
-            className="text-base w-max max-w-xs"
+            className="text-base w-full max-w-sm lg:max-w-md"
             components={{
               DropdownIndicator,
               IndicatorSeparator: null,
@@ -517,6 +517,7 @@ export default function BookmarkList() {
             isClearable
           />
           <Dropdown
+            className="text-base w-full lg:max-w-none"
             isOpen={expertSelect.isOpen}
             onClose={() =>
               setExpertSelect((prev) => {
@@ -535,7 +536,7 @@ export default function BookmarkList() {
                 <span className="text-ellipsis overflow-hidden max-w-xs">
                   {expertSelect.value.length > 0
                     ? `Expert: ${expertSelect.value.map(
-                        (v) => ` ${v.label.split(" ")[0]}`
+                        (v) => `${v.label.split(" ")[0]}`
                       )}`
                     : "Expert: All"}
                 </span>
@@ -544,7 +545,7 @@ export default function BookmarkList() {
             }
           >
             <Select
-              className="text-base w-max max-w-sm odds"
+              className="text-base w-max max-w-sm min-w-[200px] odds"
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
@@ -588,7 +589,7 @@ export default function BookmarkList() {
             }
           >
             <Select
-              className="text-base w-max max-w-sm"
+              className="text-base w-max max-w-sm min-w-[200px]"
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen
@@ -627,7 +628,7 @@ export default function BookmarkList() {
             }
           >
             <Select
-              className="text-base w-max max-w-sm odds"
+              className="text-base w-max max-w-sm min-w-[200px] odds"
               autoFocus
               components={{ DropdownIndicator, IndicatorSeparator: null }}
               menuIsOpen

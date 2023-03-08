@@ -1,5 +1,6 @@
 import HomepageForm from "../HomepageForm";
 import Navbar from "../Navbar";
+import { scrollToSection } from "../Navbar";
 
 export default function Header() {
   return (
@@ -9,22 +10,34 @@ export default function Header() {
         <div className="container mx-auto xl:px-4 text-gray-200">
           <div className="grid lg:grid-cols-2 gap-12 flex items-center">
             <div className="mt-12 lg:mt-0" style={{ zIndex: 10 }}>
-              <h1 className="font-extrabold tracking-tight mb-12 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600">
-                <span className="maintitle">Direct Paths </span>
+              <h1 className="font-extrabold mb-12">
+                <span className="maintitle tracking-in-expand text-gradient">
+                  Ship real code{" "}
+                </span>
                 <br />
                 <span
-                  className="text-4xl underline font-semibold"
+                  className="text-4xl underline font-semibold tracking-in-expand text-gradient"
                   style={{ display: "table-cell" }}
                 >
-                  to Employable Engineering Skills
+                  guided by technical experts
                 </span>
               </h1>
               <article className="prose font-medium text-lg">
-                Supertype Fellowship is a peer-to-peer community for data
-                science practitioners and software engineers looking to develop
-                product development skills — by immersing themselves with other
-                industry practitioners in a self-directed, elective-based
-                learning environment.
+                Supertype Fellowship is a community of learners, educators, and
+                open source developers combining to graduate industry-prepared
+                developers by providing them with the opportunity to contribute
+                to <span className="text-gradient">open source projects</span>.
+                The program features a combination of expert mentoring,
+                peer-to-peer learning, and plenty of opportunity to{" "}
+                <span
+                  className="link link-primary underline cursor-pointer"
+                  onClick={() => scrollToSection("buildreal")}
+                >
+                  <span className="text-gradient hover:text-secondary">
+                    help build real software being used by real people
+                  </span>
+                </span>
+                .
                 <br />
                 <br />
                 We're currently invite-only, and admissions are subjected to a
@@ -33,7 +46,7 @@ export default function Header() {
                   href="https://supertype.ai"
                   target="_blank"
                   rel="noreferrer"
-                  className="link link-accent"
+                  className="link link-primary"
                 >
                   Supertype.ai
                 </a>
