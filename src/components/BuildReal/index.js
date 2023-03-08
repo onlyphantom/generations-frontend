@@ -44,11 +44,11 @@ const BuildReal = () => {
                 </ImageBox>
                 <ImageBox src="/buildreal/bg-2.svg">
                     <h3 className="text-xl font-bold mb-4">
-                        No teachers, no large classrooms.
+                        No teachers, no classrooms, no textbooks.
                     </h3>
                     <p className="mb-4 text-sm">
-                        You don't submit boring multiple choice questions. Instead, you submit Pull Requests to your peers and <span className="text-secondary">get
-                            expert code reviews</span>.
+                        You don't submit boring multiple choice questions. Instead, your deployed code are subjected to <span className="text-secondary">
+                            expert code reviews</span> and one-on-one feedback.
                     </p>
                 </ImageBox>
                 <ImageBox src="/buildreal/bg-3.svg">
@@ -65,8 +65,8 @@ const BuildReal = () => {
                         Pull Requests driven. Just like real world.
                     </h3>
                     <p className="mb-4 text-sm">
-                        No boring multiple choice questions. Instead, your contributions are measured by Pull Requests,
-                        <span className="text-secondary"> exactly how it is</span> in the real world.
+                        Your contributions are measured by Pull Requests,
+                        <span className="text-secondary"> exactly as it is</span> in the real world. Your code has real impact and used by real people.
                     </p>
                 </ImageBox>
                 <ImageBox src="/buildreal/bg-5.svg">
@@ -113,8 +113,10 @@ const BuildReal = () => {
                         </p>
                         <br />
                         <p className="mb-4 text-sm text-gray-300 italic">
-                            You can read more about our philosohpy and the Fellowship Thesis at &nbsp;
-                            <a href="https://supertype.ai/notes/quizmasters/" target="_blank" rel="noreferrer" className="text-secondary">our blog on recruiting quizmasters.</a>
+                            You can read more about our philosophy and the Fellowship Thesis at &nbsp;
+                            <a href="https://supertype.ai/notes/quizmasters/" target="_blank" rel="noreferrer" className="text-secondary">our article on recruiting quizmasters.</a>
+                            &nbsp; In short, nothing prepares you how to build, ship and launch software features -- better than -- building and shipping itself, under expect guidance and mentorship, directly
+                            in the real world.
                         </p>
 
                     </div>

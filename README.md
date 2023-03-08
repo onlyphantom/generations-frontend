@@ -1,11 +1,11 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f2b74ea9-bc41-40dc-8914-17cc6b3f885c/deploy-status)](https://app.netlify.com/sites/peaceful-madeleine-0f7399/deploys) &nbsp; &nbsp; [![Supertype](https://img.shields.io/badge/supertype.ai-incubate-b1976b)](https://supertype.ai/incubate)
 
-![](assets/supertype_fellowship_process.png)
+![](public/supertype_fellowship_p.png)
 
 # Supertype Fellowship
 [Supertype Fellowship](https://fellowship.supertype.ai) is a development program for aspiring analytics developers, data scientists and software engineers looking to build a fulfilling career in these domains. The program features a combination of expert mentoring, peer-to-peer learning, and plenty of self-directed learning from a collection of curated learning resources.
 
-Participants are expected to spend 10-15 hours per week on the program, and will be expected to complete a series of projects and assignments. The program is largely self-paced, and participants will be able to choose from a variety of learning paths in a buffet-style format. All members of this valued community will receive plenty of mentoring, from real professionals in the field, to help them acclimate to production-level data science and software engineering.
+Participants learn analytics and software engineering by building real-world projects with a community of peers and mentors. The program is largely self-paced, and participants will be able to choose from a variety of learning paths in a buffet-style format. There is no homework, no assignments, no deadlines, and no grades. Instead, participants are taught to ship real features and products, just like they would as a software engineer in the real world. Instead of being graded on some arbitrary multiple choice questions, they will receive code reviews by their peers and expert mentors to help them acclimate to production-level data science and software engineering.
 
 This is a program by [Supertype (Data Science Consultancy)](https://supertype.ai) and is run in adherence to our [Philosophy](https://supertype.ai/about-us/).
 
