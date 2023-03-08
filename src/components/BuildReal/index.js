@@ -92,11 +92,7 @@ const BuildReal = () => {
                         <img
                             src="/buildreal/amanda.svg"
                             alt="Build Real projects by Supertype"
-                            style={{
-                                maxWidth: "500px",
-                                // position: "absolute",
-                                // top: "30px"
-                            }}
+                            className="lg:max-w-lg mt-2"
                         />
 
                     </div>

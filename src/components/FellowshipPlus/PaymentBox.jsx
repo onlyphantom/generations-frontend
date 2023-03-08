@@ -47,13 +47,8 @@ const PaymentBox = ({ user }) => {
               Paid Project Opportunities
             </p>
           </li>
+
           <li className="mb-4 flex items-center">
-            <Checkmark />
-            <p className="font-semibold leading-normal">
-              1x Round trip to Malang
-            </p>
-          </li>
-          <li className="flex items-center">
             <Checkmark />
             <p className="font-semibold leading-normal">
               Expedited Email Support
