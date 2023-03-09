@@ -30,7 +30,7 @@ export default function Header() {
                 The program features a combination of expert mentoring,
                 peer-to-peer learning, and plenty of opportunity to{" "}
                 <span
-                  className="link link-primary underline cursor-pointer"
+                  className="link-primary cursor-pointer"
                   onClick={() => scrollToSection("buildreal")}
                 >
                   <span className="text-gradient hover:text-secondary">
@@ -46,7 +46,7 @@ export default function Header() {
                   href="https://supertype.ai"
                   target="_blank"
                   rel="noreferrer"
-                  className="link link-primary"
+                  className="link-primary"
                 >
                   Supertype.ai
                 </a>

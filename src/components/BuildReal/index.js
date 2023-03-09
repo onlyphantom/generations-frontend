@@ -1,4 +1,7 @@
+import { useInView } from 'react-intersection-observer';
+
 const ImageBox = ({ src, children }) => {
+
     return (
         <div className="col-span-12 lg:col-span-4 min-h-[300px]">
             <div className="w-1/2 mx-auto lg:block lg:w-1/3 lg:h-full lg:float-left lg:pr-4">
@@ -7,6 +10,7 @@ const ImageBox = ({ src, children }) => {
                         <img
                             src={src}
                             alt="Build Real projects by Supertype"
+                            className="animate-pulse paused hover:running"
                             style={{
                                 height: "auto",
                                 position: "absolute",
@@ -25,6 +29,12 @@ const ImageBox = ({ src, children }) => {
 
 
 const BuildReal = () => {
+    const { ref, inView } = useInView({
+        /* Optional options */
+        threshold: 0, // 1 is when the entire element is fully in view
+        triggerOnce: true,
+    });
+
     return (
         <section className="mb-12 mx-4 text-center lg:text-left" id="buildreal">
             <h2 className="text-4xl font-bold mb-12 text-center">
@@ -87,7 +97,9 @@ const BuildReal = () => {
                         <span className="text-secondary"> you exposure but also add meaning </span> to your work.
                     </p>
                 </ImageBox>
-                <div className="col-span-12 lg:col-span-12 min-h-[300px]">
+                <div ref={ref}
+                    className={`${inView && "animate-in slide-in-from-left duration-1000"} "col-span-12 lg: col-span-12 min-h-[300px]"`}
+                >
                     <div className="w-1/2 mx-auto lg:block lg:w-1/2 lg:h-full lg:float-left lg:pr-4">
                         <img
                             src="/buildreal/amanda.svg"
@@ -114,7 +126,7 @@ const BuildReal = () => {
                         <br />
                         <p className="mb-4 text-sm text-gray-300 italic">
                             You can read more about our philosophy and the Fellowship Thesis at &nbsp;
-                            <a href="https://supertype.ai/notes/quizmasters/" target="_blank" rel="noreferrer" className="text-secondary">our article on recruiting quizmasters.</a>
+                            <a href="https://supertype.ai/notes/quizmasters/" target="_blank" rel="noreferrer" className="link-primary">our article on recruiting quizmasters.</a>
                             &nbsp; In short, nothing prepares you how to build, ship and launch software features -- better than -- building and shipping itself, under expect guidance and mentorship, directly
                             in the real world.
                         </p>
