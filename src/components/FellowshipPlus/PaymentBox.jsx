@@ -37,9 +37,7 @@ const PaymentBox = ({ user }) => {
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
-            <p className="font-semibold leading-normal">
-              Guided onboarding to Supertype Collective
-            </p>
+            <p className="font-semibold leading-normal">Guided onboarding</p>
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
@@ -51,7 +49,14 @@ const PaymentBox = ({ user }) => {
           <li className="mb-4 flex items-center">
             <Checkmark />
             <p className="font-semibold leading-normal">
-              Expedited Email Support
+              Email and Chat Support
+            </p>
+          </li>
+
+          <li className="mb-4 flex items-center">
+            <Checkmark />
+            <p className="font-semibold leading-normal">
+              🔓 Unlock all Features
             </p>
           </li>
         </ul>
@@ -64,7 +69,7 @@ const PaymentBox = ({ user }) => {
             </span>
             <br />
             <span className="text-white font-semibold leading-normal">
-              Unlock all features
+              Accelerated learning w/ mentorship access
             </span>
           </div>
           {/* <div className="w-full sm:w-1/2 p-8"> */}

@@ -4,7 +4,10 @@ import { scrollToSection } from "../Navbar";
 
 export default function Header() {
   return (
-    <section className="mb-0 background-radial-gradient overflow-hidden">
+    <section
+      className="mb-0 background-radial-gradient overflow-hidden"
+      id="header"
+    >
       <Navbar />
       <div className="px-6 py-12 lg:py-24 text-center lg:text-left">
         <div className="container mx-auto xl:px-4 text-gray-200">

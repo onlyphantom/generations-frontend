@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { scrollToSection } from "../Navbar";
 
 const RespondFromIntent = ({ intent, entities }) => {
-  // console.log(intent);
+  console.log(intent, entities);
   const [joke, setJoke] = useState(null);
 
   useEffect(() => {
@@ -16,24 +17,57 @@ const RespondFromIntent = ({ intent, entities }) => {
         );
     }
   }, [intent]);
-
-  if (intent === "greeting") {
-    return "Hi, I am your personal assistant. How can I help you?";
-  }
-  if (intent === "time") {
-    return "The time is " + new Date().toLocaleTimeString();
-  }
-  if (intent === "thanks") {
-    return "You are welcome!";
-  }
-  if (intent === "confused") {
-    return "I am sorry, I am not sure what you mean.";
-  }
-  if (intent === "weather") {
-    return "The weather is fine.";
-  }
-  if (intent === "humor") {
-    return <p className="prose">{joke}</p>;
+  if (intent === "about_fellowship") {
+    return (
+      <p className="prose">
+        🤖: Supertype Fellowship is a peer-to-peer community for data science
+        practitioners and software engineers who want to acquire product
+        development skills by &nbsp;
+        <span
+          className="link-primary cursor-pointer"
+          onClick={() => scrollToSection("curations")}
+        >
+          shipping real-world projects
+        </span>
+        &nbsp; used by real people.
+        <br /> We're currently in pre-launch and admissions might be subjected
+        to a quick screening 📋 process. If you need mentorship support on any
+        Electives, or wish to be part of an exclusively invite-only peer to peer
+        learning forum, you may consider signing up for a Fellowship Plus
+        subscription.
+        <br />
+        <br />
+        To get started, I recommend:
+        <ul className="list-disc list-inside">
+          <li>
+            Start with the{" "}
+            <span
+              className="link-primary cursor-pointer"
+              onClick={() => scrollToSection("curations")}
+            >
+              <code>Onboarding 🛫</code>{" "}
+            </span>
+            Elective
+          </li>
+          <li>
+            Make sure to Say 👋 on{" "}
+            <a
+              href="https://github.com/supertypeai"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="link-primary cursor-pointer"
+            >
+              the Discussions thread on GitHub
+            </a>
+          </li>
+          <li>
+            Pick one other Elective and start working on it. Read the
+            instructions in the README.md or the repository Wiki and open issues
+            to discuss your pull requests when you're unsure about something.
+          </li>
+        </ul>
+      </p>
+    );
   }
   if (intent === "about_us") {
     return (
@@ -44,37 +78,64 @@ const RespondFromIntent = ({ intent, entities }) => {
           href="https://supertype.ai/about-us"
           target="_blank"
           rel="noreferrer"
-          className="underline text-orange-100 hover:text-orange-300"
+          className="link-primary cursor-pointer"
         >
-          About us
+          About us | Supertype
         </a>{" "}
         page
       </p>
     );
   }
-  if (intent === "about_fellowship") {
+  if (intent === "electives") {
+    return "🤖: The electives are self-paced and can be completed at your own pace. You can filter the Electives by tags to find the ones that interest you the most.";
+  }
+
+  if (intent === "humor") {
+    return <p className="prose">🤖: {joke}</p>;
+  }
+
+  if (intent === "newsletter") {
     return (
-      <p className="prose">
-        🤖: Supertype Fellowship is a paid, peer-to-peer community for data
-        science practitioners and software engineers who want to develop product
-        development skills by immersing themselves with other industry-minded
-        developers. <br /> We're currently invite-only, and admissions are
-        subjected to a quick screening 📋 process. You can put in an application
-        using the form found at the top of this app.
+      <p>
+        🤖: You can sign up for our newsletter at the
+        <span
+          className="link-primary cursor-pointer"
+          onClick={() => scrollToSection("header")}
+        >
+          top of the page. We will never spam you, and we will send a maximum of
+          1 email per month.
+        </span>
       </p>
     );
   }
-  if (intent === "schedule_meeting") {
+  if (intent === "pricing") {
+    return (
+      <p className="prose">
+        🤖: Fellowship+ is an add-on to the core Fellowship program. The main
+        features of the Fellowship program will always be free to the greatest
+        extent possible. We also have a Fellowship Plus tier, which include
+        mentorship support and access to a peer-to-peer learning forum.
+        <br />
+        <br />
+        You can made a one-time payment of $156 for a one-year subscription to
+        Fellowship Plus (works out to $13 per month). The payment is handled by
+        Stripe and your check out information as well as credit card is never
+        stored on our servers.
+      </p>
+    );
+  }
+
+  if (intent === "talk_to_us") {
     return (
       <p className="prose">
         🤖: The best way to get in touch with the fellowship organizers is
-        through an email (s@supertype.ai). Outside of email, the next best
-        channel is to send my creator{" "}
+        through an email (<code>s@supertype.ai</code>). Outside of email, the
+        next best channel is to send my creator{" "}
         <a
           href="https://twitter.com/_onlyphantom"
           target="_blank"
-          rel="noreferrer"
-          className="underline text-orange-100 hover:text-orange-300"
+          rel="noreferrer noopener"
+          className="link-primary cursor-pointer"
         >
           a DM: @_onlyphantom (Samuel Chan)
         </a>{" "}
@@ -83,21 +144,20 @@ const RespondFromIntent = ({ intent, entities }) => {
           href="https://www.linkedin.com/in/chansamuel/"
           target="_blank"
           rel="noreferrer"
-          className="underline text-orange-100 hover:text-orange-300"
+          className="link-primary cursor-pointer"
         >
           LinkedIn message
         </a>
       </p>
     );
   }
-  if (intent === "provide_info") {
-    // return name and email to confirm they are correct
-  } else {
+
+  if (intent === "unknown") {
     return (
       <p className="prose">
         🤖: I am sorry, I am not sure what you mean. You can ask me a question
         relating to the organizers, the Supertype Fellowship program, or
-        anything I have specific knowledge of. I am not human, after all 😔.
+        anything I have specific knowledge of. I am not ChatGPT, after all 😔.
         <br />
         <br />
         Beyond the scope of these topics, you'd be better served by sending{" "}
@@ -105,7 +165,7 @@ const RespondFromIntent = ({ intent, entities }) => {
           href="https://twitter.com/_onlyphantom"
           target="_blank"
           rel="noreferrer"
-          className="underline text-orange-100 hover:text-orange-300"
+          className="link-primary cursor-pointer"
         >
           my creator a DM: @_onlyphantom (Samuel Chan)
         </a>
