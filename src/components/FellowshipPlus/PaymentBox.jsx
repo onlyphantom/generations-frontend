@@ -109,6 +109,9 @@ const PaymentBox = ({ user }) => {
           >
             Enroll in Fellowship+
           </label>
+          <span className="block text-center text-gray-400 text-xs mt-4">
+            No auto-renewal, we do not store your credit card information
+          </span>
           {/* {user?.proExpiry && new Date(user.proExpiry) > Date.now() ? (
             <>
               <button 

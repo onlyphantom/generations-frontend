@@ -8,6 +8,7 @@ import Tray from "../components/Tray";
 import Steps from "../components/Steps";
 import FellowshipPlus from "../components/FellowshipPlus";
 import BuildReal from "../components/BuildReal";
+import Testimonial from "../components/Testimonial";
 
 function Home() {
   return (
@@ -36,6 +37,7 @@ function Home() {
       <Question />
       <Tray />
       <FellowshipPlus />
+      <Testimonial />
     </>
   );
 }
