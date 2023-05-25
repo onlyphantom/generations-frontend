@@ -115,16 +115,13 @@ const Navbar = () => {
                 Cohort-based Fellowship
               </button>
             </li>
-            { loggedIn && (
-                <li>
-                  <button>
-                    <a href="https://discord.gg/TAnZMmNS4X">
-                      Community
-                    </a>
-                  </button>
-                </li>
-              )
-            }
+            {loggedIn && (
+              <li>
+                <button>
+                  <a href="https://discord.gg/TAnZMmNS4X">Community</a>
+                </button>
+              </li>
+            )}
           </ul>
         </div>
         <div className="dropdown">
@@ -151,16 +148,13 @@ const Navbar = () => {
                 Cohort Program
               </button>
             </li>
-            { loggedIn && (
-                <li>
-                  <button>
-                    <a href="https://discord.gg/TAnZMmNS4X">
-                      Community
-                    </a>
-                  </button>
-                </li>
-              )
-            }
+            {loggedIn && (
+              <li>
+                <button>
+                  <a href="https://discord.gg/TAnZMmNS4X">Community</a>
+                </button>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -182,16 +176,18 @@ const Navbar = () => {
               Cohort-based Fellowship
             </button>
           </li>
-          { loggedIn && (
-              <li>
-                <button className="btn btn-ghost">
-                    <a href="https://discord.gg/TAnZMmNS4X">
-                      Community
-                    </a>
-                  </button>
-              </li>
-            )
-          }
+          {loggedIn && (
+            <li>
+              <a
+                href="https://discord.gg/TAnZMmNS4X"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                Community
+              </a>
+            </li>
+          )}
         </ul>
       </div>
       <div className="navbar-end">
