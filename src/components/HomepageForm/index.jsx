@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 const HomepageForm = () => {
+  const [email, setEmail] = useState();
+
+  const sendEmail = (e) => {
+    fetch(`https://generationsapi.herokuapp.com/api/users/welcome-email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: e
+      }),
+    })
+  }
+
   return (
     <>
       <form name="enquiry" method="post" data-netlify="true">
@@ -28,6 +42,7 @@ const HomepageForm = () => {
         <input
           type="email"
           name="email"
+          onChange={(e) => setEmail(e.target.value)}
           className="input w-full max-w input-bordered mb-6"
           placeholder="Email address"
           required
@@ -51,6 +66,7 @@ const HomepageForm = () => {
           bg-gradient-to-r from-purple-400 to-pink-200 text-transparent bg-clip-text
           hover:from-purple-500 hover:to-pink-300 hover:border-success transition duration-200
           "
+          onClick={() => sendEmail(email)}
         >
           Enquire about upcoming cohort
         </button>
