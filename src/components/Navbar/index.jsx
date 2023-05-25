@@ -119,7 +119,7 @@ const Navbar = () => {
                 <li>
                   <button>
                     <a href="https://discord.gg/TAnZMmNS4X">
-                      Our Community
+                      Community
                     </a>
                   </button>
                 </li>
@@ -155,7 +155,7 @@ const Navbar = () => {
                 <li>
                   <button>
                     <a href="https://discord.gg/TAnZMmNS4X">
-                      Our Community
+                      Community
                     </a>
                   </button>
                 </li>
@@ -186,7 +186,7 @@ const Navbar = () => {
               <li>
                 <button className="btn btn-ghost">
                     <a href="https://discord.gg/TAnZMmNS4X">
-                      Our Community
+                      Community
                     </a>
                   </button>
               </li>
