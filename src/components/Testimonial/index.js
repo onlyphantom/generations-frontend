@@ -20,7 +20,8 @@ const Testimonial = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-primary">
-                        <img src="https://media.licdn.com/dms/image/D4E03AQGm_j7f0Jhh2g/profile-displayphoto-shrink_200_200/0/1680265131976?e=1687392000&v=beta&t=-qoTKLeMY6NI8nM3d7XlaTsuDoIAjbxdPcPEY3cnFqk" alt="karina endorsement supertype fellowship" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+                        <img src="/testimonial_img/karina.jpeg"
+                            alt="karina endorsement supertype fellowship" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
                         <p className="text-xl font-semibold leading-tight">Karina Widyastuti</p>
                         <p className="text-sm uppercase text-center">Alumna, Senior Business Analyst @OneByOne Logistical</p>
                     </div>
@@ -40,7 +41,7 @@ const Testimonial = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-secondary text-gray-300">
-                        <img src="https://media.licdn.com/dms/image/D5603AQHgxFYSW8tiZg/profile-displayphoto-shrink_100_100/0/1664250839943?e=1687392000&v=beta&t=aszWMfK6dgfzx9ZZpnM3wQyz-c4BYVPB3K2tbw6e_IE" alt="Syarifah supertype fellowship endorsement" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+                        <img src="/testimonial_img/syarifah.webp" alt="Syarifah supertype fellowship endorsement" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
                         <p className="text-xl font-semibold leading-tight">Syarifah Harsanto</p>
                         <p className="text-sm uppercase">Alumna, Media Monitoring Executive @Semar Sentinel</p>
                     </div>
@@ -59,7 +60,7 @@ const Testimonial = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-primary">
-                        <img src="https://media.licdn.com/dms/image/C5103AQFs8HBT-EZhUA/profile-displayphoto-shrink_100_100/0/1567946946746?e=1687392000&v=beta&t=GwinGZsockC8YwnRQUkQRqAqJXgqdnyh2IPMxwN_TOE" alt="Ardysatrio supertype fellowship review" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+                        <img src="/testimonial_img/ardysatrio.jpeg" alt="Ardysatrio supertype fellowship review" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
                         <p className="text-xl font-semibold leading-tight">Ardysatrio Fakhri Haroen</p>
                         <p className="text-sm uppercase">Alumnus, AI Research Engineer @Bukalapak </p>
                     </div>
@@ -78,9 +79,29 @@ const Testimonial = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-secondary text-gray-300">
-                        <img src="https://media.licdn.com/dms/image/D5603AQFvDYJOZEGjJQ/profile-displayphoto-shrink_100_100/0/1671753086166?e=1687392000&v=beta&t=F51NaZ7KnK23iWqhu3CzYqi0HpjR1GPZwetHWHJoeTA" alt="Kshitij supertype fellowship endorsement" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+                        <img src="/testimonial_img/kshitij.jpeg" alt="Kshitij supertype fellowship endorsement" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
                         <p className="text-xl font-semibold leading-tight">Kshitij Bir Arora</p>
                         <p className="text-sm uppercase">Alumnus, Software Engineer @Boomi</p>
+                    </div>
+                </div>
+                <div className="flex flex-col max-w-lg mx-4 my-4 shadow-lg">
+                    <div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 dark:bg-gray-900">
+                        <p className="relative px-6 py-1 text-lg italic text-center dark:text-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-8 h-8 dark:text-violet-400">
+                                <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
+                                <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>
+                            </svg>
+                            I had the pleasure of working with Samuel and Supertype recently, and can attest to his incredible technical knowledge and his ability to translate complex technical information into simple English. I enjoyed the collaboration and highly recommend his professionalism.
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="absolute right-0 w-8 h-8 dark:text-violet-400">
+                                <path d="M280,185.143V416H496V16H457.6ZM464,384H312V198.857L464,54.1Z"></path>
+                                <path d="M232,16H193.6L16,185.143V416H232ZM200,384H48V198.857L200,54.1Z"></path>
+                            </svg>
+                        </p>
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-primary">
+                        <img src="/testimonial_img/federica.jpeg" alt="Federica supertype fellowship review" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+                        <p className="text-xl font-semibold leading-tight">Federica Marchesini</p>
+                        <p className="text-sm uppercase">Change Manager, Dept. of Transport, Western Australia</p>
                     </div>
                 </div>
                 <div className="flex flex-col max-w-lg mx-4 my-4 shadow-lg">
@@ -99,11 +120,13 @@ const Testimonial = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center justify-center p-8 rounded-b-lg bg-secondary text-gray-300">
-                        <img src="https://media.licdn.com/dms/image/C5603AQE7vjwuWOl6cA/profile-displayphoto-shrink_100_100/0/1647219687485?e=1687392000&v=beta&t=YZc2SGGuYLnp2ltqll4gIGWo3BX6SY5zRvwFq4Fb8Uw" alt="Vincent supertype fellowship endorsement" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
+                        <img src="/testimonial_img/vincent.jpeg"
+                            alt="Vincent supertype fellowship endorsement" className="w-16 h-16 mb-2 -mt-16 bg-center bg-cover rounded-full dark:bg-gray-500 dark:bg-gray-700" />
                         <p className="text-xl font-semibold leading-tight">Vincent Rueb</p>
                         <p className="text-sm uppercase">Alumnus, Web 3 Artist &amp; Entrepreneur</p>
                     </div>
                 </div>
+
             </div>
         </section>
     )

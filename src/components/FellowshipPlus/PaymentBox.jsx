@@ -28,28 +28,35 @@ const PaymentBox = ({ user }) => {
           <li className="mb-4 flex items-center">
             <Checkmark />
             <p className="font-semibold leading-normal">
-              Peer-to-Peer Learning Forum
+              🏫 Peer-to-Peer Learning Forum
             </p>
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
-            <p className="font-semibold leading-normal">Mentorship Access</p>
+            <p className="font-semibold leading-normal">👩‍🏫 Mentorship Access</p>
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
-            <p className="font-semibold leading-normal">Guided onboarding</p>
+            <p className="font-semibold leading-normal">🎢 Guided onboarding</p>
           </li>
           <li className="mb-4 flex items-center">
             <Checkmark />
             <p className="font-semibold leading-normal">
-              Paid Project Opportunities
+              👛 Paid Project Opportunities
             </p>
           </li>
 
           <li className="mb-4 flex items-center">
             <Checkmark />
             <p className="font-semibold leading-normal">
-              Email and Chat Support
+              💌 Email and Chat Support
+            </p>
+          </li>
+
+          <li className="mb-4 flex items-center">
+            <Checkmark />
+            <p className="font-semibold leading-normal">
+              ☎️ Monthly Video Calls
             </p>
           </li>
 
