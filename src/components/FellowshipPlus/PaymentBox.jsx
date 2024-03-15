@@ -102,7 +102,7 @@ const PaymentBox = ({ user }) => {
               user?.token && !user?.proUser ? "" : "hidden "
             }SS_ProductCheckout py-4 px-5 lg:text-sm w-full text-white font-semibold rounded-xl focus:ring btn-secondary transition ease-in-out duration-200`}
             type="button"
-            data-id="4"
+            data-id="7"
             data-email={user?.email}
             data-url="https://generationsapi.herokuapp.com"
           >
