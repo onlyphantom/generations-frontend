@@ -117,7 +117,7 @@ export const LessonCardFrame = ({ children, lesson, wide }) => {
                   <>
                     <p className="font-light text-sm">
                       {lesson.status === "preaccept"
-                        ? "Suggested Mentor:"
+                        ? "Mentor:"
                         : "Assigned Mentor"}
                     </p>
                     <span className="flex items-center">
@@ -129,7 +129,7 @@ export const LessonCardFrame = ({ children, lesson, wide }) => {
                 )
               ) : (
                 <>
-                  <p className="font-light text-sm">Suggested Mentor:</p>
+                  <p className="font-light text-sm">Mentor:</p>
                   <span className="flex items-center">
                     <MentorProfile
                       mentor={lesson.attributes?.recommendedExpert}
