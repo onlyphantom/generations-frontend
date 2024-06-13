@@ -10,24 +10,26 @@ const HomepageForm = () => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email: e
+        email: e,
       }),
-    })
+    });
 
     fetch("https://api.sendgrid.com/v3/marketing/contacts", {
       method: "PUT",
       headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_SENDGRID_API_KEY}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.REACT_APP_PUBLIC_SENDGRID_API_KEY}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        "contacts": [{
-          "email": e,
-        }],
-        "list_ids": ["9773871e-6213-4e1d-886a-79de6a337ae2"]
+        contacts: [
+          {
+            email: e,
+          },
+        ],
+        list_ids: ["9773871e-6213-4e1d-886a-79de6a337ae2"],
       }),
-    })
-  }
+    });
+  };
 
   return (
     <>
